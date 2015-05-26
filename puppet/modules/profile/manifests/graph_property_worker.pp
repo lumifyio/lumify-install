@@ -8,4 +8,5 @@ class profile::graph_property_worker {
   class { '::tesseract': }
   class { '::sphinx': }
   class { '::ccextractor': }
+  class { '::ffmpeg': }
 }
