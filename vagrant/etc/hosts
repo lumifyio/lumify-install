@@ -1,0 +1,4 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.33.100 puppet puppet.vm.local
+192.168.33.101 lumify-dev lumify-dev.vm.local
