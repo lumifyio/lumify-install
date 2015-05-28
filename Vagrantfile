@@ -16,7 +16,7 @@ VAGRANTFILE_API_VERSION = "2"
 #
 # All clients will be added to the hosts file for each VM
 $clients = {
-    :dev => { ip: '192.168.33.101', },
+    :gpw => { ip: '192.168.33.101', },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
