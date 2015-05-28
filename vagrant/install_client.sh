@@ -9,15 +9,14 @@ cp /vagrant/vagrant/etc/puppet.sh /etc/profile.d
 
 # Revoke client certificate so it is reissued when server is rebuilt
 echo "Revoking client certificate ..."
-CERT_STATUS=https://puppet:8140/puppet-ca/v1/certificate_status/$HOSTNAME
-curl -k -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' $CERT_STATUS
-curl -k -X DELETE -H "Accept: pson" $CERT_STATUS
-find /etc/puppetlabs/puppet/ssl -name $HOSTNAME.pem -delete
-#rm -Rf /etc/puppetlabs/puppet/ssl/*
+CERT_STATUS=https://puppet:8140/puppet-ca/v1/certificate_status/$HOSTNAME?environment=dev
+curl -k -s -S -X PUT -H "Content-Type: text/pson" --data '{"desired_state":"revoked"}' $CERT_STATUS 2>&1 > /dev/null
+curl -k -s -S -X DELETE -H "Accept: pson" $CERT_STATUS 2>&1 > /dev/null
+find /etc/puppetlabs/puppet/ssl -name $HOSTNAME.pem -delete 2>&1 > /dev/null
 
 # Trigger puppet provisioning
 echo "Provisioning with puppet ..."
-/opt/puppetlabs/bin/puppet agent -v -t
+/opt/puppetlabs/bin/puppet agent -v -t --certname $HOSTNAME
 
 # Detailed exit codes for puppet agent are:
 # 0 - No Changes
