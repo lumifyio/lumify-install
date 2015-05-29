@@ -3,11 +3,11 @@ class elasticsearch (
   $elasticsearch_rpm_version  = $elasticsearch::params::elasticsearch_rpm_version,
   $user                       = $elasticsearch::params::user,
   $group                      = $elasticsearch::params::group,
-  $installdir                 = $elasticsearch::params::installdir,
-  $configdir                  = $elasticsearch::params::configdir,
-  $logdir                     = $elasticsearch::params::logdir,
-  $workdir                    = $elasticsearch::params::workdir,
-  $tmpdir                     = $elasticsearch::params::tmpdir,
+  $install_dir                = $elasticsearch::params::installdir,
+  $config_dir                 = $elasticsearch::params::configdir,
+  $log_dir                    = $elasticsearch::params::logdir,
+  $work_dir                   = $elasticsearch::params::workdir,
+  $tmp_dir                    = $elasticsearch::params::tmpdir,
   $elasticsearch_locations    = $elasticsearch::params::elasticsearch_locations,
   $number_of_shards           = $elasticsearch::params::number_of_shards,
   $number_of_replicates       = $elasticsearch::params::number_of_replicates,
@@ -19,4 +19,9 @@ class elasticsearch (
   class { '::elasticsearch::install': } ->
   class { '::elasticsearch::config': } ->
   class { '::elasticsearch::service': }
+
+  contain '::elasticsearch::repo'
+  contain '::elasticsearch::install'
+  contain '::elasticsearch::config'
+  contain '::elasticsearch::service'
 }

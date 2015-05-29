@@ -1,11 +1,10 @@
 class elasticsearch::service inherits elasticsearch {
-  if $service_manage == true {
-    service { 'elasticsearch':
-      ensure     => "running",
-      enable     => "true",
-      name       => "elasticsearch",
-      hasstatus  => true,
-      hasrestart => true,
-    }
+
+  service { 'elasticsearch':
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => Class['::java', '::elasticsearch::install', '::elasticsearch::config'],
   }
 }

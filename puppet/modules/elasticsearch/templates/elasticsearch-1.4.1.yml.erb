@@ -144,7 +144,7 @@ index.number_of_replicas: <%= @number_of_replicates %>
 # Path to directory containing configuration (this file and logging.yml):
 #
 #path.conf: /path/to/conf
-path.conf: <%= @configdir %>
+path.conf: <%= @config_dir %>
 
 # Path to directory where to store index data allocated for this node.
 #
@@ -155,20 +155,20 @@ path.conf: <%= @configdir %>
 # space on creation. For example:
 #
 #path.data: /path/to/data1,/path/to/data2
-path.data: <%= @datadirs.join(',') %>
+path.data: <%= @data_dirs.join(',') %>
 
 # Path to temporary files:
 #
 #path.work: /path/to/work
-path.work: <%= @workdir %>
+path.work: <%= @work_dir %>
 
 # Path to log files:
 #
-path.logs: <%= @logdir %>
+path.logs: <%= @log_dir %>
 
 # Path to where plugins are installed:
 #
-path.plugins: <%= @plugindir %>
+path.plugins: <%= @plugin_dir %>
 
 
 #################################### Plugin ###################################

@@ -8,6 +8,6 @@ class elasticsearch_head_plugin::install inherits elasticsearch_head_plugin {
     command => "${elasticsearch_install_dir}/bin/plugin --url file://${tmp_dir}/head-plugin.zip --install head",
     cwd     => "${elasticsearch_install_dir}",
     creates => "${elasticsearch_plugin_dir}/head",
-    require => Package['elasticsearch'],
+    require => Class['::elasticsearch'],
   }
 }

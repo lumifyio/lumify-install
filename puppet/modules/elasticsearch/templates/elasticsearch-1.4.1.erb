@@ -1,5 +1,5 @@
 # Directory where the Elasticsearch binary distribution resides
-ES_HOME=<%= @installdir %>/elasticsearch
+ES_HOME=<%= @install_dir %>/elasticsearch
 
 # Heap Size (defaults to 256m min, 1g max)
 ES_HEAP_SIZE=<%= @es_heap_size %>
@@ -23,19 +23,19 @@ MAX_OPEN_FILES=65535
 MAX_MAP_COUNT=262144
 
 # Elasticsearch log directory
-LOG_DIR=<%= @logdir %>
+LOG_DIR=<%= @log_dir %>
 
 # Elasticsearch data directory
-DATA_DIR=<%= @datadirs.join(',') %>
+DATA_DIR=<%= @data_dirs.join(',') %>
 
 # Elasticsearch work directory
-WORK_DIR=<%= @workdir %>
+WORK_DIR=<%= @work_dir %>
 
 # Elasticsearch conf directory
-CONF_DIR=<%= @configdir %>
+CONF_DIR=<%= @config_dir %>
 
 # Elasticsearch configuration file (elasticsearch.yml)
-CONF_FILE=<%= @configdir %>/elasticsearch.yml
+CONF_FILE=<%= @config_dir %>/elasticsearch.yml
 
 # User to run as, change this to a specific elasticsearch user if possible
 # Also make sure, this user can write into the log directories in case you change them

@@ -5,4 +5,5 @@ class elasticsearch_securegraph_plugin (
   $tmp_dir                                  = $elasticsearch_securegraph_plugin::params::tmp_dir,
 ) inherits elasticsearch_securegraph_plugin::params {
   class { '::elasticsearch_securegraph_plugin::install': }
+  contain '::elasticsearch_securegraph_plugin::install'
 }

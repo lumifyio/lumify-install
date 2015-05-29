@@ -13,4 +13,7 @@ class java (
 ) inherits java::params {
   class { '::java::install': } ->
   class { '::java::config': }
+
+  contain '::java::install'
+  contain '::java::config'
 }

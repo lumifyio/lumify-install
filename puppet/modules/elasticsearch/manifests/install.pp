@@ -1,6 +1,9 @@
 class elasticsearch::install inherits elasticsearch {
+
+  include '::elasticsearch::repo'
+
   package { 'elasticsearch' :
     ensure   => $rpm_version,
-    requires => Class['::elasticsearch::repo'],
+    require  => Class['::elasticsearch::repo'],
   }
 }

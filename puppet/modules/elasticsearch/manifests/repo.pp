@@ -1,5 +1,5 @@
 class elasticsearch::repo {
-  yumrepo { 'elasticsearch-1.4' :
+  yumrepo { 'elasticsearch' :
     descr    => 'Elasticsearch repository for 1.4.x packages',
     baseurl  => 'http://packages.elasticsearch.org/elasticsearch/1.4/centos',
     gpgcheck => 1,
