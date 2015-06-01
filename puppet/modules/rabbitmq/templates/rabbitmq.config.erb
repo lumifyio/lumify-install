@@ -1,0 +1,20 @@
+[
+  {rabbit, [
+    {default_user, '<%= @rabbitmq_mgmt_user %>'},
+    {default_pass, '<%= @rabbitmq_mgmt_user_pw %>'},
+    {default_user_tags, ['administrator']},
+    {default_permissions, ['.*', '.*', '.*']},
+    {auth_mechanisms, ['PLAIN', 'AMQPLAIN']},
+    {loopback_users, []}
+    <%- if @cluster_nodes != nil && @cluster_nodes.count > 1 %>
+    ,{cluster_nodes, {[<%= @cluster_nodes.collect {|hostname| "'rabbit@#{hostname}'"}.join(', ') %>], disc}}
+    <%- end %>
+  ]},
+  {kernel, [
+    {inet_dist_listen_min, 25672},
+    {inet_dist_listen_max, 25672}
+  ]},
+  {rabbitmq_management, [
+    {load_definitions, "/etc/elasticsearch/rabbitmq-ha-policy.json"}
+  ]}
+].
