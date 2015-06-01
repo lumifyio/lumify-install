@@ -19,6 +19,7 @@ $clients = {
     :gpw => { ip: '192.168.33.101', },
     :es  => { ip: '192.168.33.102', },
     :rmq => { ip: '192.168.33.103', },
+    :clavin => { ip: '192.168.33.104', },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
