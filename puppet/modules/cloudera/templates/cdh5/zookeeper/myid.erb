@@ -1,0 +1,1 @@
+<%= @zookeeper_nodes.find {|id, node| node.split(':')[0] == @zookeeper_node_ip}[0] rescue nil %>

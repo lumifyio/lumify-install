@@ -1,0 +1,18 @@
+# The number of milliseconds of each tick
+tickTime=2000
+# The number of ticks that the initial
+# synchronization phase can take
+initLimit=10
+# The number of ticks that can pass between
+# sending a request and getting an acknowledgement
+syncLimit=5
+# the directory where the snapshot is stored.
+dataDir=<%= @zookeeper_data_dir %>
+# the port at which the clients will connect
+clientPort=2181
+<% @zookeeper_nodes.each do |id, node| -%>
+server.<%= id %>=<%= node.split(':')[0] %>:2888:3888
+<% end -%>
+# http://zookeeper.apache.org/doc/r3.4.5/zookeeperAdmin.html#Ongoing+Data+Directory+Cleanup
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=1
