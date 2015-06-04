@@ -80,4 +80,43 @@ class macro {
       }
     }
   }
+
+  # TLH - this probably shouldn't be used in modules
+  define know_our_host_key ($user, $sshdir, $hostname) {
+    exec { "know-our-host-key-${user}-${hostname}" :
+      command => "/bin/echo \"${hostname} $(/bin/cat /etc/ssh/ssh_host_rsa_key.pub)\" >> ${sshdir}/known_hosts",
+      user    => $user,
+      unless  => "/bin/grep -q \"${hostname} $(/bin/cat /etc/ssh/ssh_host_rsa_key.pub)\" ${sshdir}/known_hosts",
+    }
+  }
+
+  # TLH - this probably shouldn't be used in modules
+  define setup_passwordless_ssh ($user=$title, $sshdir) {
+    exec { "generate-ssh-keypair-${user}" :
+      command => "/usr/bin/ssh-keygen -b 2048 -f ${sshdir}/id_rsa -N ''",
+      user    => $user,
+      creates => "${sshdir}/id_rsa",
+    }
+
+    exec { "authorize-ssh-key-${user}" :
+      command => "/bin/cat ${sshdir}/id_rsa.pub >> ${sshdir}/authorized_keys",
+      user    => $user,
+      unless  => "/bin/grep -q \"$(/bin/cat ${sshdir}/id_rsa.pub)\" ${sshdir}/authorized_keys",
+      require => Exec["generate-ssh-keypair-${user}"],
+    }
+
+    macro::know_our_host_key { "${user}-localhost" :
+      user     => $user,
+      sshdir   => $sshdir,
+      hostname => 'localhost',
+      require  => Exec["generate-ssh-keypair-${user}"],
+    }
+
+    macro::know_our_host_key { "${user}-${ipaddress_eth1}" :
+      user     => $user,
+      sshdir   => $sshdir,
+      hostname => $ipaddress_eth1,
+      require  => Exec["generate-ssh-keypair-${user}"],
+    }
+  }
 }

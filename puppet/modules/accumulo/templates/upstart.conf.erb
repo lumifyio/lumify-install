@@ -1,0 +1,51 @@
+author "Altamira Technologies"
+description "Controls an Accumulo <%= @service_name %> instance"
+
+# This "start on" is not a mistake...
+# CentOS does not emit all of the standard events properly.
+# If it did, then we should probably be saying "start on net-device-up"
+start on stopped rc RUNLEVEL=[345]
+
+# What user and group to run as
+# I would like to do the next two steps but our version of upstart does not support it
+# setuid <%= @user %>
+# setgid <%= @group %>
+umask 0007
+
+respawn
+respawn limit 5 10
+
+env ACCUMULO_HOME=<%= @homelink %>
+env ACCUMULO_LOG_DIR=<%= @homelink %>/logs
+env SERVICE=<%= @service_name %>
+env SERVICE_ADDRESS=<%= @service_name == 'monitor' ? '0.0.0.0': @accumulo_host_address %>
+
+<% if @service_name == 'master' %>
+pre-start script
+  # UNCOMMENT THE FOLLOWING TO HELP DEBUG
+  exec >>/var/log/accumulo-upstart-${SERVICE}.log 2>&1
+  # set -x
+
+  mkdir -p $ACCUMULO_LOG_DIR 2>/dev/null
+
+  if [ -f $ACCUMULO_HOME/conf/accumulo-env.sh ] ; then
+    . $ACCUMULO_HOME/conf/accumulo-env.sh
+  fi
+
+  exec su -s /bin/sh -c 'exec "$0" "$@"' <%= @user %> -- ${ACCUMULO_HOME}/bin/accumulo org.apache.accumulo.master.state.SetGoalState NORMAL
+end script
+<% end %>
+
+script
+# UNCOMMENT THE FOLLOWING TO HELP DEBUG
+  exec >>/var/log/accumulo-upstart-${SERVICE}.log 2>&1
+# set -x
+
+  mkdir -p $ACCUMULO_LOG_DIR 2>/dev/null
+
+  if [ -f $ACCUMULO_HOME/conf/accumulo-env.sh ] ; then
+    . $ACCUMULO_HOME/conf/accumulo-env.sh
+  fi
+
+  exec su -s /bin/sh -c 'exec "$0" "$@"' <%= @user %> -- ${ACCUMULO_HOME}/bin/accumulo ${SERVICE} --address ${SERVICE_ADDRESS} >${ACCUMULO_LOG_DIR}/${SERVICE}_${LOGHOST}.out 2>${ACCUMULO_LOG_DIR}/${SERVICE}_${LOGHOST}.err
+end script
