@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value><%= (@memorysize_mb.to_i * 0.8).to_i %></value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value><%= @processorcount %></value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value><%= @namenode_hostname %></value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value><%= (@data_directories || '').split(',').map{|d| d + '/yarn/local'}.join(',') %></value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value><%= (@data_directories || '').split(',').map{|d| d + '/yarn/logs'}.join(',') %></value>
+  </property>
+
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.address</name>
+    <value>${yarn.nodemanager.hostname}:48314</value>
+  </property>
+
+  <property>
+    <name>yarn.app.mapreduce.am.job.client.port-range</name>
+    <value>50100-50200</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+</configuration>

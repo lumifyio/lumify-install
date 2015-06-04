@@ -23,6 +23,7 @@ $clients = {
     :zk     => { ip: '192.168.33.105', },
     :ac     => { ip: '192.168.33.106', },
     :jetty => { ip: '192.168.33.107', },
+    :hadoop => { ip: '192.168.33.108', },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)

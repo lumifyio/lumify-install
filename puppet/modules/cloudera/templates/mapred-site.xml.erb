@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value><%= @historyserver_hostname %>:10020</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value><%= @historyserver_hostname %>:19888</value>
+  </property>
+
+  <property>
+    <name>hadoop.proxyuser.mapred.groups</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.proxyuser.mapred.hosts</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>yarn.app.mapreduce.am.staging-dir</name>
+    <value>/user</value>
+  </property>
+
+  <property>
+    <name>mapreduce.application.classpath</name>
+    <value>
+      /usr/lib/hadoop/*,
+      /usr/lib/hadoop/lib/*,
+      /usr/lib/hadoop-hdfs/*,
+      /usr/lib/hadoop-hdfs/lib/*,
+      /usr/lib/hadoop-mapreduce/*,
+      /usr/lib/hadoop-mapreduce/lib/*,
+      /usr/lib/hadoop-yarn/*,
+      /usr/lib/hadoop-yarn/lib/*,
+      /usr/lib/etc/hadoop/
+    </value>
+  </property>
+
+  <property>
+     <name>mapred.child.env</name>
+     <value>PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin,LD_LIBRARY_PATH=/usr/local/lib:/usr/local/share/OpenCV/java</value>
+     <final>true</final>
+  </property>
+
+  <property>
+     <name>mapred.child.java.opts</name>
+     <value>-Djava.library.path=/usr/local/lib:/usr/local/share/OpenCV/java</value>
+     <final>true</final>
+  </property>
+
+</configuration>

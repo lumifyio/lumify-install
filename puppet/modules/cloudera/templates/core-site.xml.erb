@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <% if @hadoop_ha_enabled == true %>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://<%= @hadoop_ha_cluster_name %></value>
+  </property>
+	<property>
+	  <name>ha.zookeeper.quorum</name>
+    <value><%= @zookeeper_nodes.values.join(',') %></value>
+	</property>
+  <% else %>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://<%= @namenode_hostname %>:8020</value>
+  </property>
+  <% end %>
+  <property>
+     <name>hadoop.tmp.dir</name>
+     <value><%= (@data_directories || '').split(',').map{|d| d + '/hadoop/tmp'}.join(',') %></value>
+     <final>true</final>
+  </property>
+</configuration>
