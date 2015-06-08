@@ -1,0 +1,20 @@
+---
+
+# hadoop / yarn config
+cloudera::cdh5::hadoop::namenode_hostname       = 'demo.vm.local'
+cloudera::cdh5::hadoop::hadoop_ha_cluster_name  = 'demo.vm.local'
+cloudera::cdh5::hadoop::historyserver_hostname  = 'demo.vm.local'
+
+# accumulo config
+accumulo::namenode_hostname                                 = 'demo.vm.local'
+accumulo::accumulo_tserver_memory_maps_max                  = '2G'
+accumulo::accumulo_tserver_walog_max_size                   = '1G'
+accumulo::accumulo_table_compaction_minor_logs_threshold    = '3'
+accumulo::accumulo_tserver_cache_data_size                  = '128M'
+accumulo::accumulo_tserver_cache_index_size                 = '128M'
+accumulo::java_heap_size                                    = '2g'
+
+# elastic search
+elasticsearch::es_heap_size = '2g'
+
+
