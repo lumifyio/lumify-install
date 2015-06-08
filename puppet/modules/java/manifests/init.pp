@@ -7,9 +7,9 @@
 # $rpm_source: indicates whether RPM should be downloaded from a URL ('download') or is present
 #              in a package manager repository ('repo'); default: 'download'
 class java (
-  String                   $java_version = $java::params::java_version,
-  String                   $java_home    = $java::params::java_home,
-  Enum['download', 'repo'] $rpm_source   = $java::params::rpm_source,
+  $java_version = $java::params::java_version,
+  $java_home    = $java::params::java_home,
+  $rpm_source   = $java::params::rpm_source,
 ) inherits java::params {
   class { '::java::install': } ->
   class { '::java::config': }
