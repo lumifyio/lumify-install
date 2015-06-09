@@ -9,4 +9,5 @@ class profile::graph_property_worker {
   class { '::sphinx': }
   class { '::ccextractor': }
   class { '::ffmpeg': }
+  class { '::clavin': }
 }

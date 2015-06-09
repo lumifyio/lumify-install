@@ -16,15 +16,16 @@ VAGRANTFILE_API_VERSION = "2"
 #
 # All clients will be added to the hosts file for each VM
 $clients = {
-    :gpw    => { ip: '192.168.33.101', },
-    :es     => { ip: '192.168.33.102', },
-    :rmq    => { ip: '192.168.33.103', },
-    :clavin => { ip: '192.168.33.104', },
-    :zk     => { ip: '192.168.33.105', },
-    :ac     => { ip: '192.168.33.106', },
-    :jetty => { ip: '192.168.33.107', },
-    :hadoop => { ip: '192.168.33.108', },
-     :lumify => { ip: '192.168.33.109', },
+    :gpw            => { ip: '192.168.33.101', },
+    :es             => { ip: '192.168.33.102', },
+    :rmq            => { ip: '192.168.33.103', },
+    :clavin         => { ip: '192.168.33.104', },
+    :zk             => { ip: '192.168.33.105', },
+    :ac             => { ip: '192.168.33.106', },
+    :jetty          => { ip: '192.168.33.107', },
+    :hadoop         => { ip: '192.168.33.108', },
+    :demo           => { ip: '192.168.33.109', mem: '8192', cpus: '4', },
+    :lumify => { ip: '192.168.33.110', },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
@@ -66,8 +67,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ['modifyvm', :id, '--cpus', '1' ]
     end
 
-    puppet.vm.network :private_network, ip: '192.168.33.100'
-    puppet.vm.synced_folder 'puppet', '/opt/lumify/puppet/environments/dev'
+    puppet.vm.network :private_network, ip: '192.168.33.1#    puppet.vm.synced_folder 'puppet', '/opt/lumify/puppet'
+    puppet.vm.synced_folder 'puppet', '/etc/puppetlabs/code'
 
     puppet.vm.provision :shell, path: 'vagrant/install_server.sh'
   end
