@@ -24,6 +24,7 @@ $clients = {
     :ac     => { ip: '192.168.33.106', },
     :jetty => { ip: '192.168.33.107', },
     :hadoop => { ip: '192.168.33.108', },
+     :lumify => { ip: '192.168.33.109', },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
