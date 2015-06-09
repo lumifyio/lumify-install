@@ -13,6 +13,8 @@ echo "Setting up the git clones at $LUMIFY_ALL, $SEC_GRAPH $LUMIFY_PUBLIC"
 rm -rfd $GIT_REPO
 mkdir $GIT_REPO
 cd $GIT_REPO
+mkdir $LUMIFY_ALL
+
 git clone ssh://git@github.com/altamiracorp/lumify-all
 cd $LUMIFY_ALL
 git clone ssh://git@github.com/lumifyio/lumify lumify-public
@@ -33,36 +35,43 @@ echo "Preparing for deplolymnent"
 echo "Copying Web artifacts "
 # Create a directory for the cluster deployment and copy files needed for deployment
 cd $LUMIFY_ALL
-mkdir deployment/lumify_demo_0Y
-cp $LUMIFY_PUBLIC/web/war/target/lumify-web-war-${LUMIFY_VERSION}.war deployment/lumify_demo_0Y/lumify.war
+mkdir deployment
+mkdir deployment/web
+mkdir deployment/secure-graph
+mkdir deployment/tools
+
+cp $LUMIFY_PUBLIC/web/war/target/lumify-web-war-${LUMIFY_VERSION}.war deployment/web/lumify.war
 
 cp $LUMIFY_PUBLIC/tools/cli/target/lumify-cli-${LUMIFY_VERSION}-with-dependencies.jar \
-	          deployment/lumify_demo_0Y
+	          deployment/tools
 
 echo "Copying Secure grpah artifacts "
 cp $SEC_GRAPH/securegraph-elasticsearch-plugin/target/release/elasticsearch-securegraph-${SECUREGRAPH_VERSION}.zip \
-	          deployment/lumify_demo_0Y
+	          deployment/secure-graph
 
-mkdir deployment/lumify_demo_0Y/weblib
+
+mkdir deployment/web/lib
 
 echo "Copying Web plugins "
 cp $LUMIFY_PUBLIC/web/plugins/terms-of-use/target/lumify-terms-of-use-${LUMIFY_VERSION}.jar \
 			  $LUMIFY_PUBLIC/web/plugins/auth-social/target/lumify-web-auth-social-${LUMIFY_VERSION}-jar-with-dependencies.jar \
 			  $LUMIFY_PUBLIC/web/plugins/dev-tools/target/lumify-web-dev-tools-${LUMIFY_VERSION}.jar \
 			  $LUMIFY_PUBLIC/core/plugins/model-bigtable/target/lumify-model-bigtable-${LUMIFY_VERSION}-jar-with-dependencies.jar \
-	          deployment/lumify_demo_0Y/weblib
+	          deployment/web/lib
 
 echo "Copying Graph Property workers for YARN "
-mkdir deployment/lumify_demo_0Y/gpw
+mkdir deployment/gpw
 
 cp `find $LUMIFY_PUBLIC/graph-property-worker/plugins -name "lumify-gpw-*-with-dependencies.jar"` \
-	          deployment/lumify_demo_0Y/gpw
+	          deployment/gpw
 
-mkdir deployment/lumify_demo_0Y/yarn
+mkdir deployment/yarn
 
 cp $LUMIFY_PUBLIC/tools/long-running-process-yarn/target/lumify-long-running-process-yarn-${LUMIFY_VERSION}-with-dependencies.jar \
-	             $LUMIFY_PUBLIC/graph-property-worker/graph-property-worker-yarn/lumify-graph-property-worker-yarn-${LUMIFY_VERSION}-with-dependencies.jar \
-	             deployment/lumify_demo_0Y/yarn
+	             $LUMIFY_PUBLIC/graph-property-worker/graph-property-worker-yarn/target/lumify-graph-property-worker-yarn-${LUMIFY_VERSION}-with-dependencies.jar \
+	             deployment/yarn
 
 
+
+#cd $LUMIFY_ALL/deployment
 
