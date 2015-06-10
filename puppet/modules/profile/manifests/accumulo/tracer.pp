@@ -1,5 +1,3 @@
-class profile::cloudera::cdh5::hadoop::datanode {
-  class { '::java': }
-  class { '::accumulo': }
+class profile::accumulo::tracer {
   class { '::accumulo::tracer': }
 }
