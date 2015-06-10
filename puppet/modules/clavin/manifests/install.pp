@@ -3,14 +3,7 @@ class clavin::install inherits clavin {
   include '::macro'
 
   # make sure the clavin index directory exists, including any parent directories
-  $dirs = split($clavin_index_dir,'[/]')
-  $dirs.reduce |$memo, $entry| {
-    notify{"dir = ${memo}/${entry}":}
-    file { "${memo}/${entry}":
-      ensure => directory
-    }
-    "${memo}/${entry}"
-  }
+  macro::ensure_dir{ "${clavin_index_dir}" : }
 
   $tmp_file = "${tmp_dir}/clavin-index.tgz"
 

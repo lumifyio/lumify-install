@@ -1,4 +1,4 @@
-class cloudera::cdh5::hadoop::secondarynamenode {
+class cloudera::cdh5::hadoop::secondary_namenode {
   include cloudera::cdh5::hadoop::base
 
   package { 'hadoop-hdfs-secondarynamenode':

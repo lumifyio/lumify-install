@@ -1,5 +1,5 @@
 # management node 1
-node 'ip-10-0-5-11' {
+node /vc-m1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::namenode'
   include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
   include '::role::cloudera::cdh5::hadoop::yarn::historyserver'
@@ -7,7 +7,7 @@ node 'ip-10-0-5-11' {
 }
 
 # management node 2
-node 'ip-10-0-5-12' {
+node /vc-m2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::secondary_namenode'
   include '::role::accumulo::master'
   include '::role::accumulo::monitor'
@@ -16,21 +16,18 @@ node 'ip-10-0-5-12' {
   include '::role::rabbitmq::node'
 }
 
-
-
-
 # hadoop datanode 1
-node 'ip-10-0-5-111' {
+node /vc-hdn1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::accumulo::tablet'
   include '::role::cloudera::cdh5::zookeeper::node'
   include '::role::graph_property_worker'
-  include '::role::lumify::webserver'
+  #include '::role::lumify::webserver'
 }
 
 # hadoop datanode 2
-node 'ip-10-0-5-112' {
+node /vc-hdn2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::accumulo::tablet'
@@ -39,7 +36,7 @@ node 'ip-10-0-5-112' {
 }
 
 # hadoop datanode 3
-node 'ip-10-0-5-113' {
+node /vc-hdn3\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::accumulo::tablet'
@@ -47,20 +44,20 @@ node 'ip-10-0-5-113' {
   include '::role::graph_property_worker'
 }
 
-
-
-
 # elasticsearch node 1
-node 'ip-10-0-5-211' {
+node /vc-esn1\d*\.vm\.local/ {
+  include '::iptables'
   include '::role::elasticsearch::node'
 }
 
 # elasticsearch node 2
-node 'ip-10-0-5-212' {
+node /vc-esn2\d*\.vm\.local/ {
+  include '::iptables'
   include '::role::elasticsearch::node'
 }
 
 # elasticsearch node 3
-node 'ip-10-0-5-213' {
+node /vc-esn3\d*\.vm\.local/ {
+  include '::iptables'
   include '::role::elasticsearch::node'
 }
