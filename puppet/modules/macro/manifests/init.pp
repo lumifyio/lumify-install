@@ -81,6 +81,21 @@ class macro {
     }
   }
 
+  # Ensure a directory exist, including parent directories.  The directory and it's parents will be created if
+  # they do not exist.
+  #
+  # $dir: The directory to ensure exist
+  # $owner: The owner of the directories
+  # $group: The group to assign to the directories
+  # $mode: The file permissions to assign to the directories
+  define ensure_dir ($dir=$title, $owner='root', $group='root', $mode='u=rwx,go=rx') {
+    exec { "${dir}":
+      command => "/bin/mkdir -p ${dir} -m ${mode} && /bin/chown ${owner}:${group} ${dir}",
+      user    => 'root',
+      group   => 'root',
+    }
+  }
+
   # TLH - this probably shouldn't be used in modules
   define know_our_host_key ($user, $sshdir, $hostname) {
     exec { "know-our-host-key-${user}-${hostname}" :

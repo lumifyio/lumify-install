@@ -1,5 +1,7 @@
 class elasticsearch::service inherits elasticsearch {
 
+  include '::java'
+
   service { 'elasticsearch':
     ensure     => running,
     enable     => true,
