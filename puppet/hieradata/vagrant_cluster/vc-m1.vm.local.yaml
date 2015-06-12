@@ -6,8 +6,8 @@ rabbitmq::rabbitmq_mgmt_user_pw: guest
 rabbitmq::rabbitmq_user: rabbitmq
 rabbitmq::rabbitmq_group: rabbitmq
 rabbitmq::cluster_nodes:
-    - vc-m1.vm.local
-    - vc-m2.vm.local
+    - vc-m1
+    - vc-m2
 rabbitmq::erlang_cookie:
 rabbitmq::rabbitmq_log_dir: /data0/rabbitmq/log
 rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia

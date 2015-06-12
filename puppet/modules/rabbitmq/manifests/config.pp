@@ -29,15 +29,6 @@ class rabbitmq::config inherits rabbitmq {
     require => Class['::rabbitmq::install'],
   }
 
-#  file { '/etc/rabbitmq/rabbitmq-env.conf' :
-#    ensure  => file,
-#    content => template('rabbitmq/rabbitmq-env.conf.erb'),
-#    owner   => 'root',
-#    group   => $rabbitmq_group,
-#    mode    => 'u=r,g=r,o=',
-#    require => Class['::rabbitmq::install'],
-#  }
-
   file { '/etc/rabbitmq/rabbitmq-ha-policy.json' :
     ensure  => file,
     content => template('rabbitmq/rabbitmq-ha-policy.json.erb'),

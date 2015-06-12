@@ -1,9 +1,9 @@
 [
   {rabbit, [
-    {default_user, '<%= @rabbitmq_mgmt_user %>'},
-    {default_pass, '<%= @rabbitmq_mgmt_user_pw %>'},
+    {default_user, <<"<%= @rabbitmq_mgmt_user %>">>},
+    {default_pass, <<"<%= @rabbitmq_mgmt_user_pw %>">>},
     {default_user_tags, ['administrator']},
-    {default_permissions, ['.*', '.*', '.*']},
+    {default_permissions, [<<".*">>, <<".*">>, <<".*">>]},
     {auth_mechanisms, ['PLAIN', 'AMQPLAIN']},
     {loopback_users, []}
     <%- if @cluster_nodes != nil && @cluster_nodes.count > 1 %>
