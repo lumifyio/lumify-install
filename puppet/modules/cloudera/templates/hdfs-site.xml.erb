@@ -38,13 +38,13 @@
   <property>
      <!-- specify this so that running 'hadoop namenode -format' formats the right dir -->
      <name>dfs.namenode.name.dir</name>
-     <value><%= (@data_directories || '').split(',').map{|d| "file://#{d}/hdfs/name"}.join(',') %></value>
+     <value><%= (@data_directories || '').map{|d| "file://#{d}/hdfs/name"}.join(',') %></value>
      <final>true</final>
   </property>
 
   <property>
      <name>dfs.datanode.data.dir</name>
-     <value><%= (@data_directories || '').split(',').map{|d| "file://#{d}/hdfs/data"}.join(',') %></value>
+     <value><%= (@data_directories || '').map{|d| "file://#{d}/hdfs/data"}.join(',') %></value>
      <final>true</final>
   </property>
 

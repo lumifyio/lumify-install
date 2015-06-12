@@ -13,4 +13,12 @@ class cloudera::cdh5::zookeeper::service inherits cloudera::cdh5::zookeeper::zoo
     mode    => 'u=rw,go=r',
     require => [ Class['::cloudera::cdh5::zookeeper::install', '::cloudera::cdh5::zookeeper::config'], Exec['initialize-zookeeper'], ],
   }
+
+  service { 'zookeeper-server' :
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => Exec['initialize-zookeeper']
+  }
 }

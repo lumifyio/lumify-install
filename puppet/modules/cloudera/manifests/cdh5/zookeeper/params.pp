@@ -2,6 +2,8 @@ class cloudera::cdh5::zookeeper::params {
   $zookeeper_config_dir = '/etc/zookeeper/conf'
   $zookeeper_log_dir    = '/var/log/zookeeper'
   $zookeeper_data_dir   = '/var/lib/zookeeper'
+  $user                 = 'zookeeper'
+  $group                = 'zookeeper'
 
   if $interfaces =~ /bond0/ {
     $zookeeper_node_ip = $ipaddress_bond0

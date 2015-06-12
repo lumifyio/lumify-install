@@ -9,10 +9,24 @@ class rabbitmq::install inherits rabbitmq {
     path => $local_rpm,
   }
 
-  package { "rabbitmq-server":
+  package { 'rabbitmq-server':
     ensure => installed,
     source => $local_rpm,
     provider => 'rpm',
     require => Macro::Download['rabbitmq-download'],
+  }
+
+  macro::ensure_dir{ "${rabbitmq_log_dir}" :
+    owner   => $rabbitmq_user,
+    group   => $rabbitmq_group,
+    mode    => 'u=rwx,go=rx',
+    require =>  [ Package['rabbitmq-server'] ],
+  }
+
+  macro::ensure_dir{ "${rabbitmq_mnesia_dir}" :
+    owner   => $rabbitmq_user,
+    group   => $rabbitmq_group,
+    mode    => 'u=rwx,go=rx',
+    require =>  [ Package['rabbitmq-server'] ],
   }
 }

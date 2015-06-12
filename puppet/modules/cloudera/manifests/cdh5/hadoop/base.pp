@@ -9,11 +9,16 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
     default:  { fail "unsupported architecture: ${architecture}" }
   }
 
-
-#  notify{"Cloudera Base Install under way param namenode_ipaddress: ${namenode_ipaddress}": }
   package { $pkg :
     ensure  => installed,
     require => Class['java', 'cloudera::cdh5::repo'],
+  }
+
+  macro::ensure_dir{ "/etc/hadoop/conf" :
+    owner   => 'root',
+    group   => 'root',
+    mode    => 'u=rwx,go=rx',
+    require =>  [ Package[$pkg] ],
   }
 
   file { "/etc/hadoop/conf/core-site.xml":
@@ -22,16 +27,16 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
     owner   => "root",
     group   => "root",
     mode    => "u=rw,go=r",
-    require => [ Package["${pkg}"], File['/data0/hadoop'] ],
+    require => [ Package["${pkg}"], ],
   }
 
-file { "/etc/hadoop/conf/hdfs-site.xml":
+  file { "/etc/hadoop/conf/hdfs-site.xml":
     ensure  => file,
     content => template("cloudera/hdfs-site.xml.erb"),
     owner   => "root",
     group   => "root",
     mode    => "u=rw,go=r",
-    require => [ Package["${pkg}"], File['/data0/hdfs'] ],
+    require => [ Package["${pkg}"], ],
   }
 
   file { "/etc/hadoop/conf/mapred-site.xml":
@@ -40,7 +45,7 @@ file { "/etc/hadoop/conf/hdfs-site.xml":
     owner   => "root",
     group   => "root",
     mode    => "u=rw,go=r",
-    require => [ Package["${pkg}"], File['/data0/yarn'] ],
+    require => [ Package["${pkg}"] ],
   }
 
   file { "/etc/hadoop/conf/log4j.properties":
@@ -78,50 +83,70 @@ file { "/etc/hadoop/conf/hdfs-site.xml":
     require => Package[$pkg],
   }
 
-macro::setup_passwordless_ssh { 'hdfs' :
+  macro::setup_passwordless_ssh { 'hdfs' :
     sshdir  => '/usr/lib/hadoop/.ssh',
     require => File['/usr/lib/hadoop/.ssh'],
   }
 
   define setup_data_directory ($pkg) {
-   # ensure_resource('file', "${name}", {ensure => directory})
-
-    file {  $name  :
-      ensure  => directory,
+    macro::ensure_dir{ "${$name}" :
       owner   => 'hdfs',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rwx,o=',
       require =>  [ Package[$pkg] ],
     }
 
-    file { [ "${name}/hadoop", "${name}/hadoop/tmp" ] :
-      ensure  => directory,
+    macro::ensure_dir{ "${name}/tmp" :
       owner   => 'hdfs',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rwx,o=',
-      require =>  [ File["${name}"], Package[$pkg] ],
+      require =>  [ Package[$pkg] ],
     }
 
-    file { [ "${name}/hdfs", "${name}/hdfs/name", "${name}/hdfs/data" ] :
-      ensure  => directory,
+    macro::ensure_dir{ "${name}/hdfs" :
       owner   => 'hdfs',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rx,o=',
-      require =>  [ File["${name}"], Package[$pkg] ],
+      require =>  [ Package[$pkg] ],
     }
 
-    file { [ "${name}/yarn", "${name}/yarn/local", "${name}/yarn/logs" ] :
-      ensure  => directory,
-      owner   => 'yarn',
-      group   => 'yarn',
+    macro::ensure_dir{ "${name}/hdfs/name" :
+      owner   => 'hdfs',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/hdfs/data" :
+      owner   => 'hdfs',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/yarn" :
+      owner   => 'hdfs',
+      group   => 'hadoop',
       mode    => 'u=rwx,g=rx,o=rx',
-      require =>  [ File["${name}"], Package[$pkg] ],
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/yarn/local" :
+      owner   => 'hdfs',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/yarn/logs" :
+      owner   => 'hdfs',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
     }
   }
 
-  $data_dir_list = split($data_directories, ',')
-  #notice{"Cloudera Base Install under way param data_dir_list ${$data_dir_list}": }
-  ::cloudera::cdh5::hadoop::base::setup_data_directory { $data_dir_list :
+  ::cloudera::cdh5::hadoop::base::setup_data_directory { $data_directories :
     pkg => $pkg,
   }
 }

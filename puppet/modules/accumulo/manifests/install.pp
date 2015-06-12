@@ -13,6 +13,20 @@ class accumulo::install inherits accumulo {
     require => Group[$group]
   }
 
+  macro::ensure_dir{ "${log_dir}" :
+    owner   => "${user}",
+    group   => "${group}",
+    mode    => 'u=rwx,g=rwx,o=rx',
+    require =>  [ User[$user], Group[$group] ],
+  }
+
+  macro::ensure_dir{ "${tmp_dir}" :
+    owner   => "${user}",
+    group   => "${group}",
+    mode    => 'u=rwx,g=rwx,o=rx',
+    require =>  [ User[$user], Group[$group] ],
+  }
+
   macro::download { 'download-accumulo':
     url     => "http://archive.apache.org/dist/accumulo/${version}/${download_file}",
     path    => $download_path,

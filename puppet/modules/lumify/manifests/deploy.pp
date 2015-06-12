@@ -1,8 +1,8 @@
 class lumify::deploy inherits lumify{
-  include '::jetty'
-include '::macro'
-include '::lumify_global'
 
+  include '::jetty'
+  include '::macro'
+  include '::lumify_global'
 
   file {$target_war_location :
     ensure  => file,

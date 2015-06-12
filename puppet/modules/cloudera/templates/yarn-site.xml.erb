@@ -19,12 +19,12 @@
 
   <property>
     <name>yarn.nodemanager.local-dirs</name>
-    <value><%= (@data_directories || '').split(',').map{|d| d + '/yarn/local'}.join(',') %></value>
+    <value><%= (@data_directories || '').map{|d| d + '/yarn/local'}.join(',') %></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.log-dirs</name>
-    <value><%= (@data_directories || '').split(',').map{|d| d + '/yarn/logs'}.join(',') %></value>
+    <value><%= (@data_directories || '').map{|d| d + '/yarn/logs'}.join(',') %></value>
   </property>
 
   <property>
