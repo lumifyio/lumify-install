@@ -3,7 +3,7 @@ class cloudera::cdh5::hadoop::yarn::historyserver {
 
   package { 'hadoop-mapreduce-historyserver':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::yarn::base::mapred_pkg],
+    require => Class['::cloudera::cdh5::hadoop::yarn::base'],
   }
 
   service { 'hadoop-mapreduce-historyserver' :

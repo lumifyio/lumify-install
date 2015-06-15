@@ -14,6 +14,42 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
     require => Class['java', 'cloudera::cdh5::repo'],
   }
 
+  file { "/etc/default/hadoop":
+    ensure  => file,
+    content => template("cloudera/hadoop.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-hdfs-journalnode":
+    ensure  => file,
+    content => template("cloudera/hadoop-hdfs-journalnode.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-hdfs-namenode":
+    ensure  => file,
+    content => template("cloudera/hadoop-hdfs-namenode.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-yarn-resourcemanager":
+    ensure  => file,
+    content => template("cloudera/hadoop-yarn-resourcemanager.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
   macro::ensure_dir{ "/etc/hadoop/conf" :
     owner   => 'root',
     group   => 'root',
@@ -92,7 +128,7 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
     macro::ensure_dir{ "${$name}" :
       owner   => 'hdfs',
       group   => 'hadoop',
-      mode    => 'u=rwx,g=rwx,o=',
+      mode    => 'u=rwx,go=rx',
       require =>  [ Package[$pkg] ],
     }
 
@@ -124,22 +160,57 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
       require =>  [ Package[$pkg] ],
     }
 
-    macro::ensure_dir{ "${name}/yarn" :
+    macro::ensure_dir{ "${name}/hdfs/log" :
       owner   => 'hdfs',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/yarn" :
+      owner   => 'yarn',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rx,o=rx',
       require =>  [ Package[$pkg] ],
     }
 
     macro::ensure_dir{ "${name}/yarn/local" :
-      owner   => 'hdfs',
+      owner   => 'yarn',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/yarn/log" :
+      owner   => 'yarn',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rx,o=rx',
       require =>  [ Package[$pkg] ],
     }
 
     macro::ensure_dir{ "${name}/yarn/logs" :
-      owner   => 'hdfs',
+      owner   => 'yarn',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/mapreduce" :
+      owner   => 'mapred',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/mapreduce/local" :
+      owner   => 'mapred',
+      group   => 'hadoop',
+      mode    => 'u=rwx,g=rx,o=rx',
+      require =>  [ Package[$pkg] ],
+    }
+
+    macro::ensure_dir{ "${name}/mapreduce/log" :
+      owner   => 'mapred',
       group   => 'hadoop',
       mode    => 'u=rwx,g=rx,o=rx',
       require =>  [ Package[$pkg] ],

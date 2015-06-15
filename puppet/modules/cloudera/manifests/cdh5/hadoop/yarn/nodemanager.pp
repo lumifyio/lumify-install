@@ -3,7 +3,7 @@ class cloudera::cdh5::hadoop::yarn::nodemanager {
 
   package { 'hadoop-yarn-nodemanager':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::yarn::base::yarn_pkg],
+    require => Class['::cloudera::cdh5::hadoop::yarn::base'],
   }
 
   service { 'hadoop-yarn-nodemanager' :
@@ -13,5 +13,4 @@ class cloudera::cdh5::hadoop::yarn::nodemanager {
     hasrestart => true,
     require    => Package['hadoop-yarn-nodemanager']
   }
-
 }

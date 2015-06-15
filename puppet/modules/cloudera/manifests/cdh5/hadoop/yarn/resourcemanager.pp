@@ -3,7 +3,7 @@ class cloudera::cdh5::hadoop::yarn::resourcemanager {
 
   package { 'hadoop-yarn-resourcemanager':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::yarn::base::yarn_pkg],
+    require => Class['::cloudera::cdh5::hadoop::yarn::base'],
   }
 
   service { 'hadoop-yarn-resourcemanager' :

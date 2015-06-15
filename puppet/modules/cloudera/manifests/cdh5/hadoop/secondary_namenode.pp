@@ -3,6 +3,14 @@ class cloudera::cdh5::hadoop::secondary_namenode {
 
   package { 'hadoop-hdfs-secondarynamenode':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::base::pkg],
+    require => Class['::cloudera::cdh5::hadoop::base'],
+  }
+
+  service { 'hadoop-hdfs-secondarynamenode' :
+    ensure     => running,
+    enable     => true,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => [ Package['hadoop-hdfs-secondarynamenode'],  ],
   }
 }

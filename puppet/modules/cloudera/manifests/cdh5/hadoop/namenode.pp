@@ -3,7 +3,13 @@ class cloudera::cdh5::hadoop::namenode {
   
   package { 'hadoop-hdfs-namenode':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::base::pkg],
+    require => Class['::cloudera::cdh5::hadoop::base'],
+  }
+
+  exec { 'format-namenode' :
+    path => "/sbin",
+    command => 'service hadoop-hdfs-namenode init --force',
+    require => Package['hadoop-hdfs-namenode'],
   }
 
   service { 'hadoop-hdfs-namenode' :
@@ -11,6 +17,16 @@ class cloudera::cdh5::hadoop::namenode {
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
-    require    => [ Package['hadoop-hdfs-namenode'], ]
+    require    => [ Package['hadoop-hdfs-namenode'], Exec['format-namenode'], ],
+  }
+
+  exec { 'hdfs-history-dir' :
+    command => "/usr/bin/sudo -u hdfs /usr/bin/hadoop fs -mkdir -p /user/history && /usr/bin/sudo -u hdfs /usr/bin/hadoop fs -chmod -R 1777 /user/history && /usr/bin/sudo -u hdfs /usr/bin/hadoop fs -chown mapred:hadoop /user/history",
+    require => Service['hadoop-hdfs-namenode'],
+  }
+
+  exec { 'hdfs-yarn-dir' :
+    command => "/usr/bin/sudo -u hdfs /usr/bin/hadoop fs -mkdir -p /var/log/hadoop-yarn && /usr/bin/sudo -u hdfs /usr/bin/hadoop fs -chown yarn:mapred /var/log/hadoop-yarn",
+    require => Service['hadoop-hdfs-namenode'],
   }
 }

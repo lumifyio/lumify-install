@@ -3,7 +3,7 @@ class cloudera::cdh5::hadoop::datanode {
 
   package { 'hadoop-hdfs-datanode':
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::base::pkg],
+    require => Class['::cloudera::cdh5::hadoop::base'],
   }
 
   service { 'hadoop-hdfs-datanode' :

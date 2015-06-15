@@ -16,7 +16,7 @@ class cloudera::cdh5::hadoop::yarn::base inherits cloudera::cdh5::hadoop::hadoop
 
   package { [$yarn_pkg, $mapred_pkg]:
     ensure  => installed,
-    require => Package[$cloudera::cdh5::hadoop::base::pkg],
+    require => Class['::cloudera::cdh5::hadoop::base'],
   }
 
   file { "/etc/hadoop/conf/yarn-site.xml":

@@ -1,24 +1,16 @@
 ---
 # Hadoop config
+cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
+cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
+cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
 cloudera::cdh5::hadoop::hadoop::hadoop_namenodes:
     - 192.168.33.11
-    - 192.168.33.12
 cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes:
     - 192.168.33.11
     - 192.168.33.12
     - 192.168.33.13
-cloudera::cdh5::hadoop::hadoop::user: hadoop
-cloudera::cdh5::hadoop::hadoop::group: hadoop
-cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
-cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: 192.168.33.11
-cloudera::cdh5::hadoop::hadoop::namenode_hostname: vc-hdn1.vm.local
-cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: 0.0.0.0:8020
-cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: 0.0.0.0
-cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
-cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
 cloudera::cdh5::hadoop::hadoop::hadoop_masters:
     - 192.168.33.11
-    - 192.168.33.12
 cloudera::cdh5::hadoop::hadoop::hadoop_slaves:
     - 192.168.33.111
     - 192.168.33.112
@@ -27,12 +19,25 @@ cloudera::cdh5::hadoop::hadoop::zookeeper_nodes:
     1: 192.168.33.11:2181
     2: 192.168.33.12:2181
     3: 192.168.33.13:2181
+cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: 192.168.33.11
+cloudera::cdh5::hadoop::hadoop::namenode_hostname: vc-m1.vm.local
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: 192.168.33.11:8020
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: 192.168.33.11
+cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
+cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
 cloudera::cdh5::hadoop::hadoop::historyserver_hostname: vc-m2.vm.local
-cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: true
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
 cloudera::cdh5::hadoop::hadoop::data_directories:
     - /data0/hadoop
-cloudera::cdh5::hadoop::hadoop::hadoop_replication: 2
+cloudera::cdh5::hadoop::hadoop::hadoop_replication: 3
 cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: lumify_hadoop_cluster
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_http_port: 50070
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_rpc_port: 8020
+cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: vc-m1.vm.local
+cloudera::cdh5::hadoop::hadoop::yarn_nodemanager_resource_memory: 1024
+
+
 
 # Accumulo config
 accumulo::version: 1.6.1
