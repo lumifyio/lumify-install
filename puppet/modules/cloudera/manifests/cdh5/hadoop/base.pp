@@ -41,9 +41,45 @@ class cloudera::cdh5::hadoop::base inherits cloudera::cdh5::hadoop::hadoop {
     require => [ Package["${pkg}"], ],
   }
 
+  file { "/etc/default/hadoop-hdfs-secondarynamenode":
+    ensure  => file,
+    content => template("cloudera/hadoop-hdfs-secondarynamenode.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-hdfs-datanode":
+    ensure  => file,
+    content => template("cloudera/hadoop-hdfs-datanode.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
   file { "/etc/default/hadoop-yarn-resourcemanager":
     ensure  => file,
     content => template("cloudera/hadoop-yarn-resourcemanager.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-yarn-nodemanager":
+    ensure  => file,
+    content => template("cloudera/hadoop-yarn-nodemanager.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => [ Package["${pkg}"], ],
+  }
+
+  file { "/etc/default/hadoop-mapreduce-historyserver":
+    ensure  => file,
+    content => template("cloudera/hadoop-mapreduce-historyserver.erb"),
     owner   => "root",
     group   => "root",
     mode    => "u=rw,go=r",
