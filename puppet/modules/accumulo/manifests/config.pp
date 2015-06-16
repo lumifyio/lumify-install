@@ -1,6 +1,7 @@
 class accumulo::config inherits accumulo {
 
   include '::macro'
+  include '::accumulo::install'
 
   file { "${config_dir}/accumulo-env.sh" :
     ensure => file,
@@ -54,16 +55,6 @@ class accumulo::config inherits accumulo {
     ensure => file,
     source => "puppet:///modules/accumulo/monitor_logger.xml",
     require => Class['accumulo::install'],
-  }
-
-  exec { "vm.swappiness=10 online" :
-    command => "/sbin/sysctl -w vm.swappiness=10",
-    unless  => "/usr/bin/test $(/sbin/sysctl -n vm.swappiness) -eq 10",
-  }
-
-  exec { "vm.swappiness=10 persistant" :
-    command => '/bin/echo "vm.swappiness=10" >> /etc/sysctl.conf',
-    unless  => "/bin/grep -q vm.swappiness=10 /etc/sysctl.conf",
   }
 
   file { "${config_dir}/.ssh":

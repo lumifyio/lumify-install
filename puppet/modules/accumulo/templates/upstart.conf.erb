@@ -15,15 +15,15 @@ umask 0007
 respawn
 respawn limit 5 10
 
-env ACCUMULO_HOME=<%= @homelink %>
-env ACCUMULO_LOG_DIR=<%= @homelink %>/logs
+env ACCUMULO_HOME=<%= @home_link %>
+env ACCUMULO_LOG_DIR=<%= @log_dir %>
 env SERVICE=<%= @service_name %>
 env SERVICE_ADDRESS=<%= @service_name == 'monitor' ? '0.0.0.0': @accumulo_host_address %>
 
 <% if @service_name == 'master' %>
 pre-start script
   # UNCOMMENT THE FOLLOWING TO HELP DEBUG
-  exec >>/var/log/accumulo-upstart-${SERVICE}.log 2>&1
+  exec >>$ACCUMULO_LOG_DIR/accumulo-upstart-${SERVICE}.log 2>&1
   # set -x
 
   mkdir -p $ACCUMULO_LOG_DIR 2>/dev/null
@@ -32,13 +32,13 @@ pre-start script
     . $ACCUMULO_HOME/conf/accumulo-env.sh
   fi
 
-  exec su -s /bin/sh -c 'exec "$0" "$@"' <%= @user %> -- ${ACCUMULO_HOME}/bin/accumulo org.apache.accumulo.master.state.SetGoalState NORMAL
+  exec su -s /bin/sh -c 'exec "$0" "$@"' <%= @user %> -- ${ACCUMULO_HOME}/bin/accumulo org.apache.accumulo.master.state.SetGoalState NORMAL &
 end script
 <% end %>
 
 script
 # UNCOMMENT THE FOLLOWING TO HELP DEBUG
-  exec >>/var/log/accumulo-upstart-${SERVICE}.log 2>&1
+  exec >>$ACCUMULO_LOG_DIR/accumulo-upstart-${SERVICE}.log 2>&1
 # set -x
 
   mkdir -p $ACCUMULO_LOG_DIR 2>/dev/null

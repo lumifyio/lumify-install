@@ -1,4 +1,8 @@
 ---
+# Kernel config
+swappiness::vm_swappiness: 10
+
+# Elasticsearch config
 elasticsearch::elasticsearch_version: 1.4.1
 elasticsearch::elasticsearch_rpm_version: 1.4.1-1
 elasticsearch::user: elasticsearch

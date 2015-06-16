@@ -1,4 +1,7 @@
 ---
+# Kernel config
+swappiness::vm_swappiness: 10
+
 # Rabbitmq config
 rabbitmq::rabbitmq_version: 3.4.2
 rabbitmq::rabbitmq_mgmt_user: guest

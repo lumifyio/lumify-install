@@ -6,6 +6,7 @@ class accumulo (
   $bin_dir                                        = $accumulo::params::bin_dir,
   $log_dir                                        = $accumulo::params::log_dir,
   $tmp_dir                                        = $accumulo::params::tmp_dir,
+  $accumulo_instance_name                         = $accumulo::params::accumulo_instance_name,
   $accumulo_root_password                         = $accumulo::params::accumulo_root_password,
   $accumulo_instance_secret                       = $accumulo::params::accumulo_instance_secret,
   $accumulo_masters                               = $accumulo::params::accumulo_masters,

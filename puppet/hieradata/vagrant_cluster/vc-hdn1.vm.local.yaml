@@ -1,4 +1,7 @@
 ---
+# Kernel config
+swappiness::vm_swappiness: 10
+
 # Hadoop config
 cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
 cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
@@ -47,10 +50,10 @@ accumulo::install_dir: /opt
 accumulo::bin_dir: /opt/accumulo/bin
 accumulo::log_dir: /data0/accumulo/log
 accumulo::tmp_dir: /data0/accumulo/tmp
+accumulo::accumulo_instance_name: Lumify
 accumulo::accumulo_root_password: password
-accumulo::accumulo_instance_secret: DEFAULT
+accumulo::accumulo_instance_secret: LumifySecret
 accumulo::accumulo_masters:
-    - 192.168.33.11
     - 192.168.33.13
 accumulo::accumulo_slaves:
     - 192.168.33.111
@@ -72,10 +75,10 @@ accumulo::zookeeper_nodes:
 accumulo::hadoop_prefix: /usr/lib/hadoop
 accumulo::namenode_ipaddress:
     - 192.168.33.11
-    - 192.168.33.13
 accumulo::namenode_hostname: vc-m2.vm.local
 accumulo::java_home: /usr/java/default
-accumulo::java_heap_size: 2g
+accumulo::java_heap_size: 512m
+
 
 # Lumify config
 lumify::web_server_host:

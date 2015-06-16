@@ -6,6 +6,7 @@ class accumulo::params(
   $bin_dir                                        = "/opt/accumulo/bin",
   $log_dir                                        = "/opt/accumulo/logs",
   $tmp_dir                                        = '/tmp',
+  $accumulo_instance_name                         = 'accumulo',
   $accumulo_root_password                         = 'password',
   $accumulo_instance_secret                       = 'DEFAULT',
   $accumulo_masters                               = [ "${ipaddress_eth1}", ],

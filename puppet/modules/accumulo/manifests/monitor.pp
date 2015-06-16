@@ -4,4 +4,9 @@ class accumulo::monitor inherits accumulo {
     ensure  => file,
     content => template("accumulo/upstart.conf.erb")
   }
+
+  exec { 'start-accumulo-monitor':
+    command => '/sbin/initctl start accumulo-monitor',
+    require => [ Class['::accumulo::install', '::accumulo::config'], File['/etc/init/accumulo-monitor.conf'] ],
+  }
 }

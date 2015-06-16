@@ -1,6 +1,9 @@
 class accumulo::install inherits accumulo {
 
+  include '::java'
   include '::macro'
+  include '::cloudera::cdh5::hadoop::base'
+  include '::cloudera::cdh5::zookeeper::zookeeper'
 
   group { $group :
     ensure => present,
