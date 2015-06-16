@@ -71,7 +71,9 @@ cp $LUMIFY_PUBLIC/tools/long-running-process-yarn/target/lumify-long-running-pro
 	             $LUMIFY_PUBLIC/graph-property-worker/graph-property-worker-yarn/target/lumify-graph-property-worker-yarn-${LUMIFY_VERSION}-with-dependencies.jar \
 	             deployment/yarn
 
+mkdir deployment/config
 
+cp $LUMIFY_PUBLIC/config/* deployment/config
 
 #cd $LUMIFY_ALL/deployment
 
