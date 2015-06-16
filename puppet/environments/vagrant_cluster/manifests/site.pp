@@ -7,6 +7,7 @@ node /vc-m1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::namenode'
   include '::role::cloudera::cdh5::hadoop::journalnode'
   include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
+  include '::role::lumify_backend'
 #  include '::role::accumulo::master'
 }
 
@@ -41,6 +42,8 @@ node /vc-hdn1\d*\.vm\.local/ {
 #  include '::role::graph_property_worker'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
+  #include '::role::lumify_backend'
+  include '::role::lumify::jobs'
 #  include '::role::accumulo::tablet'
 #  include '::role::lumify'
 }
@@ -52,6 +55,7 @@ node /vc-hdn2\d*\.vm\.local/ {
 #  include '::role::graph_property_worker'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
+  include '::role::lumify::webserver'
 #  include '::role::accumulo::tablet'
 }
 
@@ -62,6 +66,7 @@ node /vc-hdn3\d*\.vm\.local/ {
 #  include '::role::graph_property_worker'
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
+  include '::role::lumify::client'
 #  include '::role::accumulo::tablet'
 }
 
