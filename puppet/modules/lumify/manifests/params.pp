@@ -23,7 +23,17 @@ class lumify::params{
   $oauth_twitter_secret='BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw'
   $oauth_google_key='1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com'
   $oauth_google_secret='QUgK2a-T8zKKqeu-qe6lKPnY'
-
+  $target_gpw_jar_location="/tmp/gpw"
+  $lumify_gpw_jars='/vagrant/deploy/gpw'
+  $target_yarn_jar_location="/tmp/yarn"
+  $lumify_yarn_jars='/vagrant/deploy/yarn'
+  $target_tools_jar_location="/tmp/tools"
+  $lumify_tools_jars='/vagrant/deploy/tools'
+  $target_config_location="/tmp/config"
+  $lumify_config='/vagrant/deploy/config'
+  $lumify_hdfs_gpw_directory="/lumify/libcache"
+  $lumify_hdfs_yarn_directory="/lumify/libcache"
+  $lumify_hdfs_config_directory="/lumify/config"
 
 
   if $interfaces =~ /bond0/ {

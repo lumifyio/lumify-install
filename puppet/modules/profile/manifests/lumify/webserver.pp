@@ -1,4 +1,4 @@
 class profile::lumify::webserver {
-  class { '::jetty': }
-  class { '::lumify::webserver': }
+  class { '::lumify::web::config': }
+  class { '::lumify::web::deploy': }
 }

@@ -1,4 +1,4 @@
-class lumify::deploy inherits lumify{
+class lumify::web::deploy inherits lumify{
 
   include '::jetty'
   include '::macro'

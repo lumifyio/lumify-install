@@ -1,4 +1,4 @@
-class lumify::config inherits lumify {
+class lumify::web::config inherits lumify {
 
   file { "${lumify_dir}" :
     ensure  => directory,
