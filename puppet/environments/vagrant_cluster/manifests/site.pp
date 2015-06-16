@@ -8,9 +8,8 @@ node /vc-m1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::namenode'
   include '::role::cloudera::cdh5::hadoop::journalnode'
   include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
-  include '::role::lumify_backend'
+#  include '::role::lumify_backend'
 #  include '::role::accumulo::master'
-#  include '::role::lumify::backend'
 }
 
 # management node 2
