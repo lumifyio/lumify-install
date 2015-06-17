@@ -30,7 +30,9 @@ class macro(
     }
 
     info "Downloading ${url} to cache directory ..."
-    macro::ensure_dir { "${cache_dir}" : }
+    if ! defined(Macro::Ensure_dir["${cache_dir}"]) {
+      macro::ensure_dir { "${cache_dir}" : }
+    }
     exec { "download-${url}":
       cwd     => $cache_dir,
       command => "/usr/bin/curl ${cookie_opt} -s -L --fail -o ${cache_dir}/${file} ${proxy_opt} '${url}'",
@@ -40,7 +42,9 @@ class macro(
     }
 
     info "Copy ${url} to destination directory ..."
-    macro::ensure_dir { "${dest}" : }
+    if ! defined(Macro::Ensure_dir["${dest}"]) {
+      macro::ensure_dir { "${dest}" : }
+    }
     exec { "copy-${url}":
       cwd     => $cache_dir,
       command => "/bin/cp ${cache_dir}/${file} ${dest}/${file}",
@@ -110,6 +114,7 @@ class macro(
       command => "/bin/mkdir -p ${dir} -m ${mode} && /bin/chown ${owner}:${group} ${dir}",
       user    => 'root',
       group   => 'root',
+      unless => "/usr/bin/test -d ${dir}",
     }
   }
 
