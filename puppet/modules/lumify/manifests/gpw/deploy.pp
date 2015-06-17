@@ -10,7 +10,7 @@ class lumify::gpw::deploy(
 )
 inherits lumify::params{
 
-  include 'cloudera::cdh5::hadoop::datanode'
+  #include 'cloudera::cdh5::hadoop::datanode'
 
   exec { 'copy-gpw-jars' :
     command => "/bin/mkdir /tmp/gpw && /bin/cp $lumify_gpw_jars/* $target_gpw_jar_location"
@@ -22,25 +22,25 @@ inherits lumify::params{
 
   exec { 'cleanup-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
-    command => "hadoop fs -rmr -p /lumify",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+    command => "hadoop fs -rmr /lumify",
+    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
   exec { 'create-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -mkdir -p /lumify && hadoop fs -mkdir -p /lumify/libcache ",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+   require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
 
   exec { 'deploy-lumify-gpw' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_gpw_jar_location/* $lumify_hdfs_gpw_directory",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
 
   exec { 'deploy-lumify-config' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_config_location /lumify/",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+   require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
 
  }
