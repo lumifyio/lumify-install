@@ -1,4 +1,6 @@
-class macro {
+class macro(
+  $cache_dir = '/tmp',
+) {
   include '::tools::unzip'
   include '::lumify_global'
 
@@ -9,8 +11,11 @@ class macro {
   # $mode: The permissions mode of the downloaded file; may be specified in octal or symbolic notation
   # $timeout: The maximum amount of time, in seconds, allowed for the download; default: 300.
   # $cookie: The cookie(s) that should be sent with the request; default: nil.
-  define download($url=$title, $path, $mode=nil, $timeout=300, $cookie=nil) {
+  define download($url=$title, $path, $mode=nil, $timeout=300, $cookie=nil, $cache_dir = $macro::cache_dir) {
     $proxy = $lumify_global::proxy_url
+
+    $file = inline_template('<%= File.basename(@path) %>')
+    $dest = inline_template('<%= File.dirname(@path) %>')
 
     if ($proxy != nil) {
       $proxy_opt = "--proxy ${proxy}"
@@ -24,23 +29,35 @@ class macro {
       $cookie_opt = ''
     }
 
-    info "Downloading ${url} ..."
+    info "Downloading ${url} to cache directory ..."
+    macro::ensure_dir { "${cache_dir}" : }
     exec { "download-${url}":
-      cwd     => $lumify_global::tmp_dir,
-      command => "/usr/bin/curl ${cookie_opt} -s -L --fail -o ${path} ${proxy_opt} '${url}'",
-      creates => $path,
-      unless  => "/usr/bin/test -f ${path}",
+      cwd     => $cache_dir,
+      command => "/usr/bin/curl ${cookie_opt} -s -L --fail -o ${cache_dir}/${file} ${proxy_opt} '${url}'",
+      creates => "${cache_dir}/${file}",
+      unless  => "/usr/bin/test -f ${cache_dir}/${file}",
+      timeout => $timeout,
+    }
+
+    info "Copy ${url} to destination directory ..."
+    macro::ensure_dir { "${dest}" : }
+    exec { "copy-${url}":
+      cwd     => $cache_dir,
+      command => "/bin/cp ${cache_dir}/${file} ${dest}/${file}",
+      creates => "${dest}/${file}",
+      unless  => "/usr/bin/test -f ${dest}/${file}",
       timeout => $timeout,
     }
 
     unless ($mode == nil) {
-      file { $path:
+      file { "${dest}/${file}":
         ensure  => file,
         mode    => $mode,
         require => Exec["download-${url}"],
       }
     }
   }
+
 
   # Extracts the contents of a compressed file.
   #
