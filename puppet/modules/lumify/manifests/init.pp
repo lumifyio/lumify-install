@@ -23,7 +23,8 @@ class lumify(
   $oauth_twitter_secret=$lumify::params::oauth_twitter_secret,
   $oauth_google_key=$lumify::params::oauth_google_key,
   $oauth_google_secret=$lumify::params::oauth_google_secret,
-
+  $lumify_target_lib_dir=$lumify::params::lumify_target_lib_dir,
+  $lumify_deployed_libs=$lumify::params::lumify_deployed_libs,
   )
 inherits lumify::params
 {

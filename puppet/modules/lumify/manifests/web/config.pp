@@ -8,7 +8,7 @@ class lumify::web::config inherits lumify {
     require => [ User['jetty'] ],
   }
 
-  file { [ "${lumify_config_dir}", "${lumify_logs_dir}", "${$clavin_index_dir}" ] :
+  file { [ "${lumify_config_dir}", "${lumify_logs_dir}", "${clavin_index_dir}" , "${lumify_target_lib_dir}"] :
     ensure  => directory,
     owner   => 'jetty',
     group   => 'jetty',

@@ -1,11 +1,15 @@
 class lumify::params{
   $web_server_host = [ "${ipaddress_eth1}", ]
   $lumify_war_file='/vagrant/deploy/web/lumify.war'
+  $lumify_deployed_libs='/vagrant/deploy/web/lib'
   $target_war_location='/opt/jetty/webapps/lumify.war'
-  $clavin_index_dir='/opt/lumify/clavin-index'
+
   $lumify_dir='/opt/lumify'
-  $lumify_config_dir='/opt/lumify/config'
-  $lumify_logs_dir='/opt/lumify/logs'
+  $lumify_config_dir="$lumify_dir/config"
+  $lumify_logs_dir="$lumify_dir/logs"
+  $lumify_target_lib_dir="$lumify_dir/lib"
+  $clavin_index_dir="$lumify_dir/clavin-index"
+
   $securegraph_user='root'
   $securegraph_password='password'
   $accumulo_user='root'
