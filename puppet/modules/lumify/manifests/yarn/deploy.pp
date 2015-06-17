@@ -10,7 +10,7 @@ class lumify::yarn::deploy(
 )
 inherits lumify::params{
 
-  include 'cloudera::cdh5::hadoop::datanode'
+  #include 'cloudera::cdh5::hadoop::datanode'
 
   exec { 'copy-yarn-jars' :
     command => "/bin/mkdir /tmp/yarn && /bin/cp $lumify_yarn_jars/* $target_yarn_jar_location"
@@ -19,13 +19,13 @@ inherits lumify::params{
   exec { 'deploy-lumify-yarn' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_yarn_jar_location/* $lumify_hdfs_gpw_directory",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
 
   exec { 'chmod-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -chmod -R a+w /lumify/",
-    require    => [  Class['::cloudera::cdh5::hadoop::datanode'], ],
+     require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
   }
 
  }
