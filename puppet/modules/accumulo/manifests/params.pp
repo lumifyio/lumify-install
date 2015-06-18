@@ -18,6 +18,11 @@ class accumulo::params(
   $accumulo_tserver_memory_maps_native_enabled    = false,
   $accumulo_tserver_cache_data_size               = '128M',
   $accumulo_tserver_cache_index_size              = '128M',
+  $accumulo_tserver_newsize                       = '128m',
+  $accumulo_master_heapsize                       = '512m',
+  $accumulo_monitor_heapsize                      = '512m',
+  $accumulo_gc_heapsize                           = '256m',
+  $accumulo_other_heapsize                        = '512m',
   $accumulo_trace_user                            = 'root',
   $zookeeper_home                                 = '/usr/lib/zookeeper',
   $zookeeper_nodes                                = { '1' => "${zookeeper_node_ip}:2181" },
@@ -25,7 +30,6 @@ class accumulo::params(
   $namenode_ipaddress                             = [ "${ipaddress_eth1}", ],
   $namenode_hostname                              = 'lumify-vm.lumify.io',
   $java_home                                      = '/usr/java/default',
-  $java_heap_size                                 = '2g',
 ) {
   if $interfaces =~ /eth1/ {
     $accumulo_host_address = $ipaddress_eth1

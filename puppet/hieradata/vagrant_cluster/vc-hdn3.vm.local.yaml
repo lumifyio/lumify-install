@@ -59,12 +59,17 @@ accumulo::accumulo_slaves:
     - 192.168.33.112
     - 192.168.33.113
 accumulo::accumulo_example_config: 512MB/native-standalone
-accumulo::accumulo_tserver_memory_maps_max: 2G
-accumulo::accumulo_tserver_walog_max_size: 1G
+accumulo::accumulo_tserver_memory_maps_max: 128M
+accumulo::accumulo_tserver_walog_max_size: 128M
 accumulo::accumulo_table_compaction_minor_logs_threshold: 3
 accumulo::accumulo_tserver_memory_maps_native_enabled: false
-accumulo::accumulo_tserver_cache_data_size: 128M
-accumulo::accumulo_tserver_cache_index_size: 128M
+accumulo::accumulo_tserver_cache_data_size: 64M
+accumulo::accumulo_tserver_cache_index_size: 64M
+accumulo::accumulo_tserver_newsize: 128m
+accumulo::accumulo_master_heapsize: 512m
+accumulo::accumulo_monitor_heapsize: 512m
+accumulo::accumulo_gc_heapsize: 256m
+accumulo::accumulo_other_heapsize: 512m
 accumulo::accumulo_trace_user: root
 accumulo::zookeeper_home: /usr/lib/zookeeper
 accumulo::zookeeper_nodes:
@@ -74,6 +79,5 @@ accumulo::zookeeper_nodes:
 accumulo::hadoop_prefix: /usr/lib/hadoop
 accumulo::namenode_ipaddress:
     - 192.168.33.11
-accumulo::namenode_hostname: vc-m2.vm.local
+accumulo::namenode_hostname: vc-m1.vm.local
 accumulo::java_home: /usr/java/default
-accumulo::java_heap_size: 512m
