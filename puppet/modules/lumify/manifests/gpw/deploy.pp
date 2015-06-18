@@ -20,11 +20,7 @@ inherits lumify::params{
     command => "/bin/mkdir /tmp/config && /bin/cp $lumify_config/lumify.properties $target_config_location && /bin/cp $lumify_config/log4j.xml $target_config_location && /bin/cp -R $lumify_config/knownEntities $target_config_location && /bin/cp -R $lumify_config/opencv $target_config_location && /bin/cp -R $lumify_config/opennlp $target_config_location"
   }
 
-  exec { 'cleanup-lumify-hdfs-directories' :
-    path => '/usr/bin:/bin:/usr/sbin:/sbin',
-    command => "hadoop fs -rmr /lumify",
-    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
-  }
+
   exec { 'create-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -mkdir -p /lumify && hadoop fs -mkdir -p /lumify/libcache ",
