@@ -35,6 +35,7 @@ $clients = {
     :'vc-esn1'      => { ip: '192.168.33.211', mem: '1024', cpus: '1' },
     :'vc-esn2'      => { ip: '192.168.33.212', mem: '1024', cpus: '1' },
     :'vc-esn3'      => { ip: '192.168.33.213', mem: '1024', cpus: '1' },
+    :'vc-w1'        => { ip: '192.168.33.311', mem: '1024', cpus: '1' },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
@@ -53,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = 'puppetlabs/centos-6.6-64-nocm'
 
   if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.scope = :box
+    config.cache.scope = :machine
   end
 
   # Configure puppet yum repository; add 'echo' statement so provisioning is always

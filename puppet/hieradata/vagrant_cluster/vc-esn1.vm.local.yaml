@@ -1,26 +1,3 @@
 ---
 # Kernel config
 swappiness::vm_swappiness: 10
-
-# Elasticsearch config
-elasticsearch::elasticsearch_version: 1.4.1
-elasticsearch::elasticsearch_rpm_version: 1.4.1-1
-elasticsearch::user: elasticsearch
-elasticsearch::group: elasticsearch
-elasticsearch::install_dir: /usr/share
-elasticsearch::config_dir: /etc/elasticsearch
-elasticsearch::data_dirs:
-    - /data0/elasticsearch/data
-elasticsearch::log_dir: /data0/elasticsearch/log
-elasticsearch::plugin_dir: /usr/share/elasticsearch/plugins
-elasticsearch::work_dir: /data0/elasticsearch/work
-elasticsearch::tmp_dir: /data0/elasticsearch/tmp
-elasticsearch::number_of_shards: 3
-elasticsearch::number_of_replicates: 2
-elasticsearch::es_heap_size: 1g
-elasticsearch::mlockall: true
-elasticsearch::cluster_name: elasticsearch_vagrant_cluster
-elasticsearch::elasticsearch_locations:
-    - 192.168.33.211:9300
-    - 192.168.33.212:9300
-    - 192.168.33.213:9300

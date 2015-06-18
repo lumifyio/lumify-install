@@ -8,7 +8,6 @@ node /vc-m1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::namenode'
   include '::role::cloudera::cdh5::hadoop::journalnode'
   include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
-#  include '::role::lumify_backend'
 #  include '::role::accumulo::master'
 }
 
@@ -23,7 +22,8 @@ node /vc-m2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::journalnode'
   include '::role::cloudera::cdh5::hadoop::yarn::historyserver'
 #  include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
-#  include '::role::lumify::jobs'
+  include '::role::lumify::jobs'
+  include '::role::lumify::client'
 }
 
 # management node 3
@@ -48,8 +48,6 @@ node /vc-hdn1\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::accumulo::tablet'
-#  include '::role::lumify::jobs'
-#  include '::role::lumify'
 }
 
 # hadoop datanode 2
@@ -61,7 +59,6 @@ node /vc-hdn2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::accumulo::tablet'
-#  include '::role::lumify::webserver'
 }
 
 # hadoop datanode 3
@@ -73,7 +70,6 @@ node /vc-hdn3\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::accumulo::tablet'
-#  include '::role::lumify::client'
 }
 
 # elasticsearch node 1
@@ -98,4 +94,9 @@ node /vc-esn3\d*\.vm\.local/ {
   include '::ipv6'
   include '::swappiness'
   include '::role::elasticsearch::node'
+}
+
+# Lumify web server 1
+node /vc-w1\d*\.vm\.local/ {
+  include '::role::lumify::webserver'
 }
