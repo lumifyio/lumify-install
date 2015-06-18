@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 #setup variables
+DEPLOY_ROOT=$PWD
 GIT_REPO=/tmp/git-repo
 LUMIFY_ALL=$GIT_REPO/lumify-all
 SEC_GRAPH=$GIT_REPO/securegraph
 LUMIFY_PUBLIC=$LUMIFY_ALL/lumify-public
 LUMIFY_VERSION=0.5.0-SNAPSHOT
 SECUREGRAPH_VERSION=0.10.0-SNAPSHOT
-export GIT_REPO LUMIFY_ALL SEC_GRAPH LUMIFY_PUBLIC LUMIFY_VERSION SECUREGRAPH_VERSION
+export GIT_REPO LUMIFY_ALL SEC_GRAPH LUMIFY_PUBLIC LUMIFY_VERSION SECUREGRAPH_VERSION DEPLOY_ROOT
 
 #remove old artifacts and clone
 echo "Setting up the git clones at $LUMIFY_ALL, $SEC_GRAPH $LUMIFY_PUBLIC"
@@ -15,11 +16,11 @@ mkdir $GIT_REPO
 cd $GIT_REPO
 mkdir $LUMIFY_ALL
 
-git clone ssh://git@github.com/altamiracorp/lumify-all
+git clone https://github.com/altamiracorp/lumify-all
 cd $LUMIFY_ALL
-git clone ssh://git@github.com/lumifyio/lumify lumify-public
+git clone https://github.com/lumifyio/lumify lumify-public
 cd $GIT_REPO
-git clone ssh://git@github.com/lumifyio/securegraph
+git clone https://github.com/lumifyio/securegraph
 
 
 # Build lumify artifacts
@@ -73,7 +74,8 @@ cp $LUMIFY_PUBLIC/tools/long-running-process-yarn/target/lumify-long-running-pro
 
 mkdir deployment/config
 
-cp $LUMIFY_PUBLIC/config/* deployment/config
+cp -R $LUMIFY_PUBLIC/config/* deployment/config
 
+cp -R deployment $DEPLOY_ROOT
 #cd $LUMIFY_ALL/deployment
 

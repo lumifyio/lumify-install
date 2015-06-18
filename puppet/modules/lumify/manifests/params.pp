@@ -1,7 +1,7 @@
 class lumify::params{
   $web_server_host = [ "${ipaddress_eth1}", ]
-  $lumify_war_file='/vagrant/deploy/web/lumify.war'
-  $lumify_deployed_libs='/vagrant/deploy/web/lib'
+  $lumify_war_file='/vagrant/deploy/deployment/web/lumify.war'
+  $lumify_deployed_libs='/vagrant/deploy/deployment/web/lib'
   $target_war_location='/opt/jetty/webapps/lumify.war'
 
   $lumify_dir='/opt/lumify'
@@ -28,13 +28,13 @@ class lumify::params{
   $oauth_google_key='1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com'
   $oauth_google_secret='QUgK2a-T8zKKqeu-qe6lKPnY'
   $target_gpw_jar_location="/tmp/gpw"
-  $lumify_gpw_jars='/vagrant/deploy/gpw'
+  $lumify_gpw_jars='/vagrant/deploy/deployment/gpw'
   $target_yarn_jar_location="/tmp/yarn"
-  $lumify_yarn_jars='/vagrant/deploy/yarn'
+  $lumify_yarn_jars='/vagrant/deploy/deployment/yarn'
   $target_tools_jar_location="/tmp/tools"
-  $lumify_tools_jars='/vagrant/deploy/tools'
+  $lumify_tools_jars='/vagrant/deploy/deployment/tools'
   $target_config_location="/tmp/config"
-  $lumify_config='/vagrant/deploy/config'
+  $lumify_config='/vagrant/deploy/deployment/config'
   $lumify_hdfs_gpw_directory="/lumify/libcache"
   $lumify_hdfs_yarn_directory="/lumify/libcache"
   $lumify_hdfs_config_directory="/lumify/config"
