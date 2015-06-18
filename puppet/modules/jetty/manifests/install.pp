@@ -1,6 +1,8 @@
 class jetty::install inherits jetty {
   include '::macro'
   include '::lumify_global'
+  include '::java'
+
   group { 'jetty' :
     ensure => present,
   }
@@ -64,7 +66,7 @@ class jetty::install inherits jetty {
   exec { 'create default java keystore' :
     command => "/usr/java/default/bin/keytool -genkeypair -keysize 2048 -keyalg RSA -keystore ${jetty_key_store_path} -keypass ${jetty_keypass} -storepass ${jetty_storepass} -dname CN=${lumify_domain}",
     creates => "${jetty_key_store_path}",
-    require => [ File["${jetty_config_dir}"], Class[java] ],
+    require => [ File["${jetty_config_dir}"], Class['::java'] ],
     logoutput => true,
   }
 }
