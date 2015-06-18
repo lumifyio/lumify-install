@@ -21,9 +21,9 @@ node /vc-m2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::zookeeper::node'
   include '::role::cloudera::cdh5::hadoop::secondary_namenode'
   include '::role::cloudera::cdh5::hadoop::journalnode'
-#  include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
   include '::role::cloudera::cdh5::hadoop::yarn::historyserver'
-  include '::role::lumify::jobs'
+#  include '::role::cloudera::cdh5::hadoop::yarn::resourcemanager'
+#  include '::role::lumify::jobs'
 }
 
 # management node 3
@@ -61,7 +61,7 @@ node /vc-hdn2\d*\.vm\.local/ {
   include '::role::cloudera::cdh5::hadoop::yarn::nodemanager'
   include '::role::cloudera::cdh5::hadoop::datanode'
   include '::role::accumulo::tablet'
-  include '::role::lumify::webserver'
+#  include '::role::lumify::webserver'
 }
 
 # hadoop datanode 3

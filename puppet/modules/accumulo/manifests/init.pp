@@ -18,6 +18,11 @@ class accumulo (
   $accumulo_tserver_memory_maps_native_enabled    = $accumulo::params::accumulo_tserver_memory_maps_native_enabled,
   $accumulo_tserver_cache_data_size               = $accumulo::params::accumulo_tserver_cache_data_size,
   $accumulo_tserver_cache_index_size              = $accumulo::params::accumulo_tserver_cache_index_size,
+  $accumulo_tserver_newsize                       = $accumulo::params::accumulo_tserver_newsize,
+  $accumulo_master_heapsize                       = $accumulo::params::accumulo_master_heapsize,
+  $accumulo_monitor_heapsize                      = $accumulo::params::accumulo_monitor_heapsize,
+  $accumulo_gc_heapsize                           = $accumulo::params::accumulo_gc_heapsize,
+  $accumulo_other_heapsize                        = $accumulo::params::accumulo_other_heapsize,
   $accumulo_trace_user                            = $accumulo::params::accumulo_trace_user,
   $zookeeper_home                                 = $accumulo::params::zookeeper_home,
   $zookeeper_nodes                                = $accumulo::params::zookeeper_nodes,
@@ -25,7 +30,6 @@ class accumulo (
   $namenode_ipaddress                             = $accumulo::params::namenode_ipaddress,
   $namenode_hostname                              = $accumulo::params::namenode_hostname,
   $java_home                                      = $accumulo::params::java_home,
-  $java_heap_size                                 = $accumulo::params::java_heap_size,
 ) inherits accumulo::params {
   class { '::accumulo::install': } ->
   class { '::accumulo::config': }
