@@ -76,7 +76,7 @@ accumulo::install_dir: /opt
 accumulo::bin_dir: /opt/accumulo/bin
 accumulo::log_dir: /data0/accumulo/log
 accumulo::tmp_dir: /data0/accumulo/tmp
-accumulo::accumulo_instance_name: Lumify
+accumulo::accumulo_instance_name: lumify
 accumulo::accumulo_root_password: password
 accumulo::accumulo_instance_secret: LumifySecret
 accumulo::accumulo_masters:
@@ -135,16 +135,37 @@ elasticsearch::elasticsearch_locations:
 
 
 # Lumify config
-lumify::web_server_host:
-    - 192.168.33.111
-lumify::lumify_war_file: /vagrant/deploy/web/lumify.war
-lumify::target_war_location: /opt/jetty/webapps/lumify.war
-lumify::lumify_dir: /opt/lumify
-lumify::lumify_config_dir: /opt/lumify/config
+lumify::lumify_logs_dir: /data0/lumify/log
+lumify::lumify_war_file: /vagrant/deploy/deployment/web/lumify.war
+lumify::lumify_deployed_libs: /vagrant/deploy/deployment/web/lib
+lumify::lumify_gpw_jars: /vagrant/deploy/deployment/gpw
+lumify::lumify_yarn_jars: /vagrant/deploy/deployment/yarn
+lumify::lumify_tools_jars: /vagrant/deploy/deployment/tools
+lumify::lumify_config: /vagrant/deploy/deployment/config
 lumify::securegraph_user: root
 lumify::securegraph_password: password
-lumify::accumulo_user: root
+lumify::accumulo_user: accumulo
 lumify::accumulo_password: password
+lumify::web_server_host:
+    - 192.168.33.9
 lumify::hadoop_namenode: 192.168.33.11
 lumify::zookeeper_quorum: 192.168.33.11,192.168.33.12,192.168.33.12
-lumify::elastic_search_locations: 192.168.33.211:9300,192.168.33.212:9300,192.168.33.213:9300
+lumify::elastic_search_locations:
+    - 192.168.33.211:9300
+    - 192.168.33.212:9300
+    - 192.168.33.213:9300
+lumify::rabbitmq_nodes:
+    1: 192.168.33.11
+    2: 192.168.33.12
+lumify::google_analytics_key: UA-74388-18
+lumify::google_analytics_domain: vc-w1.vm.local
+lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
+lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
+lumify::terms_of_use_title: try.lumify.io Terms of Use
+lumify::terms_of_use_html: <p>This is a demonstration instance of Lumify. Features and data may change at any time.</p>
+lumify::oauth_twitter_key: llHKLPSHT1YZlFjQBVCtdDB2i
+lumify::oauth_twitter_secret: BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw
+lumify::oauth_google_key: 1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com
+lumify::oauth_google_secret: QUgK2a-T8zKKqeu-qe6lKPnY
+
+

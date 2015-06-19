@@ -35,7 +35,7 @@ $clients = {
     :'vc-esn1'      => { ip: '192.168.33.211', mem: '1024', cpus: '1' },
     :'vc-esn2'      => { ip: '192.168.33.212', mem: '1024', cpus: '1' },
     :'vc-esn3'      => { ip: '192.168.33.213', mem: '1024', cpus: '1' },
-    :'vc-w1'        => { ip: '192.168.33.311', mem: '1024', cpus: '1' },
+    :'vc-w1'        => { ip: '192.168.33.9', mem: '1024', cpus: '1' },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)

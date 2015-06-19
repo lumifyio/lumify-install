@@ -70,8 +70,7 @@ graph.zookeeperServers=<%= @zookeeper_quorum%>
 graph.serializer=org.securegraph.accumulo.serializer.JavaValueSerializer
 graph.idgenerator=org.securegraph.id.UUIDIdGenerator
 graph.search=org.securegraph.elasticsearch.ElasticSearchParentChildSearchIndex
-#graph.search.locations=10.0.4.111:9300,10.0.4.112:9300,10.0.4.113:9300
-graph.search.locations=<%= @elastic_search_locations%>
+graph.search.locations=<%= @elastic_search_locations.join(',') %>
 graph.search.indexName=securegraph
 #graph.hdfs.rootDir=hdfs://10.0.4.11
 graph.hdfs.rootDir=hdfs://<%= @hadoop_namenode%>

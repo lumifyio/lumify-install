@@ -98,5 +98,8 @@ node /vc-esn3\d*\.vm\.local/ {
 
 # Lumify web server 1
 node /vc-w1\d*\.vm\.local/ {
+  include '::iptables'
+  include '::ipv6'
+  include '::swappiness'
   include '::role::lumify::webserver'
 }
