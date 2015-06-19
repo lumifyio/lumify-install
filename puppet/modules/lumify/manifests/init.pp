@@ -25,6 +25,8 @@ class lumify(
   $oauth_google_secret=$lumify::params::oauth_google_secret,
   $lumify_target_lib_dir=$lumify::params::lumify_target_lib_dir,
   $lumify_deployed_libs=$lumify::params::lumify_deployed_libs,
+  $lumify_xml_file=$lumify::params::lumify_xml_file,
+  $target_lumify_context=$lumify::params::target_lumify_context,
   )
 inherits lumify::params
 {

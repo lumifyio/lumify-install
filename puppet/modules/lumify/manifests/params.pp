@@ -3,7 +3,8 @@ class lumify::params{
   $lumify_war_file='/vagrant/deploy/deployment/web/lumify.war'
   $lumify_deployed_libs='/vagrant/deploy/deployment/web/lib'
   $target_war_location='/opt/jetty/webapps/lumify.war'
-
+  $lumify_xml_file='/vagrant/deploy/deployment/lumify.xml'
+  $target_lumify_context='/opt/jetty/webapps/lumify.xml'
   $lumify_dir='/opt/lumify'
   $lumify_config_dir="$lumify_dir/config"
   $lumify_logs_dir="$lumify_dir/logs"
