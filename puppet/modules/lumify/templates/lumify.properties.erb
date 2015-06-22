@@ -33,8 +33,8 @@ repository.audit=io.lumify.securegraph.model.audit.SecureGraphAuditRepository
 repository.termMention=io.lumify.core.model.termMention.BigTableTermMentionRepository
 repository.artifactThumbnail=io.lumify.core.model.artifactThumbnails.BigTableArtifactThumbnailRepository
 repository.workQueue=io.lumify.model.rabbitmq.RabbitMQWorkQueueRepository
-<% @rabbitmq_nodes.each do |id, node| -%>
-rabbitmq.addr.<%= id %>.host=<%= node %>
+<% @rabbitmq_nodes.each_with_index do |value, index| -%>
+<%= "rabbitmq.addr.#{index}.host=#{value}" %>
 <% end -%>
 #rabbitmq.addr.0.host=ip-10-0-4-11.ec2.internal
 #rabbitmq.addr.1.host=ip-10-0-4-12.ec2.internal
@@ -69,7 +69,7 @@ graph.zookeeperServers=<%= @zookeeper_quorum.values.map{|v| v.split(':')[0]}.joi
 graph.serializer=org.securegraph.accumulo.serializer.JavaValueSerializer
 graph.idgenerator=org.securegraph.id.UUIDIdGenerator
 graph.search=org.securegraph.elasticsearch.ElasticSearchParentChildSearchIndex
-graph.search.locations=<%= @elastic_search_locations.values.map{|v| v.split(':')[0]}.join(',')%>
+graph.search.locations=<%= @elastic_search_locations.map{|v| v.split(':')[0]}.join(',')%>
 graph.search.indexName=securegraph
 graph.hdfs.rootDir=hdfs://<%= @hadoop_namenode %>
 graph.hdfs.dataDir=/lumify/secureGraph
