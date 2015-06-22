@@ -126,7 +126,7 @@ lumify::lumify_yarn_jars: /vagrant/deploy/deployment/yarn
 lumify::lumify_tools_jars: /vagrant/deploy/deployment/tools
 lumify::securegraph_user: root
 lumify::securegraph_password: password
-lumify::accumulo_user: accumulo
+lumify::accumulo_user: root
 lumify::accumulo_password: *accumulo_password
 lumify::web_server_host: &lumify_webservers
     - 192.168.33.109
