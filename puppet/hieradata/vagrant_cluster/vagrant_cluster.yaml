@@ -1,8 +1,5 @@
 ---
 
-zookeeper_config_dir: &zookeeper_config_dir /data0/zookeeper/log
-
-
 # where to cache downloads
 macro::cache_dir: /vagrant/.downloads
 
@@ -12,7 +9,7 @@ rabbitmq::rabbitmq_mgmt_user: guest
 rabbitmq::rabbitmq_mgmt_user_pw: guest
 rabbitmq::rabbitmq_user: rabbitmq
 rabbitmq::rabbitmq_group: rabbitmq
-rabbitmq::cluster_nodes:
+rabbitmq::cluster_nodes: &rabbitmq_cluster_nodes
     - vc-m1
     - vc-m2
 rabbitmq::erlang_cookie:
@@ -22,11 +19,11 @@ rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia
 
 # Zookeeper config
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_config_dir: /etc/zookeeper/conf
-cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: *zookeeper_config_dir
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: /data0/zookeeper/log
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_data_dir: /data0/zookeeper/data
 cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
 cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
-cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes:
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
     1: 192.168.33.11:2181
     2: 192.168.33.12:2181
     3: 192.168.33.13:2181
@@ -36,27 +33,24 @@ cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes:
 cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
 cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
 cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
-cloudera::cdh5::hadoop::hadoop::hadoop_namenodes:
+cloudera::cdh5::hadoop::hadoop::hadoop_namenodes: &hadoop_namenodes
     - 192.168.33.11
-cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes:
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes: &hadoop_journalnodes
     - 192.168.33.11
     - 192.168.33.12
     - 192.168.33.13
-cloudera::cdh5::hadoop::hadoop::hadoop_masters:
+cloudera::cdh5::hadoop::hadoop::hadoop_masters: &hadoop_masters
     - 192.168.33.11
-cloudera::cdh5::hadoop::hadoop::hadoop_slaves:
+cloudera::cdh5::hadoop::hadoop::hadoop_slaves: &hadoop_slaves
     - 192.168.33.111
     - 192.168.33.112
     - 192.168.33.113
-cloudera::cdh5::hadoop::hadoop::zookeeper_nodes:
-    1: 192.168.33.11:2181
-    2: 192.168.33.12:2181
-    3: 192.168.33.13:2181
+cloudera::cdh5::hadoop::hadoop::zookeeper_nodes: *zookeeper_nodes
 cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
-cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: 192.168.33.11
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode 192.168.33.11
 cloudera::cdh5::hadoop::hadoop::namenode_hostname: vc-m1.vm.local
 cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: 192.168.33.11:8020
-cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: 192.168.33.11
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: *hadoop_namenode
 cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
 cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
 cloudera::cdh5::hadoop::hadoop::historyserver_hostname: vc-m2.vm.local
@@ -80,11 +74,11 @@ accumulo::bin_dir: /opt/accumulo/bin
 accumulo::log_dir: /data0/accumulo/log
 accumulo::tmp_dir: /data0/accumulo/tmp
 accumulo::accumulo_instance_name: lumify
-accumulo::accumulo_root_password: password
-accumulo::accumulo_instance_secret: LumifySecret
-accumulo::accumulo_masters:
+accumulo::accumulo_root_password: &accumulo_password password
+accumulo::accumulo_instance_secret: &accumulo_secret lumifysecret
+accumulo::accumulo_masters: &accumulo_masters
     - 192.168.33.13
-accumulo::accumulo_slaves:
+accumulo::accumulo_slaves: &accumulo_slaves
     - 192.168.33.111
     - 192.168.33.112
     - 192.168.33.113
@@ -102,13 +96,10 @@ accumulo::accumulo_gc_heapsize: 256m
 accumulo::accumulo_other_heapsize: 512m
 accumulo::accumulo_trace_user: root
 accumulo::zookeeper_home: /usr/lib/zookeeper
-accumulo::zookeeper_nodes:
-    1: 192.168.33.11:2181
-    2: 192.168.33.12:2181
-    3: 192.168.33.13:2181
+accumulo::zookeeper_nodes: *zookeeper_nodes
 accumulo::hadoop_prefix: /usr/lib/hadoop
 accumulo::namenode_ipaddress:
-    - 192.168.33.11
+    - *hadoop_namenode
 accumulo::namenode_hostname: vc-m1.vm.local
 accumulo::java_home: /usr/java/default
 
@@ -131,7 +122,7 @@ elasticsearch::number_of_replicates: 2
 elasticsearch::es_heap_size: 1g
 elasticsearch::mlockall: true
 elasticsearch::cluster_name: elasticsearch_vagrant_cluster
-elasticsearch::elasticsearch_locations:
+elasticsearch::elasticsearch_locations: &elasticsearch_locations
     - 192.168.33.211:9300
     - 192.168.33.212:9300
     - 192.168.33.213:9300
@@ -148,21 +139,13 @@ lumify::lumify_config: /vagrant/deploy/deployment/config
 lumify::securegraph_user: root
 lumify::securegraph_password: password
 lumify::accumulo_user: accumulo
-lumify::accumulo_password: password
-lumify::web_server_host:
+lumify::accumulo_password: *accumulo_password
+lumify::web_server_host: &lumify_webservers
     - 192.168.33.9
-lumify::hadoop_namenode: 192.168.33.11
-lumify::zookeeper_quorum:
-    - 192.168.33.11
-    - 192.168.33.12
-    - 192.168.33.13
-lumify::elastic_search_locations:
-    - 192.168.33.211:9300
-    - 192.168.33.212:9300
-    - 192.168.33.213:9300
-lumify::rabbitmq_nodes:
-    1: 192.168.33.11
-    2: 192.168.33.12
+lumify::hadoop_namenode: *hadoop_namenode
+lumify::zookeeper_quorum: *zookeeper_nodes
+lumify::elastic_search_locations: *elasticsearch_locations
+lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
 lumify::google_analytics_key: UA-74388-18
 lumify::google_analytics_domain: vc-w1.vm.local
 lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
@@ -173,5 +156,4 @@ lumify::oauth_twitter_key: llHKLPSHT1YZlFjQBVCtdDB2i
 lumify::oauth_twitter_secret: BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw
 lumify::oauth_google_key: 1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com
 lumify::oauth_google_secret: QUgK2a-T8zKKqeu-qe6lKPnY
-
 

@@ -19,13 +19,13 @@ inherits lumify::params{
   exec { 'deploy-lumify-yarn' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_yarn_jar_location/* $lumify_hdfs_gpw_directory",
-    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
+    require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
   }
 
   exec { 'chmod-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -chmod -R a+w /lumify/",
-     require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
+     require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
   }
 
  }

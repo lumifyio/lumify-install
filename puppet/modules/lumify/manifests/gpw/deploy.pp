@@ -24,19 +24,19 @@ inherits lumify::params{
   exec { 'create-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -mkdir -p /lumify && hadoop fs -mkdir -p /lumify/libcache ",
-   require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
+   require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
   }
 
   exec { 'deploy-lumify-gpw' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_gpw_jar_location/* $lumify_hdfs_gpw_directory",
-    require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
+    require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
   }
 
   exec { 'deploy-lumify-config' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -put $target_config_location /lumify/",
-   require    => [  Class['::cloudera::cdh5::hadoop::secondary_namenode'], ],
+   require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
   }
 
  }

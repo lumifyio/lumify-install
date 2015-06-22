@@ -1,12 +1,11 @@
 # Application-wide
-hadoop.url=hdfs://<%= @hadoop_namenode%>:8020
-zookeeper.serverNames=<%= @zookeeper_quorum%>
-#zookeeper.serverNames=10.0.4.111,10.0.4.112,10.0.4.113
+hadoop.url=hdfs://<%= @hadoop_namenode %>:8020
+zookeeper.serverNames=<%= @zookeeper_quorum.values.map{|v| v.split(':')[0]}.join(',') %>
 
 webAppEmbedded.longRunningProcessRunner.enabled=false
 webAppEmbedded.graphPropertyWorkerRunner.enabled=false
 
-hdfsLibcache.sourceDirectory=hdfs://<%= @hadoop_namenode%>/lumify/libcache
+hdfsLibcache.sourceDirectory=hdfs://<%= @hadoop_namenode %>/lumify/libcache
 lib-directory=/opt/lumify/lib
 
 newuser.privileges=READ,COMMENT,EDIT,PUBLISH,ADMIN
@@ -54,26 +53,26 @@ audit.visibilityLabel=audit
 
 # Big Table: Accumulo specific
 bigtable.accumulo.instanceName=lumify
-bigtable.accumulo.zookeeperServerNames=<%= @zookeeper_quorum %>
-bigtable.accumulo.username=<%= @accumulo_user%>
-bigtable.accumulo.password=<%= @accumulo_password%>
+bigtable.accumulo.zookeeperServerNames=<%= @zookeeper_quorum.values.map{|v| v.split(':')[0]}.join(',') %>
+bigtable.accumulo.username=<%= @accumulo_user %>
+bigtable.accumulo.password=<%= @accumulo_password %>
 
 # Secure Graph
 graph=org.securegraph.accumulo.AccumuloGraph
 # TODO when server side element visibility is fix remove this line
 graph.useServerSideElementVisibilityRowFilter=false
 graph.accumuloInstanceName=lumify
-graph.username=<%= @securegraph_user%>
-graph.password=<%= @securegraph_password%>
+graph.username=<%= @securegraph_user %>
+graph.password=<%= @securegraph_password %>
 graph.tableNamePrefix=lumify_securegraph
-graph.zookeeperServers=<%= @zookeeper_quorum%>
+graph.zookeeperServers=<%= @zookeeper_quorum.values.map{|v| v.split(':')[0]}.join(',') %>
 graph.serializer=org.securegraph.accumulo.serializer.JavaValueSerializer
 graph.idgenerator=org.securegraph.id.UUIDIdGenerator
 graph.search=org.securegraph.elasticsearch.ElasticSearchParentChildSearchIndex
 graph.search.locations=<%= @elastic_search_locations.join(',') %>
 graph.search.indexName=securegraph
 #graph.hdfs.rootDir=hdfs://10.0.4.11
-graph.hdfs.rootDir=hdfs://<%= @hadoop_namenode%>
+graph.hdfs.rootDir=hdfs://<%= @hadoop_namenode %>
 graph.hdfs.dataDir=/lumify/secureGraph
 
 # Object-detection

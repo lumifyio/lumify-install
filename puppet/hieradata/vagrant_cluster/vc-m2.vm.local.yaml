@@ -1,6 +1,6 @@
 ---
 # Kernel config
-swappiness::vm_swappiness: 10
+swappiness::vm_swappiness: 1
 
 
 

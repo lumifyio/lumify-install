@@ -16,16 +16,8 @@ VAGRANTFILE_API_VERSION = "2"
 #
 # All clients will be added to the hosts file for each VM
 $clients = {
-    :gpw            => { ip: '192.168.33.101', },
-    :es             => { ip: '192.168.33.102', },
-    :rmq            => { ip: '192.168.33.103', },
-    :clavin         => { ip: '192.168.33.104', },
-    :zk             => { ip: '192.168.33.105', },
-    :ac             => { ip: '192.168.33.106', },
-    :jetty          => { ip: '192.168.33.107', },
-    :hadoop         => { ip: '192.168.33.108', },
-    :lumify         => { ip: '192.168.33.109', },
-    :demo           => { ip: '192.168.33.110', mem: '8192', cpus: '4', },
+    :'lumify'       => { ip: '192.168.33.109', mem: '6144', cpus: '4', },
+    :'demo'         => { ip: '192.168.33.110', mem: '6144', cpus: '4', },
     :'vc-m1'        => { ip: '192.168.33.11',  mem: '1536', cpus: '1' },
     :'vc-m2'        => { ip: '192.168.33.12',  mem: '1536', cpus: '1' },
     :'vc-m3'        => { ip: '192.168.33.13',  mem: '1536', cpus: '1' },
@@ -35,7 +27,7 @@ $clients = {
     :'vc-esn1'      => { ip: '192.168.33.211', mem: '1024', cpus: '1' },
     :'vc-esn2'      => { ip: '192.168.33.212', mem: '1024', cpus: '1' },
     :'vc-esn3'      => { ip: '192.168.33.213', mem: '1024', cpus: '1' },
-    :'vc-w1'        => { ip: '192.168.33.9', mem: '1024', cpus: '1' },
+    :'vc-w1'        => { ip: '192.168.33.9',   mem: '1024', cpus: '1' },
 }
 
 def config_client(vm, name, ip_addr, mem, cpus)
