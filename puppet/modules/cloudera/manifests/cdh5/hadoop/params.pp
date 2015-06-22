@@ -38,4 +38,5 @@ class cloudera::cdh5::hadoop::params {
   $hadoop_mapreduce_log_dir         = '/var/log/hadoop-mapreduce'
   $yarn_resourcemanager_hostname    = 'lumify-vm.lumify.io'
   $yarn_nodemanager_resource_memory = '1024'
+  $yarn_max_vcores                  = '4'
 }

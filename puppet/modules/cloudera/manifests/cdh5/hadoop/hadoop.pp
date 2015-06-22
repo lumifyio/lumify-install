@@ -23,5 +23,6 @@ class cloudera::cdh5::hadoop::hadoop (
   $hadoop_mapreduce_log_dir         = $cloudera::cdh5::hadoop::params::hadoop_mapreduce_log_dir,
   $yarn_resourcemanager_hostname    = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_hostname,
   $yarn_nodemanager_resource_memory = $cloudera::cdh5::hadoop::params::yarn_nodemanager_resource_memory,
+  $yarn_max_vcores                  = $cloudera::cdh5::hadoop::params::yarn_max_vcores,
 ) inherits cloudera::cdh5::hadoop::params{
 }
