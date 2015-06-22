@@ -387,3 +387,9 @@ discovery.zen.ping.unicast.hosts: [<%= @elasticsearch_locations.collect {|l| "'#
 # it unless you need it is recommended (it is disabled by default).
 #
 #http.jsonp.enable: true
+
+
+################################## Scripting ################################
+
+# enable groovy dynamic scripting
+script.groovy.sandbox.enabled: true
