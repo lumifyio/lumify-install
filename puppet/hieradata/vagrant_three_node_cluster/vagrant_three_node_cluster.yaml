@@ -1,0 +1,161 @@
+---
+
+# where to cache downloads
+macro::cache_dir: /vagrant/.downloads
+
+# Rabbitmq config
+rabbitmq::rabbitmq_version: 3.4.2
+rabbitmq::rabbitmq_mgmt_user: guest
+rabbitmq::rabbitmq_mgmt_user_pw: guest
+rabbitmq::rabbitmq_user: rabbitmq
+rabbitmq::rabbitmq_group: rabbitmq
+rabbitmq::cluster_nodes: &rabbitmq_cluster_nodes
+    - lumify1
+    - lumify2
+rabbitmq::erlang_cookie:
+rabbitmq::rabbitmq_log_dir: /data0/rabbitmq/log
+rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia
+
+
+# Zookeeper config
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_config_dir: /etc/zookeeper/conf
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: /data0/zookeeper/log
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_data_dir: /data0/zookeeper/data
+cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
+cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
+    1: 192.168.33.3:2181
+    2: 192.168.33.4:2181
+    3: 192.168.33.5:2181
+
+
+# Hadoop config
+cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
+cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
+cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
+cloudera::cdh5::hadoop::hadoop::hadoop_namenodes: &hadoop_namenodes
+    - 192.168.33.3
+    - 192.168.33.4
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes: &hadoop_journalnodes
+    - 192.168.33.3
+    - 192.168.33.4
+    - 192.168.33.5
+cloudera::cdh5::hadoop::hadoop::hadoop_masters:
+    - 192.168.33.3
+    - 192.168.33.4
+cloudera::cdh5::hadoop::hadoop::hadoop_slaves: &hadoop_slaves
+    - 192.168.33.3
+    - 192.168.33.4
+    - 192.168.33.5
+cloudera::cdh5::hadoop::hadoop::zookeeper_nodes: *zookeeper_nodes
+cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode 192.168.33.3
+cloudera::cdh5::hadoop::hadoop::namenode_hostname: lumify1.vm.local
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: 192.168.33.3:8020
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: *hadoop_namenode
+cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
+cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
+cloudera::cdh5::hadoop::hadoop::historyserver_hostname: lumify2.vm.local
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
+cloudera::cdh5::hadoop::hadoop::data_directories:
+    - /data0/hadoop
+cloudera::cdh5::hadoop::hadoop::hadoop_replication: 3
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: lumify_three_node_cluster
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_http_port: 50070
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_rpc_port: 8020
+cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: lumify1.vm.local
+cloudera::cdh5::hadoop::hadoop::yarn_nodemanager_resource_memory: 4096
+cloudera::cdh5::hadoop::hadoop::yarn_max_vcores: 4
+
+
+# Accumulo config
+accumulo::version: 1.6.1
+accumulo::user: accumulo
+accumulo::group: hadoop
+accumulo::install_dir: /opt
+accumulo::bin_dir: /opt/accumulo/bin
+accumulo::log_dir: /data0/accumulo/log
+accumulo::tmp_dir: /data0/accumulo/tmp
+accumulo::accumulo_instance_name: lumify
+accumulo::accumulo_root_password: &accumulo_password password
+accumulo::accumulo_instance_secret: &accumulo_secret lumifysecret
+accumulo::accumulo_masters: &accumulo_masters
+    - 192.168.33.5
+accumulo::accumulo_slaves: &accumulo_slaves
+    - 192.168.33.3
+    - 192.168.33.4
+    - 192.168.33.5
+accumulo::accumulo_example_config: 512MB/native-standalone
+accumulo::accumulo_tserver_memory_maps_max: 128M
+accumulo::accumulo_tserver_walog_max_size: 128M
+accumulo::accumulo_table_compaction_minor_logs_threshold: 3
+accumulo::accumulo_tserver_memory_maps_native_enabled: false
+accumulo::accumulo_tserver_cache_data_size: 64M
+accumulo::accumulo_tserver_cache_index_size: 64M
+accumulo::accumulo_tserver_newsize: 128m
+accumulo::accumulo_master_heapsize: 512m
+accumulo::accumulo_monitor_heapsize: 512m
+accumulo::accumulo_gc_heapsize: 256m
+accumulo::accumulo_other_heapsize: 512m
+accumulo::accumulo_trace_user: root
+accumulo::zookeeper_home: /usr/lib/zookeeper
+accumulo::zookeeper_nodes: *zookeeper_nodes
+accumulo::hadoop_prefix: /usr/lib/hadoop
+accumulo::namenode_ipaddress:
+    - *hadoop_namenode
+accumulo::namenode_hostname: lumify.vm.local
+accumulo::java_home: /usr/java/default
+
+
+# Elasticsearch config
+elasticsearch::elasticsearch_version: 1.4.1
+elasticsearch::elasticsearch_rpm_version: 1.4.1-1
+elasticsearch::user: elasticsearch
+elasticsearch::group: elasticsearch
+elasticsearch::install_dir: /usr/share
+elasticsearch::config_dir: /etc/elasticsearch
+elasticsearch::data_dirs:
+    - /data0/elasticsearch/data
+elasticsearch::log_dir: /data0/elasticsearch/log
+elasticsearch::plugin_dir: /usr/share/elasticsearch/plugins
+elasticsearch::work_dir: /data0/elasticsearch/work
+elasticsearch::tmp_dir: /data0/elasticsearch/tmp
+elasticsearch::number_of_shards: 1
+elasticsearch::number_of_replicates: 2
+elasticsearch::es_heap_size: 512m
+elasticsearch::mlockall: true
+elasticsearch::cluster_name: elasticsearch_vagrant_single_node
+elasticsearch::elasticsearch_locations: &elasticsearch_locations
+    - 192.168.33.3:9300
+    - 192.168.33.4:9300
+    - 192.168.33.5:9300
+
+
+# Lumify config
+lumify::lumify_logs_dir: /data0/lumify/log
+lumify::lumify_war_file: /vagrant/deploy/deployment/web/lumify.war
+lumify::lumify_deployed_libs: /vagrant/deploy/deployment/web/lib
+lumify::lumify_gpw_jars: /vagrant/deploy/deployment/gpw
+lumify::lumify_yarn_jars: /vagrant/deploy/deployment/yarn
+lumify::lumify_tools_jars: /vagrant/deploy/deployment/tools
+lumify::securegraph_user: root
+lumify::securegraph_password: password
+lumify::accumulo_user: root
+lumify::accumulo_password: *accumulo_password
+lumify::web_server_host: &lumify_webservers
+    - 192.168.33.3
+lumify::hadoop_namenode: *hadoop_namenode
+lumify::zookeeper_quorum: *zookeeper_nodes
+lumify::elastic_search_locations: *elasticsearch_locations
+lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
+lumify::google_analytics_key: UA-74388-18
+lumify::google_analytics_domain: lumify.vm.local
+lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
+lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
+lumify::terms_of_use_title: try.lumify.io Terms of Use
+lumify::terms_of_use_html: <p>This is a demonstration instance of Lumify. Features and data may change at any time.</p>
+lumify::oauth_twitter_key: llHKLPSHT1YZlFjQBVCtdDB2i
+lumify::oauth_twitter_secret: BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw
+lumify::oauth_google_key: 1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com
+lumify::oauth_google_secret: QUgK2a-T8zKKqeu-qe6lKPnY
+

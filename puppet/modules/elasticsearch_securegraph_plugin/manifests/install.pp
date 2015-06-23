@@ -9,5 +9,7 @@ class elasticsearch_securegraph_plugin::install inherits elasticsearch_securegra
     cwd     => "${elasticsearch_install_dir}",
     creates => "${elasticsearch_plugin_dir}/securegraph",
     require => Class['::elasticsearch'],
+  } -> exec { "restart-elasticsearch-service":
+    command => "/sbin/service elasticsearch restart"
   }
 }
