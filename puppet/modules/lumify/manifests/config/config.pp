@@ -1,4 +1,4 @@
-class lumify::web::config inherits lumify {
+class lumify::config::config inherits lumify {
 
   include '::jetty'
 

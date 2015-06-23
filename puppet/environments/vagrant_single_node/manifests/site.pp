@@ -57,6 +57,6 @@ node /lumify\d*\.vm\.local/ {
   class { '::lumify::gpw::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
-  class { '::lumify::web::config': } ->
+  class { '::lumify::config::config': } ->
   class { '::lumify::web::deploy': }
 }
