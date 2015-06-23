@@ -35,7 +35,7 @@ node /lumify\d*\.vm\.local/ {
   class { '::sphinx': } ->
   class { '::ccextractor': } ->
   class { '::ffmpeg': } ->
-#  class { '::clavin': } ->
+  class { '::clavin': } ->
   class { '::erlang': } ->
   class { '::rabbitmq': } ->
   class { '::cloudera::cdh5::zookeeper::zookeeper': } ->

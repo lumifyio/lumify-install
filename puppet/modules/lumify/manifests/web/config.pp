@@ -20,14 +20,7 @@ class lumify::web::config inherits lumify {
   macro::ensure_dir{ "${lumify_logs_dir}" :
     owner   => 'jetty',
     group   => 'jetty',
-    mode    => 'u=rwx,g=rx,o=rx',
-    require => [ User['jetty'], Group['jetty'], ],
-  }
-
-  macro::ensure_dir{ "${clavin_index_dir}" :
-    owner   => 'jetty',
-    group   => 'jetty',
-    mode    => 'u=rwx,g=rx,o=rx',
+    mode    => 'u=rwx,go=rwx',
     require => [ User['jetty'], Group['jetty'], ],
   }
 
