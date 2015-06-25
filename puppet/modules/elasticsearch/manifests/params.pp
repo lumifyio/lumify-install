@@ -13,6 +13,7 @@ class elasticsearch::params {
   $number_of_shards           = '1'
   $number_of_replicates       = '0'
   $es_heap_size               = '2g'
+  $max_open_file_descriptors  = '32768'
   $mlockall                   = 'true'
   $cluster_name               = 'lumify_elasticsearch'
 

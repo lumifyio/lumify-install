@@ -20,6 +20,7 @@ jetty::jetty_min_heap_size: 1024m
 jetty::jetty_max_heap_size: 1024m
 jetty::jetty_max_permgen_size: 512m
 jetty::lumify_domain: lumify.io
+jetty::jetty_max_open_file_descriptors: 32768
 
 
 # Rabbitmq config
@@ -135,6 +136,7 @@ elasticsearch::mlockall: true
 elasticsearch::cluster_name: elasticsearch_vagrant_single_node
 elasticsearch::elasticsearch_locations: &elasticsearch_locations
     - 192.168.33.109:9300
+elasticsearch::max_open_file_descriptors: 32768
 
 
 # Lumify config

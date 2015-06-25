@@ -14,7 +14,8 @@ class jetty(
   $jetty_max_heap_size=$jetty::params::jetty_max_heap_size,
   $jetty_max_permgen_size=$jetty::params::jetty_max_permgen_size,
   $lumify_domain=$jetty::params::lumify_domain,
-  $jetty_config_dir=$jetty::params::jetty_config_dir
+  $jetty_config_dir=$jetty::params::jetty_config_dir,
+  $jetty_max_open_file_descriptors=$jetty::params::jetty_max_open_file_descriptors,
 )
 inherits jetty::params {
   class { '::jetty::install': } ->

@@ -14,6 +14,7 @@ class jetty::params {
   $jetty_min_heap_size='1024m'
   $jetty_max_heap_size='1024m'
   $jetty_max_permgen_size='512m'
+  $jetty_max_open_file_descriptors='32768'
   $lumify_domain='demo.lumify.io'
 
   case $architecture {

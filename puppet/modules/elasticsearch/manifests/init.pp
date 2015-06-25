@@ -13,6 +13,7 @@ class elasticsearch (
   $number_of_shards           = $elasticsearch::params::number_of_shards,
   $number_of_replicates       = $elasticsearch::params::number_of_replicates,
   $es_heap_size               = $elasticsearch::params::es_heap_size,
+  $max_open_file_descriptors  = $elasticsearch::params::max_open_file_descriptors,
   $mlockall                   = $elasticsearch::params::mlockall,
   $cluster_name               = $elasticsearch::params::cluster_name,
   $elasticsearch_locations    = $elasticsearch::params::elasticsearch_locations,
