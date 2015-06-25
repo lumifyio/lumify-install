@@ -8,21 +8,24 @@ class elasticsearch::install inherits elasticsearch {
     require  => Class['::elasticsearch::repo'],
   }
 
-  macro::ensure_dir{ "${log_dir}" :
+  macro::ensure_dir{ 'elasticsearch-log-dir' :
+    dir     => $log_dir,
     owner   => $user,
     group   => $group,
     mode    => 'u=rwx,go=rx',
     require => Package['elasticsearch'],
   }
 
-  macro::ensure_dir{ "${work_dir}" :
+  macro::ensure_dir{ 'elasticsearch-work-dir' :
+    dir     => $work_dir,
     owner   => $user,
     group   => $group,
     mode    => 'u=rwx,go=r',
     require => Package['elasticsearch'],
   }
 
-  macro::ensure_dir{ "${tmp_dir}" :
+  macro::ensure_dir{ 'elasticsearch-tmp-dir ' :
+    dir     => $tmp_dir,
     owner   => $user,
     group   => $group,
     mode    => 'u=rwx,go=r',

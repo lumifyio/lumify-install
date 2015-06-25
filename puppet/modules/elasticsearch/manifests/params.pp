@@ -8,8 +8,8 @@ class elasticsearch::params {
   $data_dirs                  = [ "/var/lib/elasticsearch", ]
   $log_dir                    = '/var/log/elasticsearch'
   $plugin_dir                 = '/usr/share/elasticsearch/plugins'
-  $work_dir                   = '/tmp/elasticsearch'
-  $tmp_dir                    = '/tmp'
+  $work_dir                   = '/tmp/elasticsearch/work'
+  $tmp_dir                    = '/tmp/elasticsearch/tmp'
   $number_of_shards           = '1'
   $number_of_replicates       = '0'
   $es_heap_size               = '2g'

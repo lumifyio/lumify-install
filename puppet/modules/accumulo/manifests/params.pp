@@ -5,7 +5,7 @@ class accumulo::params(
   $install_dir                                    = "/opt",
   $bin_dir                                        = "/opt/accumulo/bin",
   $log_dir                                        = "/opt/accumulo/logs",
-  $tmp_dir                                        = '/tmp',
+  $tmp_dir                                        = '/tmp/accumulo',
   $accumulo_instance_name                         = 'accumulo',
   $accumulo_root_password                         = 'password',
   $accumulo_instance_secret                       = 'DEFAULT',
