@@ -1,7 +1,9 @@
 node /lumify1\d*\.vm\.local/ {
+  class { '::sysctl::max_file_descriptors': } ->
+  class { '::sysctl::max_map_count': } ->
+  class { '::sysctl::swappiness': } ->
   class { '::iptables': } ->
   class { '::ipv6': } ->
-  class { '::swappiness': } ->
   class { '::epel': } ->
 
   class { '::jai': } ->
@@ -29,6 +31,7 @@ node /lumify1\d*\.vm\.local/ {
   class { '::elasticsearch': } ->
   class { '::elasticsearch_head_plugin': } ->
   class { '::elasticsearch_hq_plugin': } ->
+  class { '::elasticsearch_securegraph_plugin': } ->
 
   class { '::accumulo::tablet': } ->
 
@@ -36,15 +39,15 @@ node /lumify1\d*\.vm\.local/ {
   class { '::lumify::gpw::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
-  class { '::lumify::web::config': } ->
-  class { '::elasticsearch_securegraph_plugin': } ->
   class { '::lumify::web::deploy': }
 }
 
 node /lumify2\d*\.vm\.local/ {
+  class { '::sysctl::max_file_descriptors': } ->
+  class { '::sysctl::max_map_count': } ->
+  class { '::sysctl::swappiness': } ->
   class { '::iptables': } ->
   class { '::ipv6': } ->
-  class { '::swappiness': } ->
   class { '::epel': } ->
 
   class { '::jai': } ->
@@ -71,16 +74,20 @@ node /lumify2\d*\.vm\.local/ {
 
   class { '::elasticsearch': } ->
   class { '::elasticsearch_head_plugin': } ->
-  class { '::elasticsearch_hq_plugin': } ->
+  class { '::elasticsearch_hq_plugin': }
+  class { '::elasticsearch_securegraph_plugin': } ->
 
   class { '::accumulo::tablet': }
 }
 
 node /lumify3\d*\.vm\.local/ {
+  class { '::sysctl::max_file_descriptors': } ->
+  class { '::sysctl::max_map_count': } ->
+  class { '::sysctl::swappiness': } ->
   class { '::iptables': } ->
   class { '::ipv6': } ->
-  class { '::swappiness': } ->
   class { '::epel': } ->
+
   class { '::jai': } ->
   class { '::jai_imageio': } ->
   class { '::opencv': } ->
@@ -101,6 +108,7 @@ node /lumify3\d*\.vm\.local/ {
   class { '::elasticsearch': } ->
   class { '::elasticsearch_head_plugin': } ->
   class { '::elasticsearch_hq_plugin': } ->
+  class { '::elasticsearch_securegraph_plugin': } ->
 
   class { '::accumulo::tablet': } ->
   class { '::accumulo::master': } ->
