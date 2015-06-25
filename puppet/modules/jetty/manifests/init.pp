@@ -10,14 +10,16 @@ class jetty(
   $jetty_client_auth = $jetty::params::jetty_client_auth,
   $jetty_keypass=$jetty::params::jetty_keypass,
   $jetty_storepass=$jetty::params::jetty_storepass,
+  $jetty_min_heap_size=$jetty::params::jetty_min_heap_size,
+  $jetty_max_heap_size=$jetty::params::jetty_max_heap_size,
+  $jetty_max_permgen_size=$jetty::params::jetty_max_permgen_size,
   $lumify_domain=$jetty::params::lumify_domain,
   $jetty_config_dir=$jetty::params::jetty_config_dir
 )
 inherits jetty::params {
-class { '::jetty::install': } ->
-class { '::jetty::config': } ->
-class { '::jetty::service': }
-
+  class { '::jetty::install': } ->
+  class { '::jetty::config': } ->
+  class { '::jetty::service': }
   contain '::jetty::install'
   contain '::jetty::config'
   contain '::jetty::service'

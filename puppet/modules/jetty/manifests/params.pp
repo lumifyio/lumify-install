@@ -11,6 +11,9 @@ class jetty::params {
   $jetty_client_auth = 'false'
   $jetty_keypass='password'
   $jetty_storepass='password'
+  $jetty_min_heap_size='1024m'
+  $jetty_max_heap_size='1024m'
+  $jetty_max_permgen_size='512m'
   $lumify_domain='demo.lumify.io'
 
   case $architecture {

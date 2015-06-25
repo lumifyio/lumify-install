@@ -118,3 +118,10 @@ http.timeout=30000
 
 --module=logging
 --module=https
+
+## Jetty start.jar arguments
+--exec
+-Xms<%= @jetty_min_heap_size %>
+-Xmx<%= @jetty_max_heap_size %>
+-XX:MaxPermSize=<%= @jetty_max_permgen_size %>
+

@@ -3,6 +3,25 @@
 # where to cache downloads
 macro::cache_dir: /vagrant/.downloads
 
+# Jetty config
+jetty::version: 9.2.7.v20150116
+jetty::jetty_insecure_listen_port: 8080
+jetty::jetty_confidential_listen_port: 8443
+jetty::jetty_confidential_redirect_port: 8443
+jetty::jetty_config_dir: /opt/jetty/config
+jetty::jetty_key_store_path: /opt/jetty/config/jetty.jks
+jetty::jetty_key_store_password: OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
+jetty::jetty_trust_store_path: /opt/jetty/config/jetty.jks
+jetty::jetty_trust_store_password: OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
+jetty::jetty_client_auth: false
+jetty::jetty_keypass: password
+jetty::jetty_storepass: password
+jetty::jetty_min_heap_size: 1024m
+jetty::jetty_max_heap_size: 1024m
+jetty::jetty_max_permgen_size: 512m
+jetty::lumify_domain: lumify.io
+
+
 # Rabbitmq config
 rabbitmq::rabbitmq_version: 3.4.2
 rabbitmq::rabbitmq_mgmt_user: guest

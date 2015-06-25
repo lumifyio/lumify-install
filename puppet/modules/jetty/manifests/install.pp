@@ -45,7 +45,7 @@ class jetty::install inherits jetty {
 
   file { '/opt/jetty/start.ini' :
     ensure  => file,
-    source => 'puppet:///modules/jetty/start.ini',
+    content => template('jetty/start.ini.erb'),
     require => File['/opt/jetty'],
   }
 
@@ -60,6 +60,15 @@ class jetty::install inherits jetty {
     owner   => 'jetty',
     group   => 'jetty',
     recurse => true,
+    require => [ User['jetty'] ],
+  }
+
+  file { "/etc/security/limits.d/jetty.conf":
+    ensure  => file,
+    content => template("jetty/jetty.conf.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
     require => [ User['jetty'] ],
   }
 

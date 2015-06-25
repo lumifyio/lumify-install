@@ -33,8 +33,17 @@ class elasticsearch::install inherits elasticsearch {
     macro::ensure_dir{ "${dir}" :
       owner   => $elasticsearch::user,
       group   => $elasticsearch::group,
-      mode    => 'u=rwx,go=r',
+      mode    => 'u=rwx,go=rx',
       require => Package['elasticsearch'],
     }
+  }
+
+  file { "/etc/security/limits.d/elasticsearch.conf":
+    ensure  => file,
+    content => template("elasticsearch/elasticsearch.conf.erb"),
+    owner   => "root",
+    group   => "root",
+    mode    => "u=rw,go=r",
+    require => Package['elasticsearch'],
   }
 }

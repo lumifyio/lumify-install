@@ -36,6 +36,7 @@ echo "Preparing for deplolymnent"
 echo "Copying Web artifacts "
 # Create a directory for the cluster deployment and copy files needed for deployment
 cd $LUMIFY_ALL
+rm -rfd deployment
 mkdir deployment
 mkdir deployment/web
 mkdir deployment/secure-graph
@@ -79,3 +80,5 @@ cp -R $LUMIFY_PUBLIC/config/* deployment/config
 cp -R deployment $DEPLOY_ROOT
 #cd $LUMIFY_ALL/deployment
 
+mkdir -p deloyment/ontologies/ontology-minimal
+cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal
