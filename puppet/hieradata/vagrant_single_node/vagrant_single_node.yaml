@@ -70,7 +70,7 @@ cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
 cloudera::cdh5::hadoop::hadoop::data_directories:
     - /data0/hadoop
 cloudera::cdh5::hadoop::hadoop::hadoop_replication: 1
-cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: lumify_hadoop_cluster
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: lumify_single_node_cluster
 cloudera::cdh5::hadoop::hadoop::hadoop_namenode_http_port: 50070
 cloudera::cdh5::hadoop::hadoop::hadoop_namenode_rpc_port: 8020
 cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: lumify.vm.local
