@@ -28,7 +28,7 @@ class accumulo::params(
   $zookeeper_nodes                                = { '1' => "${zookeeper_node_ip}:2181" },
   $hadoop_prefix                                  = '/usr/lib/hadoop',
   $namenode_ipaddress                             = [ "${ipaddress_eth1}", ],
-  $namenode_hostname                              = 'lumify-vm.lumify.io',
+  $namenode_hostname                              = 'lumify.lumify.io',
   $java_home                                      = '/usr/java/default',
 ) {
   if $interfaces =~ /eth1/ {
