@@ -21,6 +21,7 @@ jetty::jetty_min_heap_size: 1024m
 jetty::jetty_max_heap_size: 1024m
 jetty::jetty_max_permgen_size: 512m
 jetty::lumify_domain: lumify.io
+jetty::jetty_max_open_file_descriptors: 32768
 
 
 
@@ -150,6 +151,8 @@ elasticsearch::elasticsearch_locations: &elasticsearch_locations
     - 192.168.33.3:9300
     - 192.168.33.4:9300
     - 192.168.33.5:9300
+elasticsearch::max_open_file_descriptors: 32768
+
 
 
 # Lumify config
