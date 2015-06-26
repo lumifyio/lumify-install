@@ -1,6 +1,7 @@
 # Install puppetserver 4
 echo "Installing puppetserver ..."
-yum install -y puppetserver
+yum install -y puppet-agent-1.1.1-1.el6
+yum install -y puppetserver-2.1.1-1.el6
 
 # Install configuration files
 echo "Copying configuration files ..."
