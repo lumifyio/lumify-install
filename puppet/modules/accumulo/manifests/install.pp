@@ -12,7 +12,7 @@ class accumulo::install inherits accumulo {
   user { $user :
     ensure  => present,
     gid     => $group,
-    home    => $config_link,
+    home    => $config_dir,
     require => Group[$group]
   }
 
@@ -31,16 +31,16 @@ class accumulo::install inherits accumulo {
   }
 
   macro::download { 'download-accumulo':
-    url     => "http://archive.apache.org/dist/accumulo/${version}/${download_file}",
-    path    => $download_path,
+    url     => "http://archive.apache.org/dist/accumulo/${version}/accumulo-${version}-bin.tar.gz",
+    path    => "/tmp/accumulo-${version}-bin.tar.gz",
     require => [ User[$user], Group[$group], ],
   } -> macro::extract { 'extract-accumulo':
-    file    => $download_path,
+    file    => "/tmp/accumulo-${version}-bin.tar.gz",
     path    => $install_dir,
     creates => "${install_dir}/accumulo-${version}",
   }
 
-  file { $home_link:
+  file { "${install_dir}/accumulo":
     ensure  => link,
     target  => $home_dir,
     force => true,

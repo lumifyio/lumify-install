@@ -15,7 +15,7 @@ umask 0007
 respawn
 respawn limit 5 10
 
-env ACCUMULO_HOME=<%= @home_link %>
+env ACCUMULO_HOME=<%= @install_dir %>/accumulo
 env ACCUMULO_LOG_DIR=<%= @log_dir %>
 env SERVICE=<%= @service_name %>
 env SERVICE_ADDRESS=<%= @service_name == 'monitor' ? '0.0.0.0': @accumulo_host_address %>

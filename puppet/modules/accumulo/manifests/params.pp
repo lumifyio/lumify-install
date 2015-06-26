@@ -3,6 +3,8 @@ class accumulo::params(
   $user                                           = "accumulo",
   $group                                          = "hadoop",
   $install_dir                                    = "/opt",
+  $home_dir                                       = '/opt/accumulo-1.6.1',
+  $config_dir                                     = "/opt/accumulo/conf",
   $bin_dir                                        = "/opt/accumulo/bin",
   $log_dir                                        = "/opt/accumulo/logs",
   $tmp_dir                                        = '/tmp/accumulo',
@@ -36,11 +38,4 @@ class accumulo::params(
   } else {
     $accumulo_host_address = $ipaddress_eth0
   }
-
-  $home_dir = "${install_dir}/accumulo-${version}"
-  $home_link = "${install_dir}/accumulo"
-  $config_dir = "${home_dir}/conf"
-  $config_link = "${home_link}/conf"
-  $download_file = "accumulo-${version}-bin.tar.gz"
-  $download_path = "${tmp_dir}/${download_file}"
 }
