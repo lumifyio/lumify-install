@@ -80,5 +80,5 @@ cp -R $LUMIFY_PUBLIC/config/* deployment/config
 cp -R deployment $DEPLOY_ROOT
 #cd $LUMIFY_ALL/deployment
 
-mkdir -p deloyment/ontologies/ontology-minimal
+mkdir -p deployment/ontologies/ontology-minimal
 cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal
