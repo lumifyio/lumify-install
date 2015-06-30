@@ -73,12 +73,16 @@ cp $LUMIFY_PUBLIC/tools/long-running-process-yarn/target/lumify-long-running-pro
 	             $LUMIFY_PUBLIC/graph-property-worker/graph-property-worker-yarn/target/lumify-graph-property-worker-yarn-${LUMIFY_VERSION}-with-dependencies.jar \
 	             deployment/yarn
 
+echo "Copying Configs"
 mkdir deployment/config
 
 cp -R $LUMIFY_PUBLIC/config/* deployment/config
 
+echo "Copying Ontology"
+mkdir -p deployment/ontologies/ontology-minimal
+cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal
+
+echo "Deployment to Vagrant folder"
 cp -R deployment $DEPLOY_ROOT
 #cd $LUMIFY_ALL/deployment
 
-mkdir -p deployment/ontologies/ontology-minimal
-cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal

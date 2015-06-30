@@ -9,7 +9,9 @@ LUMIFY_VERSION=0.5.0-SNAPSHOT
 SECUREGRAPH_VERSION=0.10.0-SNAPSHOT
 export GIT_REPO LUMIFY_ALL SEC_GRAPH LUMIFY_PUBLIC LUMIFY_VERSION SECUREGRAPH_VERSION DEPLOY_ROOT
 
+echo "Copying Sinaloa RDF directory"
 mkdir -p deployment/data
 cp -R $LUMIFY_ALL/lumify-sinaloa/sinaloa-data-rdf deployment/data
 
+echo "Copying Sinaloa Data directory"
 cp -R $LUMIFY_ALL/lumify-sinaloa/sinaloa-data deployment/data
