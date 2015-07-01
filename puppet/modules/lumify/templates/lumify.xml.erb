@@ -2,5 +2,5 @@
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
 <Configure class="org.eclipse.jetty.webapp.WebAppContext">
   <Set name="contextPath">/</Set>
-  <Set name="war">/opt/jetty/webapps/lumify.war</Set>
+  <Set name="war"><%=@target_war_location%></Set>
 </Configure>

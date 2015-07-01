@@ -13,10 +13,11 @@ class lumify::web::deploy inherits lumify{
     command => "/bin/cp $lumify_deployed_libs/* $lumify_target_lib_dir && /bin/chown -R jetty:jetty $lumify_target_lib_dir"
   }
 
-  file {$target_lumify_context :
+  file { $target_lumify_context :
     ensure  => file,
-    source => $lumify_xml_file,
     owner   => 'jetty',
     group   => 'jetty',
+    content => template('lumify/lumify.xml.erb'),
+    require    => [  Class['::jetty::service'],]
   }
 }
