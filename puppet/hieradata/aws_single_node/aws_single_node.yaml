@@ -143,6 +143,8 @@ lumify::lumify_deployed_libs: /tmp/lumify-deployment/web/lib
 lumify::lumify_gpw_jars: /tmp/lumify-deployment/gpw
 lumify::lumify_yarn_jars: /tmp/lumify-deployment/yarn
 lumify::lumify_tools_jars: /tmp/lumify-deployment/tools
+lumify::lumify_config_dir: /tmp/lumify-deployment/config
+lumify::lumify_ontologies_dir: /tmp/lumify-deployment/ontologies
 lumify::securegraph_user: root
 lumify::securegraph_password: password
 lumify::accumulo_user: root

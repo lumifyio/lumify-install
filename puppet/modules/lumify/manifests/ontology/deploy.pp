@@ -1,5 +1,4 @@
-class lumify::ontology::deploy (
-) inherits lumify::params {
+class lumify::ontology::deploy inherits lumify {
 
   include '::macro'
 
@@ -10,7 +9,7 @@ class lumify::ontology::deploy (
   }
 
   file { "/opt/lumify/ontologies/minimal":
-    source  => "/vagrant/deploy/deployment/ontologies/ontology-minimal",
+    source  => "$lumify_ontologies_dir/ontology-minimal",
     recurse => true,
     require => Macro::Ensure_dir['/opt/lumify/ontologies/minimal'],
   }

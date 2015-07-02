@@ -35,11 +35,10 @@ class lumify::params{
   $target_tools_jar_location="/tmp/tools"
   $lumify_tools_jars='/vagrant/deploy/deployment/tools'
   $target_config_location="/tmp/config"
-  $lumify_config='/vagrant/deploy/deployment/config'
   $lumify_hdfs_gpw_directory="/lumify/libcache"
   $lumify_hdfs_yarn_directory="/lumify/libcache"
   $lumify_hdfs_config_directory="/lumify/config"
-
+  $lumify_ontologies_dir='/vagrant/deploy/deployment/ontologies'
 
   if $interfaces =~ /bond0/ {
     $rabbit_node_ip = $ipaddress_bond0
