@@ -7,6 +7,7 @@ class lumify::params{
   $target_lumify_context='/opt/jetty/webapps/lumify.xml'
   $lumify_dir='/opt/lumify'
   $lumify_config_dir="$lumify_dir/config"
+  $lumify_config_src_dir='/vagrant/deploy/deployment/config'
   $lumify_logs_dir="$lumify_dir/logs"
   $lumify_target_lib_dir="$lumify_dir/lib"
   $clavin_index_dir="$lumify_dir/clavin-index"

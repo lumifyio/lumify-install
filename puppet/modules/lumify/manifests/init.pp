@@ -4,6 +4,7 @@ class lumify(
   $target_war_location=$lumify::params::target_war_location,
   $lumify_dir=$lumify::params::lumify_dir,
   $lumify_config_dir=$lumify::params::lumify_config_dir,
+  $lumify_config_src_dir=$lumify::params::lumify_config_src_dir,
   $lumify_log_dir=$lumify::params::lumify_log_dir,
   $securegraph_user=$lumify::params::securegraph_user,
   $securegraph_password=$lumify::params::securegraph_password,
