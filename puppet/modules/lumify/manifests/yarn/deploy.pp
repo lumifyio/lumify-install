@@ -15,7 +15,7 @@ class lumify::yarn::deploy inherits lumify{
   exec { 'chmod-lumify-hdfs-directories' :
     path => '/usr/bin:/bin:/usr/sbin:/sbin',
     command => "hadoop fs -chmod -R a+w /lumify/",
-     require    => [  Class['::cloudera::cdh5::hadoop::namenode'], ],
+
   }
 
  }

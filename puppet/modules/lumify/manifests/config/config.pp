@@ -1,8 +1,5 @@
 class lumify::config::config inherits lumify {
 
-  include '::jetty'
-
-
   macro::ensure_dir{ "${lumify_dir}" :
     owner   => 'jetty',
     group   => 'jetty',
