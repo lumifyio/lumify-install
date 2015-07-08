@@ -2,6 +2,9 @@ class lumify::web::deploy inherits lumify{
 
   include '::jetty'
 
+  exec { 'add-jetty-lumify-group' :
+    command => "/usr/sbin/usermod -a -G lumify jetty"  }
+
   file {$target_war_location :
     ensure  => file,
     source => $lumify_war_file,
