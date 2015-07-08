@@ -1,4 +1,4 @@
-node /lumify1\d*\.vm\.local/ {
+node 'lumify1.vm.local' {
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -33,16 +33,18 @@ node /lumify1\d*\.vm\.local/ {
   class { '::elasticsearch_hq_plugin': } ->
   class { '::elasticsearch_securegraph_plugin': } ->
 
-  class { '::accumulo::tablet': } ->
-
-  class { '::lumify::tools::deploy': } ->
-  class { '::lumify::gpw::deploy': } ->
-  class { '::lumify::yarn::deploy': } ->
-  class { '::lumify::yarn::run': } ->
-  class { '::lumify::web::deploy': }
+  class { '::accumulo::tablet': }
+#  ->
+#
+#  class { '::lumify::tools::deploy': } ->
+#  class { '::lumify::ontology::deploy': } ->
+#  class { '::lumify::gpw::deploy': } ->
+#  class { '::lumify::yarn::deploy': } ->
+#  class { '::lumify::yarn::run': } ->
+#  class { '::lumify::web::deploy': }
 }
 
-node /lumify2\d*\.vm\.local/ {
+node 'lumify2.vm.local' {
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -69,6 +71,7 @@ node /lumify2\d*\.vm\.local/ {
   class { '::cloudera::cdh5::hadoop::yarn::nodemanager': } ->
   class { '::cloudera::cdh5::hadoop::journalnode': } ->
   class { '::cloudera::cdh5::hadoop::datanode': } ->
+
   class { '::cloudera::cdh5::hadoop::yarn::historyserver': } ->
   class { '::cloudera::cdh5::hadoop::secondary_namenode': } ->
 
@@ -80,7 +83,7 @@ node /lumify2\d*\.vm\.local/ {
   class { '::accumulo::tablet': }
 }
 
-node /lumify3\d*\.vm\.local/ {
+node 'lumify3.vm.local' {
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -114,5 +117,12 @@ node /lumify3\d*\.vm\.local/ {
   class { '::accumulo::master': } ->
   class { '::accumulo::monitor': } ->
   class { '::accumulo::tracer': } ->
-  class { '::accumulo::gc': }
+  class { '::accumulo::gc': } ->
+
+  class { '::lumify::tools::deploy': } ->
+  class { '::lumify::ontology::deploy': } ->
+  class { '::lumify::gpw::deploy': } ->
+  class { '::lumify::yarn::deploy': } ->
+  class { '::lumify::yarn::run': } ->
+  class { '::lumify::web::deploy': }
 }
