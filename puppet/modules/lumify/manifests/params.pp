@@ -18,6 +18,7 @@ class lumify::params{
   $accumulo_password='password'
   $hadoop_namenode='lumify-dev'
   $zookeeper_quorum= { 1 => 'lumify-dev'}
+  $elastic_search_cluster_name='lumify_elasticsearch'
   $elastic_search_locations= ['lumify-dev']
   $google_analytics_key='UA-74388-18'
   $google_analytics_domain='lumify-dev'

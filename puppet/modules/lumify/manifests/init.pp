@@ -13,6 +13,7 @@ class lumify(
   $hadoop_namenode=$lumify::params::hadoop_namenode,
   $zookeeper_quorum=$lumify::params::zookeeper_quorum,
   $rabbitmq_nodes=$lumify::params::rabbitmq_nodes,
+  $elastic_search_cluster_name=$lumify::params::elastic_search_cluster_name,
   $elastic_search_locations=$lumify::params::elastic_search_locations,
   $google_analytics_key=$lumify::params::google_analytics_key,
   $google_analytics_domain=$lumify::params::google_analytics_domain,
