@@ -17,10 +17,9 @@ VAGRANTFILE_API_VERSION = "2"
 # All clients will be added to the hosts file for each VM
 $clients = {
     :'lumify'       => { ip: '192.168.33.109', mem: '6144', cpus: '4', },
-    :'demo'         => { ip: '192.168.33.110', mem: '6144', cpus: '4', },
-    :'lumify1'      => { ip: '192.168.33.3',   mem: '4096', cpus: '4', },
-    :'lumify2'      => { ip: '192.168.33.4',   mem: '4096', cpus: '4', },
-    :'lumify3'      => { ip: '192.168.33.5',   mem: '4096', cpus: '4', },
+    :'lumify1'      => { ip: '192.168.33.3',   mem: '3072', cpus: '4', },
+    :'lumify2'      => { ip: '192.168.33.4',   mem: '3072', cpus: '4', },
+    :'lumify3'      => { ip: '192.168.33.5',   mem: '3072', cpus: '4', },
     :'vc-m1'        => { ip: '192.168.33.11',  mem: '1536', cpus: '1' },
     :'vc-m2'        => { ip: '192.168.33.12',  mem: '1536', cpus: '1' },
     :'vc-m3'        => { ip: '192.168.33.13',  mem: '1536', cpus: '1' },
@@ -35,7 +34,7 @@ $clients = {
 
 def config_client(vm, name, ip_addr, mem, cpus)
   vm.define name do |client|
-    client.vm.hostname = "#{name}.vm.local"
+    client.vm.provision :shell, inline: "echo \"Configuring hostname\" && sed -i \'s/^HOSTNAME=.*$/HOSTNAME=#{name}.vm.local/\' /etc/sysconfig/network && hostname #{name}.vm.local"
     client.vm.provider :virtualbox do |vb|
       vb.customize ['modifyvm', :id, '--memory', "#{mem}"]
       vb.customize ['modifyvm', :id, '--cpus', "#{cpus}"]
@@ -59,20 +58,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     s.inline = 'rpm -Uvh http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm; \
                 echo "Configured puppet repository..."'
   end
+
   # Configure hosts file
-  config.vm.provision :shell do |s|
-    s.inline = 'echo "Configuring /etc/hosts" && cp /vagrant/vagrant/etc/hosts /etc/hosts'
-  end
+  config.vm.provision :shell, inline: 'echo "Configuring /etc/hosts" && cp /vagrant/vagrant/etc/hosts /etc/hosts'
+
+  # Configure client VMs
   $clients.each { |host, params|
-    $update_hosts = "echo #{params[:ip]} #{host} #{host}.vm.local >> /etc/hosts"
-    config.vm.provision :shell, inline: $update_hosts
+    config.vm.provision :shell, inline: "echo #{params[:ip]} #{host} #{host}.vm.local >> /etc/hosts"
     config_client(config.vm, host, params[:ip], params[:mem]||4096, params[:cpus]||2)
   }
 
+  # Configure puppet VM
   config.vm.define :puppet do |puppet|
     puppet.vm.hostname = 'puppet.vm.local'
     puppet.vm.provider :virtualbox do |vb|
-      vb.customize ['modifyvm', :id, '--memory', '4096' ]
+      vb.customize ['modifyvm', :id, '--memory', '3072' ]
       vb.customize ['modifyvm', :id, '--cpus', '1' ]
     end
 
