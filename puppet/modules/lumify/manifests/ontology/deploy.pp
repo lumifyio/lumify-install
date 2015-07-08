@@ -3,8 +3,8 @@ class lumify::ontology::deploy inherits lumify {
   include '::macro'
 
   macro::ensure_dir{ "/opt/lumify/ontologies/minimal" :
-    owner   => 'jetty',
-    group   => 'jetty',
+    owner   => 'lumify',
+    group   => 'lumify',
     mode    => 'u=rx,go=rx',
   }
 
@@ -12,5 +12,8 @@ class lumify::ontology::deploy inherits lumify {
     source  => "$lumify_ontologies_dir/ontology-minimal",
     recurse => true,
     require => Macro::Ensure_dir['/opt/lumify/ontologies/minimal'],
+    owner   => 'lumify',
+    group   => 'lumify',
+    mode    => 'u=rx,go=rx',
   }
 }
