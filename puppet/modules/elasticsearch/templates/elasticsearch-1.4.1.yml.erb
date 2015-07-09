@@ -28,9 +28,7 @@
 
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
-<%- if @elasticsearch_locations != nil && @elasticsearch_locations.count > 1 %>
 cluster.name: "<%= @cluster_name %>"
-<%- end %>
 
 
 #################################### Node #####################################
