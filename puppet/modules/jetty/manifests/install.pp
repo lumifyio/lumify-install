@@ -14,6 +14,24 @@ class jetty::install inherits jetty {
     require => Group['jetty'],
   }
 
+  file { "$jetty_base_dir" :
+    ensure  => directory,
+    owner   => 'jetty',
+    group   => 'jetty',
+    recurse => true,
+    mode    => 'u=rwx,go=rwx',
+    require => [ User['jetty'], Group['jetty'],],
+  }
+
+  file { "$jetty_logs_dir" :
+    ensure  => directory,
+    owner   => 'jetty',
+    group   => 'jetty',
+    recurse => true,
+    mode    => 'u=rwx,go=rwx',
+    require => [ User['jetty'], Group['jetty'],],
+  }
+
   macro::download { 'jetty-download':
     url  => "http://eclipse.org/downloads/download.php?file=/jetty/${version}/dist/jetty-distribution-${version}.tar.gz&r=1",
     path => "/tmp/jetty-distribution-${version}.tar.gz",
@@ -51,7 +69,7 @@ class jetty::install inherits jetty {
 
   file { '/opt/jetty/resources/jetty-logging.properties' :
     ensure  => file,
-    source => 'puppet:///modules/jetty/jetty-logging.properties',
+    content => template('jetty/jetty-logging.properties.erb'),
     require => File['/opt/jetty'],
   }
 

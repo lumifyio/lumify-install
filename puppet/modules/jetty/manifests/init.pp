@@ -16,6 +16,8 @@ class jetty(
   $lumify_domain=$jetty::params::lumify_domain,
   $jetty_config_dir=$jetty::params::jetty_config_dir,
   $jetty_max_open_file_descriptors=$jetty::params::jetty_max_open_file_descriptors,
+  $jetty_logs_dir=$jetty::params::jetty_logs_dir,
+  $jetty_base_dir=$jetty::params::jetty_base_dir,
 )
 inherits jetty::params {
   class { '::jetty::install': } ->

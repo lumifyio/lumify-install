@@ -37,5 +37,6 @@ node /lumify\d*\.vm\.local/ {
   class { '::lumify::ontology::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
+  class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }
