@@ -37,5 +37,6 @@ node 'elasticip' {
   class { '::lumify::ontology::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
+  class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }

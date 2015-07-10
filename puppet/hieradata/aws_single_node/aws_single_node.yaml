@@ -18,7 +18,8 @@ jetty::jetty_max_heap_size: 1024m
 jetty::jetty_max_permgen_size: 512m
 jetty::lumify_domain: lumify.io
 jetty::jetty_max_open_file_descriptors: 32768
-
+jetty::jetty_base_dir: /data0/jetty
+jetty::jetty_logs_dir: /data0/jetty/log
 
 # Rabbitmq config
 rabbitmq::rabbitmq_version: 3.4.2

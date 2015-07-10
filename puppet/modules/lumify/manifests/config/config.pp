@@ -34,6 +34,8 @@ class lumify::config::config inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
+
+
   macro::ensure_dir{ "${lumify_target_lib_dir}" :
     owner   => 'lumify',
     group   => 'lumify',

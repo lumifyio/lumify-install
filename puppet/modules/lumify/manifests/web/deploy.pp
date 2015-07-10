@@ -1,7 +1,5 @@
 class lumify::web::deploy inherits lumify{
 
-  include '::jetty'
-
   exec { 'add-jetty-lumify-group' :
     command => "/usr/sbin/usermod -a -G lumify jetty"  }
 

@@ -22,6 +22,9 @@ jetty::jetty_max_heap_size: 512m
 jetty::jetty_max_permgen_size: 256m
 jetty::lumify_domain: lumify.io
 jetty::jetty_max_open_file_descriptors: 32768
+jetty::jetty_base_dir: /data0/jetty
+jetty::jetty_logs_dir: /data0/jetty/log
+
 
 
 

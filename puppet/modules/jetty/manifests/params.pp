@@ -16,7 +16,8 @@ class jetty::params {
   $jetty_max_permgen_size='512m'
   $jetty_max_open_file_descriptors='32768'
   $lumify_domain='demo.lumify.io'
-
+  $jetty_logs_dir='/data0/jetty/log'
+  $jetty_base_dir='/data0/jetty'
   case $architecture {
     'x86_64': {
       $package_arch = 'x64'
