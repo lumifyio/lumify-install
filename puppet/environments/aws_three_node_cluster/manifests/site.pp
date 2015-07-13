@@ -34,13 +34,7 @@ node 'elasticip_1' {
   class { '::elasticsearch_hq_plugin': } ->
   class { '::elasticsearch_securegraph_plugin': } ->
 
-  class { '::accumulo::tablet': } ->
-
-  class { '::lumify::tools::deploy': } ->
-  class { '::lumify::gpw::deploy': } ->
-  class { '::lumify::yarn::deploy': } ->
-  class { '::lumify::yarn::run': } ->
-  class { '::lumify::web::deploy': }
+  class { '::accumulo::tablet': }
 }
 
 node 'elasticip_2' {
@@ -117,5 +111,13 @@ node 'elasticip_3' {
   class { '::accumulo::master': } ->
   class { '::accumulo::monitor': } ->
   class { '::accumulo::tracer': } ->
-  class { '::accumulo::gc': }
+  class { '::accumulo::gc': }->
+
+  class { '::lumify::tools::deploy': } ->
+  class { '::lumify::ontology::deploy': } ->
+  class { '::lumify::gpw::deploy': } ->
+  class { '::lumify::yarn::deploy': } ->
+  class { '::lumify::yarn::run': } ->
+  class { '::jetty': } ->
+  class { '::lumify::web::deploy': }
 }
