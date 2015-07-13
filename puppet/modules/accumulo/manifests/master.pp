@@ -10,7 +10,7 @@ class accumulo::master inherits accumulo {
   }
 
   exec { 'initialize-accumulo':
-    command => "/usr/bin/sudo -u ${user} ${bin_dir}/accumulo init --clear-instance-name --instance-name ${accumulo_instance_name} --password ${accumulo_root_password}",
+    command => "/bin/su - ${user} -c \"${bin_dir}/accumulo init --clear-instance-name --instance-name ${accumulo_instance_name} --password ${accumulo_root_password}\"",
     require => [ Class['accumulo::install', 'accumulo::config'], File['/etc/init/accumulo-master.conf'], ],
   }
 
