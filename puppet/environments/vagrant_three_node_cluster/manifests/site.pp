@@ -1,4 +1,5 @@
 node 'lumify1.vm.local' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -45,6 +46,7 @@ node 'lumify1.vm.local' {
 }
 
 node 'lumify2.vm.local' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -84,6 +86,7 @@ node 'lumify2.vm.local' {
 }
 
 node 'lumify3.vm.local' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->

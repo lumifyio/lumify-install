@@ -1,4 +1,5 @@
 node 'elasticip_1' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -43,6 +44,7 @@ node 'elasticip_1' {
 }
 
 node 'elasticip_2' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -81,6 +83,7 @@ node 'elasticip_2' {
 }
 
 node 'elasticip_3' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->

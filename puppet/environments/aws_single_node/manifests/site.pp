@@ -1,5 +1,6 @@
 # management node 1
 node 'elasticip' {
+  class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
