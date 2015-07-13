@@ -1,4 +1,4 @@
-node 'elasticip_1' {
+node 'ip-10-0-5-81.ec2.internal' {
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
@@ -37,7 +37,7 @@ node 'elasticip_1' {
   class { '::accumulo::tablet': }
 }
 
-node 'elasticip_2' {
+node 'ip-10-0-5-82.ec2.internal' {
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
@@ -76,7 +76,7 @@ node 'elasticip_2' {
   class { '::accumulo::tablet': }
 }
 
-node 'elasticip_3' {
+node 'ip-10-0-5-83.ec2.internal' {
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
