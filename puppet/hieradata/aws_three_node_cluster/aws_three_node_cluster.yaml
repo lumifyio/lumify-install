@@ -161,12 +161,6 @@ lumify::lumify_gpw_jars: /tmp/lumify-deployment/gpw
 lumify::lumify_yarn_jars: /tmp/lumify-deployment/yarn
 lumify::lumify_tools_jars: /tmp/lumify-deployment/tools
 lumify::lumify_ontologies_dir: /tmp/lumify-deployment/ontologies
-
-  $target_gpw_jar_location="/tmp/gpw"
-  $target_yarn_jar_location="/tmp/yarn"
-  $target_tools_jar_location="/tmp/tools"
-  $target_config_location="/tmp/config"
-
 lumify::securegraph_user: root
 lumify::securegraph_password: password
 lumify::accumulo_user: root
