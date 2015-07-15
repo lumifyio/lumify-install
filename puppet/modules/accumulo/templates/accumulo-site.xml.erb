@@ -120,4 +120,16 @@
     </value>
     <description>Classpaths that accumulo checks for updates and class files.</description>
   </property>
+
+  <property>
+    <name>general.vfs.cache.dir</name>
+    <value><%= @tmp_dir %></value>
+    <description>Directory to use for the vfs cache. The cache will keep a soft reference to all of the classes loaded in the VM.
+      This should be on local disk on
+      each node with sufficient space. It defaults to /tmp and will use a directory with the
+      format "accumulo-vfs-cache-" + System.getProperty("user.name",
+      "nouser")
+    </description>
+  </property>
+
 </configuration>
