@@ -1,5 +1,6 @@
 ---
 # configure raid drives
+raid_zero_partition::mount_dir: /data0
 raid_zero_partition::drives:
     - /dev/xvdf
     - /dev/xvdg
