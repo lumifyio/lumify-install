@@ -37,6 +37,7 @@ class lumify(
   $lumify_tools_jars=$lumify::params::lumify_tools_jars,
   $lumify_hdfs_gpw_directory=$lumify::params::lumify_hdfs_gpw_directory,
   $lumify_ontologies_dir=$lumify::params::lumify_ontologies_dir,
+  $target_ontologies_dir=$lumify::params::target_ontologies_dir,
   $lumify_logs_dir=$lumify::params::lumify_logs_dir
 
 )

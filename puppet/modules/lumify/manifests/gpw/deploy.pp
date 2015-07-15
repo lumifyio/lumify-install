@@ -1,13 +1,11 @@
 class lumify::gpw::deploy inherits lumify{
 
-  #include 'cloudera::cdh5::hadoop::datanode'
-
   exec { 'copy-gpw-jars' :
-    command => "/bin/mkdir -p /tmp/gpw && /bin/cp $lumify_gpw_jars/* $target_gpw_jar_location"
+    command => "/bin/mkdir -p $target_gpw_jar_location && /bin/cp $lumify_gpw_jars/* $target_gpw_jar_location"
   }
 
   exec { 'copy-gpw-config' :
-    command => "/bin/mkdir -p /tmp/config && /bin/cp -R $lumify_config_src_dir/knownEntities $target_config_location && /bin/cp -R $lumify_config_src_dir/opencv $target_config_location && /bin/cp -R $lumify_config_src_dir/opennlp $target_config_location"
+    command => "/bin/mkdir -p $target_config_location && /bin/cp -R $lumify_config_src_dir/knownEntities $target_config_location && /bin/cp -R $lumify_config_src_dir/opencv $target_config_location && /bin/cp -R $lumify_config_src_dir/opennlp $target_config_location"
   }
 
 
@@ -27,6 +25,5 @@ class lumify::gpw::deploy inherits lumify{
     command => "hadoop fs -put $target_config_location /lumify/",
 
   }
-
- }
+}
 
