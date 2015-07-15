@@ -1,5 +1,7 @@
 node 'ip-10-0-5-81.ec2.internal' {
   class { '::ntp': } ->
+  class { '::mdadm': } ->
+  class { '::raid_zero_partition': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -39,6 +41,8 @@ node 'ip-10-0-5-81.ec2.internal' {
 
 node 'ip-10-0-5-82.ec2.internal' {
   class { '::ntp': } ->
+  class { '::mdadm': } ->
+  class { '::raid_zero_partition': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -78,6 +82,8 @@ node 'ip-10-0-5-82.ec2.internal' {
 
 node 'ip-10-0-5-83.ec2.internal' {
   class { '::ntp': } ->
+  class { '::mdadm': } ->
+  class { '::raid_zero_partition': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->

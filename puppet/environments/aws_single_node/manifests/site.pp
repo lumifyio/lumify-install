@@ -6,6 +6,8 @@ node 'elasticip' {
   class { '::sysctl::swappiness': } ->
   class { '::iptables': } ->
   class { '::ipv6': } ->
+  class { '::mdadm': } ->
+  class { '::raid_zero_partition': } ->
   class { '::epel': } ->
   class { '::jai': } ->
   class { '::jai_imageio': } ->

@@ -1,4 +1,10 @@
 ---
+# configure raid drives
+raid_zero_partition::drives:
+    - /dev/xvdf
+    - /dev/xvdg
+#    - /dev/xvdh
+#    - /dev/xvdi
 
 # Jetty config
 jetty::version: 9.2.7.v20150116
