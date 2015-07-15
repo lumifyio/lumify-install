@@ -160,14 +160,14 @@ elasticsearch::max_open_file_descriptors: 32768
 
 # Lumify config
 lumify::lumify_logs_dir: /data0/lumify/log
-lumify::lumify_war_file: /tmp/lumify-deployment/web/lumify.war
-lumify::lumify_deployed_libs: /tmp/lumify-deployment/web/lib
-lumify::lumify_xml_file: /tmp/lumify-deployment/lumify.xml
-lumify::lumify_config_src_dir: /tmp/lumify-deployment/config
-lumify::lumify_gpw_jars: /tmp/lumify-deployment/gpw
-lumify::lumify_yarn_jars: /tmp/lumify-deployment/yarn
-lumify::lumify_tools_jars: /tmp/lumify-deployment/tools
-lumify::lumify_ontologies_dir: /tmp/lumify-deployment/ontologies
+lumify::lumify_war_file: /data0/lumify-deployment/web/lumify.war
+lumify::lumify_deployed_libs: /data0/lumify-deployment/web/lib
+lumify::lumify_xml_file: /data0/lumify-deployment/lumify.xml
+lumify::lumify_config_src_dir: /data0/lumify-deployment/config
+lumify::lumify_gpw_jars: /data0/lumify-deployment/gpw
+lumify::lumify_yarn_jars: /data0/lumify-deployment/yarn
+lumify::lumify_tools_jars: /data0/lumify-deployment/tools
+lumify::lumify_ontologies_dir: /data0/lumify-deployment/ontologies
 lumify::securegraph_user: root
 lumify::securegraph_password: password
 lumify::accumulo_user: root
