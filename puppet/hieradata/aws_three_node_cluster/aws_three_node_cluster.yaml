@@ -173,7 +173,7 @@ lumify::lumify_config_src_dir: /data0/lumify-deployment/config
 lumify::lumify_gpw_jars: /data0/lumify-deployment/gpw
 lumify::lumify_yarn_jars: /data0/lumify-deployment/yarn
 lumify::lumify_tools_jars: /data0/lumify-deployment/tools
-lumify::lumify_ontologies_dir: /data0/lumify-deployment/ontologies
+lumify::lumify_ontologies_dir: /data0/lumify-deployment/ontologies/ontology-minimal
 
 lumify::target_gpw_jar_location: /opt/lumify/gpw
 lumify::target_yarn_jar_location: /opt/lumify/yarn
