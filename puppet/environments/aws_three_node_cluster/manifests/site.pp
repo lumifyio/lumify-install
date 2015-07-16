@@ -1,4 +1,5 @@
 node 'ip-10-0-5-34.ec2.internal' {
+  class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->
@@ -40,6 +41,7 @@ node 'ip-10-0-5-34.ec2.internal' {
 }
 
 node 'ip-10-0-5-35.ec2.internal' {
+  class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->
@@ -81,6 +83,7 @@ node 'ip-10-0-5-35.ec2.internal' {
 }
 
 node 'ip-10-0-5-36.ec2.internal' {
+  class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->

@@ -1,5 +1,6 @@
 # management node 1
 node /lumify\d*\.vm\.local/ {
+  class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
