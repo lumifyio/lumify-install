@@ -8,7 +8,7 @@ class lumify::ontology::deploy inherits lumify {
     mode    => 'u=rx,go=rx',
   }
 
-  file { "$target_ontologies_dir/minimal":
+  file { "$target_ontologies_dir":
     source  => "$lumify_ontologies_dir",
     recurse => true,
     require => Macro::Ensure_dir["$target_ontologies_dir"],
