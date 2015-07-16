@@ -44,6 +44,7 @@ cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: /data0/zookeeper/log
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_data_dir: /data0/zookeeper/data
 cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
 cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
+cloudera::cdh5::zookeeper::params::zookeeper_heap_size: 512M
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
     1: 192.168.33.109:2181
 

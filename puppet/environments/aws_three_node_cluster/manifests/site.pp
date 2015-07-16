@@ -1,4 +1,4 @@
-node 'ip-10-0-5-81.ec2.internal' {
+node 'ip-10-0-5-34.ec2.internal' {
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->
@@ -39,7 +39,7 @@ node 'ip-10-0-5-81.ec2.internal' {
   class { '::accumulo::tablet': }
 }
 
-node 'ip-10-0-5-82.ec2.internal' {
+node 'ip-10-0-5-35.ec2.internal' {
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->
@@ -80,7 +80,7 @@ node 'ip-10-0-5-82.ec2.internal' {
   class { '::accumulo::tablet': }
 }
 
-node 'ip-10-0-5-83.ec2.internal' {
+node 'ip-10-0-5-36.ec2.internal' {
   class { '::ntp': } ->
   class { '::mdadm': } ->
   class { '::raid_zero_partition': } ->

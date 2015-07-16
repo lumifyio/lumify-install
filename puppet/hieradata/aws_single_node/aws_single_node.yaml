@@ -47,6 +47,7 @@ cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: /data0/zookeeper/log
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_data_dir: /data0/zookeeper/data
 cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
 cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
+cloudera::cdh5::zookeeper::params::zookeeper_heap_size: 512M
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
     1: elasticip:2181
 
@@ -137,6 +138,7 @@ elasticsearch::tmp_dir: /data0/elasticsearch/tmp
 elasticsearch::number_of_shards: 1
 elasticsearch::number_of_replicates: 0
 elasticsearch::es_heap_size: 512m
+elasticsearch::params::indices_fielddata_cache_size: 75%
 elasticsearch::mlockall: true
 elasticsearch::cluster_name: &elasticsearch_cluster_name elasticsearch_aws_single_node
 elasticsearch::elasticsearch_locations: &elasticsearch_locations
