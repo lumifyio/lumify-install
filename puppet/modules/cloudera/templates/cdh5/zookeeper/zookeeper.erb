@@ -14,6 +14,6 @@
 # limitations under the License.
 
 # Command-line parameters to pass to the JVM
-# export SERVER_JVMFLAGS=""
 
+export SERVER_JVMFLAGS="-Xmx<%= @zookeeper_heap_size %> -Xms<%= @zookeeper_heap_size %>"
 export ZOO_LOG_DIR=<%= @zookeeper_log_dir %>

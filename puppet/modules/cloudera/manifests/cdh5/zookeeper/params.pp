@@ -4,6 +4,7 @@ class cloudera::cdh5::zookeeper::params {
   $zookeeper_data_dir   = '/var/lib/zookeeper'
   $user                 = 'zookeeper'
   $group                = 'zookeeper'
+  $zookeeper_heap_size  = '512M'
 
   if $interfaces =~ /bond0/ {
     $zookeeper_node_ip = $ipaddress_bond0

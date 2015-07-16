@@ -5,6 +5,7 @@ class cloudera::cdh5::zookeeper::zookeeper(
   $zookeeper_nodes      = $cloudera::cdh5::zookeeper::params::zookeeper_nodes,
   $user                 = $cloudera::cdh5::zookeeper::params::user,
   $group                = $cloudera::cdh5::zookeeper::params::group,
+  $zookeeper_heap_size  = $cloudera::cdh5::zookeeper::params::zookeeper_heap_size,
 ) inherits cloudera::cdh5::zookeeper::params {
   class { '::cloudera::cdh5::zookeeper::install': } ->
   class { '::cloudera::cdh5::zookeeper::config': }->
