@@ -18,7 +18,7 @@ mkdir $LUMIFY_ALL
 
 git clone https://github.com/altamiracorp/lumify-all
 cd $LUMIFY_ALL
-git clone https://github.com/lumifyio/lumify lumify-public
+git clone -b develop https://github.com/lumifyio/lumify lumify-public
 cd $GIT_REPO
 git clone https://github.com/lumifyio/securegraph
 
