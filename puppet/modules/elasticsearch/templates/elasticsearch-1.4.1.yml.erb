@@ -25,7 +25,7 @@
 
 
 ################################### Cluster ###################################
-
+$lumify_ontologies_dir
 # Cluster name identifies your cluster for auto-discovery. If you're running
 # multiple clusters on the same network, make sure you're using unique names.
 cluster.name: "<%= @cluster_name %>"
@@ -135,6 +135,9 @@ index.number_of_replicas: <%= @number_of_replicates %>
 
 # Use the Index Status API (<http://localhost:9200/A/_status>) to inspect
 # the index status.
+
+indices.fielddata.cache.size:  <%= @indices_fielddata_cache_size %>
+
 
 
 #################################### Paths ####################################
