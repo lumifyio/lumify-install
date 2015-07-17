@@ -15,3 +15,6 @@ cp -R $LUMIFY_ALL/lumify-sinaloa/sinaloa-data-rdf deployment/data
 
 echo "Copying Sinaloa Data directory"
 cp -R $LUMIFY_ALL/lumify-sinaloa/sinaloa-data deployment/data
+
+echo "Copying Sinaloa Ontology directory"
+cp -R $LUMIFY_ALL/lumify-sinaloa/sinaloa-ontology deployment/ontologies
