@@ -1,4 +1,0 @@
----
-# Kernel config
-swappiness::vm_swappiness: 1
-
