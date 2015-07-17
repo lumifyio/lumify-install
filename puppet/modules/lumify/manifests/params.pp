@@ -40,8 +40,8 @@ class lumify::params{
   $lumify_hdfs_gpw_directory="/lumify/libcache"
   $lumify_hdfs_yarn_directory="/lumify/libcache"
   $lumify_hdfs_config_directory="/lumify/config"
-  $lumify_ontologies_dir='/vagrant/deploy/deployment/ontologies'
-  $target_ontologies_dir='/tmp/ontologies'
+  $lumify_ontologies_dir='/vagrant/deploy/deployment/ontologies/ontology-minimal'
+  $target_ontologies_dir='/opt/lumify/ontologies/minimal'
 
   if $interfaces =~ /bond0/ {
     $rabbit_node_ip = $ipaddress_bond0
