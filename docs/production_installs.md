@@ -72,7 +72,7 @@ Copy the puppet agent configuration on to the Puppet Agent server.
 	$ ### modify puppet.conf to set the environment you choose to deploy before copying to the puppet agent
 	$
 	$ scp <install_dir>/vagrant/client/*.conf root@<puppet_agent>:/etc/puppetlabs/puppet
-	$ scp /vagrant/vagrant/etc/puppet.sh root@<puppet_agent>:/etc/profile.d
+	$ scp <install_dir>/vagrant/etc/puppet.sh root@<puppet_agent>:/etc/profile.d
 	$
 	
 If the puppet agent will be hosting the Lumify Web app then install the lumify deployment artifacts on the Puppet Agent server.
