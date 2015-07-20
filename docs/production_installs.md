@@ -78,7 +78,7 @@ Copy the puppet agent configuration on to the Puppet Agent server.
 If the puppet agent will be hosting the Lumify Web app then install the lumify deployment artifacts on the Puppet Agent server.
 	
 	$	
-	$ scp -r <install_dir>/deploy/deployment root@<puppet_agent>:/data0/lumify-deployment
+	$ scp -r <install_dir>/deploy/deployment root@<puppet_agent>:/opt/lumify-deployment
 	$
 
 ### From Puppet Agent
