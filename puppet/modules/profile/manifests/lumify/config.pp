@@ -1,1 +1,0 @@
-class { '::lumify::web::config::config': }
