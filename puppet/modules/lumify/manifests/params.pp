@@ -11,6 +11,7 @@ class lumify::params{
   $lumify_logs_dir="$lumify_dir/logs"
   $lumify_target_lib_dir="$lumify_dir/lib"
   $clavin_index_dir="$lumify_dir/clavin-index"
+  $lumify_version="0.5.0-SNAPSHOT"
 
   $securegraph_user='root'
   $securegraph_password='password'
