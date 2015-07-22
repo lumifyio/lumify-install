@@ -51,4 +51,52 @@
     <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
     <value>org.apache.hadoop.mapred.ShuffleHandler</value>
   </property>
+
+  <property>
+      <name>yarn.scheduler.minimum-allocation-vcores</name>
+      <value><%= @yarn_resourcemanager_min_vcores %></value>
+  </property>
+
+  <property>
+        <name>yarn.scheduler.maximum-allocation-vcores</name>
+        <value><%= @yarn_resourcemanager_max_vcores %></value>
+  </property>
+
+  <property>
+          <name>yarn.scheduler.increment-allocation-vcores</name>
+          <value><%= @yarn_resourcemanager_incr_vcores %></value>
+  </property>
+
+  <property>
+          <name>yarn.scheduler.minimum-allocation-mb</name>
+          <value><%= @yarn_resourcemanager_min_memory %></value>
+  </property>
+
+  <property>
+          <name>yarn.scheduler.maximum-allocation-mb</name>
+          <value><%= @yarn_resourcemanager_max_memory %></value>
+  </property>
+
+  <property>
+          <name>yarn.scheduler.increment-allocation-mb</name>
+          <value><%= @yarn_resourcemanager_incr_memory %></value>
+  </property>
+
+
+
+  <property>
+            <name>yarn.app.mapreduce.am.resource.mb</name>
+            <value><%= @yarn_mapreduce_am_memory %></value>
+  </property>
+
+  <property>
+          <name>yarn.app.mapreduce.am.command-opts</name>
+          <value><%= @yarn_mapreduce_am_commandopts %></value>
+  </property>
+
+  <property>
+          <name>yarn.app.mapreduce.am.resource.cpu-vcores</name>
+          <value><%= @yarn_mapreduce_am_vcores %></value>
+  </property>
+
 </configuration>
