@@ -38,7 +38,10 @@ class lumify(
   $lumify_hdfs_gpw_directory=$lumify::params::lumify_hdfs_gpw_directory,
   $lumify_ontologies_dir=$lumify::params::lumify_ontologies_dir,
   $target_ontologies_dir=$lumify::params::target_ontologies_dir,
-  $lumify_logs_dir=$lumify::params::lumify_logs_dir
+
+  $lumify_logs_dir=$lumify::params::lumify_logs_dir,
+
+  $lumify_version=$lumify::params::lumify_version
 
 )
 inherits lumify::params
