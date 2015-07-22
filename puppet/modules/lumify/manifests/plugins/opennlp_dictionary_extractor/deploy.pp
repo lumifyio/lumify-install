@@ -1,4 +1,4 @@
-class lumify::terms_of_use::deploy inherits lumify {
+class lumify::opennlp-dictionary-extractor::deploy inherits lumify {
 
   include '::macro'
 
