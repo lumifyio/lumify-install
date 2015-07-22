@@ -1,4 +1,4 @@
-class lumify::terms_of_use::deploy inherits lumify {
+class lumify::geocoder_bing::deploy inherits lumify {
 
   include '::macro'
 
@@ -16,9 +16,9 @@ class lumify::terms_of_use::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "${lumify_config_dir}/bingTranslate.properties" :
+  file { "${lumify_config_dir}/bingMaps.properties" :
     ensure  => file,
-    content => template('lumify/bingTranslate.erb'),
+    content => template('lumify/bingMaps.erb'),
     require => Macro::Ensure_dir["${lumify_config_dir}"],
     owner   => 'lumify',
     group   => 'lumify',

@@ -17,6 +17,7 @@ class lumify(
   $elastic_search_locations=$lumify::params::elastic_search_locations,
   $google_analytics_key=$lumify::params::google_analytics_key,
   $google_analytics_domain=$lumify::params::google_analytics_domain,
+  $geocoder_bing_key=$lumify::params::geocoder_bing_key,
   $bing_clientId=$lumify::params::bing_clientId,
   $bing_secret=$lumify::params::bing_secret,
   $terms_of_use_title=$lumify::params::terms_of_use_title,

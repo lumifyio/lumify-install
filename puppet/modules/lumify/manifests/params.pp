@@ -23,6 +23,7 @@ class lumify::params{
   $elastic_search_locations= ['lumify-dev']
   $google_analytics_key='UA-74388-18'
   $google_analytics_domain='lumify-dev'
+  $geocoder_bing_key='AglRx99YVSldfAyhLffDA2215ldiNX6Firc0FYJeLSgDLKb7qR0WsyTbqWPnDbr8'
   $bing_clientId='b75468f1-5ee0-434f-a1ca-87ab04b1a897'
   $bing_secret='4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM'
   $terms_of_use_title='try.lumify.io Terms of Use'
