@@ -1,4 +1,4 @@
-class lumify::terms_of_use::deploy inherits lumify {
+class lumify::dev-tools::deploy inherits lumify {
 
   include '::macro'
 

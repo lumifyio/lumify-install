@@ -1,4 +1,4 @@
-class lumify::terms_of_use::deploy inherits lumify {
+class lumify::geocoder-bing::deploy inherits lumify {
 
   include '::macro'
 
