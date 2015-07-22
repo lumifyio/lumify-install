@@ -16,9 +16,9 @@ class lumify::auth_x509ldap::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "${lumify_config_dir}/lumify-auth-x509ldap.properties" :
+  file { "${lumify_config_dir}/ldap.properties" :
     ensure  => file,
-    content => template('lumify/lumify-auth-x509ldap.properties.erb'),
+    content => template('lumify/ldap.properties.erb'),
     require => Macro::Ensure_dir["${lumify_config_dir}"],
     owner   => 'lumify',
     group   => 'lumify',

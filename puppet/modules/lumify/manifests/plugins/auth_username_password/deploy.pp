@@ -16,18 +16,18 @@ class lumify::auth_username_password::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "${lumify_config_dir}/lumify-auth-username-password.properties" :
+  file { "${lumify_config_dir}/forgot-password.properties" :
     ensure  => file,
-    content => template('lumify/lumify-auth-username-password.properties.erb'),
+    content => template('lumify/forgot-password.properties.erb'),
     require => Macro::Ensure_dir["${lumify_config_dir}"],
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rw,go=r',
   }
 
-  file { "$lumify_target_lib_dir}/lumify-auth-username-password-${lumify_version}.jar" :
+  file { "$lumify_target_lib_dir}/forgot-password-${lumify_version}.jar" :
     ensure  => file,
-    source  => "${lumify_deployed_libs}/lumify-auth-username-password-${lumify_version}.jar",
+    source  => "${lumify_deployed_libs}/forgot-password-${lumify_version}.jar",
     require => Macro::Ensure_dir["${lumify_config_dir}"],
     owner   => 'lumify',
     group   => 'lumify',
