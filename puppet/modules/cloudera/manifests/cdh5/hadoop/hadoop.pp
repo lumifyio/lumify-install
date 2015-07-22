@@ -24,5 +24,20 @@ class cloudera::cdh5::hadoop::hadoop (
   $yarn_resourcemanager_hostname    = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_hostname,
   $yarn_nodemanager_resource_memory = $cloudera::cdh5::hadoop::params::yarn_nodemanager_resource_memory,
   $yarn_max_vcores                  = $cloudera::cdh5::hadoop::params::yarn_max_vcores,
+  $yarn_resourcemanager_min_vcores  = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_min_vcores,
+  $yarn_resourcemanager_max_vcores  = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_max_vcores,
+  $yarn_resourcemanager_incr_vcores = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_incr_vcores,
+  $yarn_resourcemanager_min_memory  = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_min_memory,
+  $yarn_resourcemanager_max_memory  = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_max_memory,
+  $yarn_resourcemanager_incr_memory = $cloudera::cdh5::hadoop::params::yarn_resourcemanager_incr_memory,
+  $mapreduce_map_memory             = $cloudera::cdh5::hadoop::params::mapreduce_map_memory,
+  $mapreduce_map_java_max_heap      = $cloudera::cdh5::hadoop::params::mapreduce_map_java_max_heap,
+  $mapreduce_map_vcores             = $cloudera::cdh5::hadoop::params::mapreduce_map_vcores,
+  $mapreduce_reduce_memory          = $cloudera::cdh5::hadoop::params::mapreduce_reduce_memory,
+  $mapreduce_reduce_java_max_heap   = $cloudera::cdh5::hadoop::params::mapreduce_reduce_java_max_heap,
+  $mapreduce_reduce_vcores          = $cloudera::cdh5::hadoop::params::mapreduce_reduce_vcores,
+  $yarn_mapreduce_am_memory         = $cloudera::cdh5::hadoop::params::yarn_mapreduce_am_memory,
+  $yarn_mapreduce_am_commandopts    = $cloudera::cdh5::hadoop::params::yarn_mapreduce_am_commandopts,
+  $yarn_mapreduce_am_vcores         = $cloudera::cdh5::hadoop::params::yarn_mapreduce_am_vcores
 ) inherits cloudera::cdh5::hadoop::params{
 }
