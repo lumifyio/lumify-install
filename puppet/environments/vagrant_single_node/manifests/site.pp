@@ -41,4 +41,7 @@ node /lumify\d*\.vm\.local/ {
   class { '::lumify::yarn::run': } ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
+
+  class { '::lumify::auth_username_password::deploy': }
+  class { '::lumify::analysts_notebook_export::deploy'}
 }
