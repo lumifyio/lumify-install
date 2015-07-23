@@ -43,7 +43,57 @@ class lumify::params{
   $lumify_hdfs_yarn_directory="/lumify/libcache"
   $lumify_hdfs_config_directory="/lumify/config"
   $lumify_ontologies_dir='/vagrant/deploy/deployment/ontologies/ontology-minimal'
+
   $target_ontologies_dir='/opt/lumify/ontologies/minimal'
+  $forgot_pass_server_hostname=''
+  $forgot_pass_server_port=''
+  $forgot_pass_server_username=''
+  $forgot_pass_server_password=''
+  $forgot_pass_from_email=''
+  $forgot_pass_admin_email=''
+
+  $ldap_primary_server=192.168.33.10
+  $ldap_primary_port=636
+  $ldap_failover_server=''
+  $ldap_failover_port=636
+  $ldap_max_connections=10
+  $ldap_bind_password=lumify
+  $ldap_truststore=/opt/lumify/config/lumify-ca.jks
+  $ldap_truststore_password=password
+  $ldap_truststore_type=JKS
+  $ldap_user_search_scope=sub
+  $ldap_group_search_scope=sub
+  $ldap_auth_clientdn_header=SSL_CLIENT_S_DN
+  $ldap_auth_clientcert_header=SSL_CLIENT_CERT
+  $ldap_auth_required_attr=role
+  $ldap_auth_required_attr_vals=''
+  $ldap_auth_required_groups=''
+  $ldap_auth_username_attr=employeeNumber
+  $ldap_auth_displayname_attr=displayName
+
+  $analysts_menuopt1_label=6
+  $analysts_menuopt1_value=VERSION_6
+  $analysts_menuopt2_label=7
+  $analysts_menuopt2_value=VERSION_7
+  $analysts_menuopt3_label=8.5.1
+  $analysts_menuopt3_value=VERSION_8_5_1
+  $analysts_menuopt4_label=8.9
+  $analysts_menuopt4_value=VERSION_8_9
+  $analysts_enable_custom_img_collect=true
+  $analysts_enable_icon_pic=true
+  $analysts_thmbnail_width=200
+  $analysts_thmbnail_height=200
+  $analysts_include_props=true
+  $analysts_include_subtitle=true
+  $analysts_include_time=true
+  $analysts_include_img_url=true
+  $analysts_include_visib=true
+  $analysts_include_visib_label=Classification
+  $analysts_acc_service_url=''
+  $analysts_acc_param_name=''
+  $analysts_acc_truststore_path=''
+  $analysts_acc_truststore_password=''
+  $analysts_acc_disable_hostname_verif=false
 
   if $interfaces =~ /bond0/ {
     $rabbit_node_ip = $ipaddress_bond0
