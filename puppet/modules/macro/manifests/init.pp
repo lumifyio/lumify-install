@@ -101,7 +101,7 @@ class macro(
   # $group: The group to assign to the directories
   # $mode: The file permissions to assign to the directories
   define ensure_dir ($dir=$title, $owner='root', $group='root', $mode='u=rwx,go=rx') {
-    exec { "${dir}":
+    exec { "${title}":
       command => "/bin/mkdir -p ${dir} -m ${mode} && /bin/chown ${owner}:${group} ${dir}",
       user    => 'root',
       group   => 'root',
