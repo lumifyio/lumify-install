@@ -1,28 +1,28 @@
-ldap.primaryServer=192.168.33.10
-ldap.primaryPort=636
-#ldap.failoverServer=
-#ldap.failoverPort=636
-#ldap.maxConnections=10
+ldap.primaryServer=<%= ldap_primary_server%>
+ldap.primaryPort=<%= ldap_primary_port%>
+#ldap.failoverServer=<%= ldap_failover_server%>
+#ldap.failoverPort=<%= ldap_failover_port%>
+#ldap.maxConnections=<%= ldap_max_connections%>
 ldap.bindDn=cn=root,dc=lumify,dc=io
-ldap.bindPassword=lumify
-ldap.trustStore=/opt/lumify/config/lumify-ca.jks
-ldap.trustStorePassword=password
-#ldap.trustStoreType=JKS
+ldap.bindPassword=<%= ldap_bind_password%>
+ldap.trustStore=<%= ldap_truststore%>
+ldap.trustStorePassword=<%= ldap_truststore_password%>
+#ldap.trustStoreType=<%= ldap_truststore_type%>
 
 ldap.userSearchBase=dc=lumify,dc=io
-ldap.userSearchScope=sub
+ldap.userSearchScope=<%= ldap_user_search_scope%>
 ldap.userAttributes=displayName,employeeNumber,telephoneNumber
 #ldap.userSearchFilter=(cn=${cn})
 #ldap.userCertificateAttribute=userCertificate;binary
 ldap.groupSearchBase=dc=lumify,dc=io
-ldap.groupSearchScope=sub
+ldap.groupSearchScope=<%= ldap_group_search_scope%>
 #ldap.groupNameAttribute=cn
 #ldap.groupSearchFilter=(uniqueMember=${dn})
 
-#ldap.x509Authentication.clientDnHeader=SSL_CLIENT_S_DN
-#ldap.x509Authentication.clientCertHeader=SSL_CLIENT_CERT
-#ldap.x509Authentication.requiredAttribute=role
-#ldap.x509Authentication.requiredAttributeValues=
-#ldap.x509Authentication.requiredGroups=
-ldap.x509Authentication.usernameAttribute=employeeNumber
-ldap.x509Authentication.displayNameAttribute=displayName
+#ldap.x509Authentication.clientDnHeader=<%= ldap_auth_clientdn_header%>
+#ldap.x509Authentication.clientCertHeader=<%= ldap_auth_clientcert_header%>
+#ldap.x509Authentication.requiredAttribute=<%= ldap_auth_required_attr%>
+#ldap.x509Authentication.requiredAttributeValues=<%= ldap_auth_required_attr_vals%>
+#ldap.x509Authentication.requiredGroups=<%= ldap_auth_required_groups%>
+ldap.x509Authentication.usernameAttribute=<%= ldap_auth_username_attr%>
+ldap.x509Authentication.displayNameAttribute=<%= ldap_auth_displayname_attr%>

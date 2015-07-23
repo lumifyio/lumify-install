@@ -1,28 +1,28 @@
 # at least one pair of the following properties must be configured in order to use the Analyst's Notebook Export web plugin
-web.ui.analystsNotebookExport.menuOption.1.label=6
-web.ui.analystsNotebookExport.menuOption.1.value=VERSION_6
-web.ui.analystsNotebookExport.menuOption.2.label=7
-web.ui.analystsNotebookExport.menuOption.2.value=VERSION_7
-web.ui.analystsNotebookExport.menuOption.3.label=8.5.1
-web.ui.analystsNotebookExport.menuOption.3.value=VERSION_8_5_1
-web.ui.analystsNotebookExport.menuOption.4.label=8.9
-web.ui.analystsNotebookExport.menuOption.4.value=VERSION_8_9
+web.ui.analystsNotebookExport.menuOption.1.label=<%= analysts_menuopt1_label%>
+web.ui.analystsNotebookExport.menuOption.1.value=<%= analysts_menuopt1_value%>
+web.ui.analystsNotebookExport.menuOption.2.label=<%= analysts_menuopt2_label%>
+web.ui.analystsNotebookExport.menuOption.2.value=<%= analysts_menuopt2_value%>
+web.ui.analystsNotebookExport.menuOption.3.label=<%= analysts_menuopt3_label%>
+web.ui.analystsNotebookExport.menuOption.3.value=<%= analysts_menuopt3_value%>
+web.ui.analystsNotebookExport.menuOption.4.label=<%= analysts_menuopt4_label%>
+web.ui.analystsNotebookExport.menuOption.4.value=<%= analysts_menuopt4_value%>
 
-#analystsNotebookExport.enableCustomImageCollection=true
-#analystsNotebookExport.enableIconPicture=true
-#analystsNotebookExport.thumbnailWidth=200
-#analystsNotebookExport.thumbnailHeight=200
-#analystsNotebookExport.includeProperties=true
-#analystsNotebookExport.includeSubtitle=true
-#analystsNotebookExport.includeTime=true
-#analystsNotebookExport.includeImageUrl=true
-analystsNotebookExport.includeVisibility=true
-analystsNotebookExport.visibilityLabel=Classification
+#analystsNotebookExport.enableCustomImageCollection=<%= analysts_enable_custom_img_collect%>
+#analystsNotebookExport.enableIconPicture=<%= analysts_enable_icon_pic%>
+#analystsNotebookExport.thumbnailWidth=<%= analysts_thmbnail_width%>
+#analystsNotebookExport.thumbnailHeight=<%= analysts_thmbnail_height%>
+#analystsNotebookExport.includeProperties=<%= analysts_include_props%>
+#analystsNotebookExport.includeSubtitle=<%= analysts_include_subtitle%>
+#analystsNotebookExport.includeTime=<%= analysts_include_time%>
+#analystsNotebookExport.includeImageUrl=<%= analysts_include_img_url%>
+analystsNotebookExport.includeVisibility=<%= analysts_include_visib%>
+analystsNotebookExport.visibilityLabel=<%= analysts_include_visib_label%>
 
 # the following properties can be configured to send the visibility/classification of each exported vertex to a webservice
 # in order to calculate the aggregate classification for the exported data
-#analystsNotebookExport.aggregateClassificationClient.serviceUrl=
-#analystsNotebookExport.aggregateClassificationClient.parameterName=
-#analystsNotebookExport.aggregateClassificationClient.trustStorePath=
-#analystsNotebookExport.aggregateClassificationClient.trustStorePassword=
-#analystsNotebookExport.aggregateClassificationClient.disableHostnameVerification=false
+#analystsNotebookExport.aggregateClassificationClient.serviceUrl=<%= analysts_acc_service_url%>
+#analystsNotebookExport.aggregateClassificationClient.parameterName=<%= analysts_acc_param_name%>
+#analystsNotebookExport.aggregateClassificationClient.trustStorePath=<%= analysts_acc_truststore_path%>
+#analystsNotebookExport.aggregateClassificationClient.trustStorePassword=<%= analysts_acc_truststore_password%>
+#analystsNotebookExport.aggregateClassificationClient.disableHostnameVerification=<%= analysts_acc_disable_hostname_verif%>
