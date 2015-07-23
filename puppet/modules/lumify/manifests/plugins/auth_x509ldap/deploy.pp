@@ -10,7 +10,7 @@ class lumify::plugins::auth_x509ldap::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  macro::ensure_dir{ "auth_x509ldap_config_dir}" :
+  macro::ensure_dir{ "auth_x509ldap_config_dir" :
     dir     => "${lumify_config_dir}",
     owner   => 'lumify',
     group   => 'lumify',

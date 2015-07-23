@@ -2,7 +2,7 @@ class lumify::plugins::change_email::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "change_email_lib_dir}" :
+  macro::ensure_dir{ "change_email_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',

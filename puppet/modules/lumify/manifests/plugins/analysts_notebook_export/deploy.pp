@@ -2,7 +2,7 @@ class lumify::plugins::analysts_notebook_export::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "analysts_notebook_export_lib_dir}" :
+  macro::ensure_dir{ "analysts_notebook_export_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
@@ -21,7 +21,7 @@ class lumify::plugins::analysts_notebook_export::deploy inherits lumify {
   file { "${lumify_config_dir}/lumify-analysts-notebook-export.properties" :
     ensure  => file,
     content => template('lumify/analysts-notebook-export.properties.erb'),
-    require => Macro::Ensure_dir["analysts_notebook_export_config_dir],
+    require => Macro::Ensure_dir["analysts_notebook_export_config_dir"],
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rw,go=r',

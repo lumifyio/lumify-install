@@ -2,7 +2,7 @@ class lumify::plugins::google_analytics::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "google_analytics_lib_dir}" :
+  macro::ensure_dir{ "google_analytics_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
@@ -10,7 +10,7 @@ class lumify::plugins::google_analytics::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  macro::ensure_dir{ "google_analytics_config_dir}" :
+  macro::ensure_dir{ "google_analytics_config_dir" :
     dir     => "${lumify_config_dir}",
     owner   => 'lumify',
     group   => 'lumify',

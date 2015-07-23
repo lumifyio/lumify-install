@@ -2,7 +2,7 @@ class lumify::plugins::import_export_workspaces::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "import_export_workspaces_lib_dir}" :
+  macro::ensure_dir{ "import_export_workspaces_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',

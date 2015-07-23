@@ -2,7 +2,7 @@ class lumify::plugins::auth_social::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "auth_social_lib_dir}" :
+  macro::ensure_dir{ "auth_social_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',

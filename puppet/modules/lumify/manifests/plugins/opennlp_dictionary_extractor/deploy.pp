@@ -2,7 +2,7 @@ class lumify::plugins::opennlp-dictionary-extractor::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "opennlp_dictionary_extractor_lib_dir}" :
+  macro::ensure_dir{ "opennlp_dictionary_extractor_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',

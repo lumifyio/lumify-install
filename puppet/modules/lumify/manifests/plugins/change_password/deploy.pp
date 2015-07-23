@@ -2,7 +2,7 @@ class lumify::plugins::change_password::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "change_password_lib_dir}" :
+  macro::ensure_dir{ "change_password_lib_dir" :
     dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
