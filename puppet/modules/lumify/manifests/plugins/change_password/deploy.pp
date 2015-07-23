@@ -10,10 +10,10 @@ class lumify::plugins::change_password::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "$lumify_target_lib_dir}/lumify-change-password-${lumify_version}.jar" :
+  file { "${lumify_target_lib_dir}/lumify-web-change-password-${lumify_version}.jar" :
     ensure  => file,
     source  => "${lumify_deployed_libs}/lumify-web-change-password-${lumify_version}.jar",
-    require => Macro::Ensure_dir["${lumify_config_dir}"],
+    require => Macro::Ensure_dir["change_password_lib_dir"],
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rw,go=r',

@@ -10,10 +10,10 @@ class lumify::plugins::auth_x509::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "$lumify_target_lib_dir}/lumify-auth-x509-${lumify_version}.jar" :
+  file { "${lumify_target_lib_dir}/lumify-web-auth-x509-${lumify_version}.jar" :
     ensure  => file,
     source  => "${lumify_deployed_libs}/lumify-web-auth-x509-${lumify_version}.jar",
-    require => Macro::Ensure_dir["${lumify_config_dir}"],
+    require => Macro::Ensure_dir["auth_x509_lib_dir"],
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rw,go=r',

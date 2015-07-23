@@ -43,7 +43,4 @@ node /lumify\d*\.vm\.local/ {
 #  class { '::lumify::plugins::analysts_notebook_export::deploy':} ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
-
-  class { '::lumify::auth_username_password::deploy': }
-  class { '::lumify::analysts_notebook_export::deploy'}
 }
