@@ -1,15 +1,17 @@
-class lumify::geocoder_bing::deploy inherits lumify {
+class lumify::plugins::geocoder_bing::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "${lumify_target_lib_dir}" :
+  macro::ensure_dir{ "geocoder_bing_lib_dir}" :
+    dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rwx,g=rx,o=rx',
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  macro::ensure_dir{ "${lumify_config_dir}" :
+  macro::ensure_dir{ "geocoder_bing_config_dir}" :
+    dir     => "${lumify_config_dir}",
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rwx,g=rx,o=rx',

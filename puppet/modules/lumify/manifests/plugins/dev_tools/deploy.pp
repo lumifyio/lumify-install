@@ -1,8 +1,9 @@
-class lumify::dev_tools::deploy inherits lumify {
+class lumify::plugins::dev_tools::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "${lumify_target_lib_dir}" :
+  macro::ensure_dir{ "dev_tools_lib_dir}" :
+    dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rwx,g=rx,o=rx',

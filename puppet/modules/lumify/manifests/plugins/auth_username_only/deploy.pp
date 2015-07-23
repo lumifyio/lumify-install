@@ -1,8 +1,9 @@
-class lumify::auth_username_only::deploy inherits lumify {
+class lumify::plugins::auth_username_only::deploy inherits lumify {
 
   include '::macro'
 
-  macro::ensure_dir{ "${lumify_target_lib_dir}" :
+  macro::ensure_dir{ "auth_username_only_lib_dir" :
+    dir     => "${lumify_target_lib_dir}",
     owner   => 'lumify',
     group   => 'lumify',
     mode    => 'u=rwx,g=rx,o=rx',
@@ -11,7 +12,7 @@ class lumify::auth_username_only::deploy inherits lumify {
 
   file { "$lumify_target_lib_dir}/lumify-auth-username-only-${lumify_version}.jar" :
     ensure  => file,
-    source  => "${lumify_deployed_libs}/lumify-auth-username-only-${lumify_version}.jar",
+    source  => "${lumify_deployed_libs}/lumify-web-auth-username-only-${lumify_version}.jar",
     require => Macro::Ensure_dir["${lumify_config_dir}"],
     owner   => 'lumify',
     group   => 'lumify',
