@@ -40,7 +40,7 @@ node /lumify\d*\.vm\.local/ {
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
   class { '::lumify::plugins::auth_username_only::deploy': } ->
-  class { '::lumify::plugins::analysts_notebook_export::deploy':} ->
+#  class { '::lumify::plugins::analysts_notebook_export::deploy':} ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }
