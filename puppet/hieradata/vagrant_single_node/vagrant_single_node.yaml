@@ -149,6 +149,13 @@ lumify::lumify_deployed_libs: /vagrant/deploy/deployment/web/lib
 lumify::lumify_gpw_jars: /vagrant/deploy/deployment/gpw
 lumify::lumify_yarn_jars: /vagrant/deploy/deployment/yarn
 lumify::lumify_tools_jars: /vagrant/deploy/deployment/tools
+
+lumify::target_gpw_jar_location: /opt/lumify/gpw
+lumify::target_yarn_jar_location: /opt/lumify/yarn
+lumify::target_tools_jar_location: /opt/lumify/tools
+lumify::target_config_location: /opt/lumify/config
+lumify::target_ontologies_dir: /opt/lumify/ontologies
+
 lumify::securegraph_user: root
 lumify::securegraph_password: password
 lumify::accumulo_user: root
