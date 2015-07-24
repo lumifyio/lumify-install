@@ -27,9 +27,9 @@ class lumify::plugins::analysts_notebook_export::deploy inherits lumify {
     mode    => 'u=rw,go=r',
   }
 
-  file { "${lumify_target_lib_dir}/lumify-analysts-notebook-export-${lumify_version}.jar" :
+  file { "${lumify_target_lib_dir}/lumify-analysts-notebook-export-${lumify_version}-jar-with-dependencies.jar" :
     ensure  => file,
-    source  => "${lumify_deployed_libs}/lumify-analysts-notebook-export-${lumify_version}.jar",
+    source  => "${lumify_deployed_libs}/lumify-analysts-notebook-export-${lumify_version}-jar-with-dependencies.jar",
     require => Macro::Ensure_dir["analysts_notebook_export_config_dir"],
     owner   => 'lumify',
     group   => 'lumify',
