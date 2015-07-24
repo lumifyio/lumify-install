@@ -18,7 +18,7 @@ class lumify::plugins::google_analytics::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "${lumify_config_dir}/google-analytics.properties" :
+  file { "${lumify_config_dir}/google-analytics.properties.erb" :
     ensure  => file,
     content => template('lumify/google-analytics.properties.erb'),
     require => Macro::Ensure_dir["google_analytics_config_dir"],

@@ -20,7 +20,7 @@ class lumify::plugins::geocoder_bing::deploy inherits lumify {
 
   file { "${lumify_config_dir}/bingMaps.properties" :
     ensure  => file,
-    content => template('lumify/bingMaps.erb'),
+    content => template('lumify/bingMaps.properties.erb'),
     require => Macro::Ensure_dir["geocoder_bing_config_dir"],
     owner   => 'lumify',
     group   => 'lumify',

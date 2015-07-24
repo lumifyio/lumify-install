@@ -40,7 +40,12 @@ node /lumify\d*\.vm\.local/ {
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
   class { '::lumify::plugins::auth_username_only::deploy': } ->
+  class { '::lumify::plugins::change_email::deploy': } ->
+  class { '::lumify::plugins::google_analytics::deploy': } ->
+  class { '::lumify::plugins::geocoder_bing::deploy': } ->
+#  class { '::lumify::plugins::change_password::deploy': } ->
 #  class { '::lumify::plugins::analysts_notebook_export::deploy':} ->
+#  class { '::lumify::plugins::auth_username_password::deploy': } ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }
