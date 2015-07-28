@@ -1,5 +1,5 @@
 # management node 1
-node 'elasticip' {
+node 'ip-10-0-5-71.ec2.internal' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
