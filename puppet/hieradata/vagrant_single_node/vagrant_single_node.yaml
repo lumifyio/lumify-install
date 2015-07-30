@@ -150,6 +150,9 @@ lumify::lumify_gpw_jars: /vagrant/deploy/deployment/gpw
 lumify::lumify_yarn_jars: /vagrant/deploy/deployment/yarn
 lumify::lumify_tools_jars: /vagrant/deploy/deployment/tools
 
+lumify::lumify_config_src_dir: /vagrant/deploy/deployment/config
+lumify::lumify_ontologies_dir: /vagrant/deploy/deployment/ontologies/sinaloa-ontology
+
 lumify::target_gpw_jar_location: /opt/lumify/gpw
 lumify::target_yarn_jar_location: /opt/lumify/yarn
 lumify::target_tools_jar_location: /opt/lumify/tools
