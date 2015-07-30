@@ -1,0 +1,205 @@
+---
+# configure raid drives
+raid_zero_partition::mount_dir: /data0
+raid_zero_partition::drives:
+    - /dev/xvdf
+    - /dev/xvdg
+#    - /dev/xvdh
+#    - /dev/xvdi
+
+
+# Jetty config
+jetty::version: 9.2.7.v20150116
+jetty::jetty_insecure_listen_port: 8080
+jetty::jetty_confidential_listen_port: 8443
+jetty::jetty_confidential_redirect_port: 8443
+jetty::jetty_config_dir: /opt/jetty/config
+jetty::jetty_key_store_path: /opt/jetty/config/jetty.jks
+jetty::jetty_key_store_password: OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
+jetty::jetty_trust_store_path: /opt/jetty/config/jetty.jks
+jetty::jetty_trust_store_password: OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v
+jetty::jetty_client_auth: false
+jetty::jetty_keypass: password
+jetty::jetty_storepass: password
+jetty::jetty_min_heap_size: 1024m
+jetty::jetty_max_heap_size: 1024m
+jetty::jetty_max_permgen_size: 256m
+jetty::lumify_domain: lumify.io
+jetty::jetty_max_open_file_descriptors: 32768
+
+
+
+# Rabbitmq config
+rabbitmq::rabbitmq_version: 3.4.2
+rabbitmq::rabbitmq_mgmt_user: guest
+rabbitmq::rabbitmq_mgmt_user_pw: guest
+rabbitmq::rabbitmq_user: rabbitmq
+rabbitmq::rabbitmq_group: rabbitmq
+rabbitmq::cluster_nodes: &rabbitmq_cluster_nodes
+    - <lumify_2_ip>
+    - <lumify_3_ip>
+rabbitmq::erlang_cookie:
+rabbitmq::rabbitmq_log_dir: /data0/rabbitmq/log
+rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia
+
+
+# Zookeeper config
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_config_dir: /etc/zookeeper/conf
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_log_dir: /data0/zookeeper/log
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_data_dir: /data0/zookeeper/data
+cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
+cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
+cloudera::cdh5::zookeeper::params::zookeeper_heap_size: 512M
+cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
+    1: <lumify_2_ip>:2181
+    2: <lumify_3_ip>:2181
+    3: <lumify_4_ip>:2181
+
+
+# Hadoop config
+cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
+cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
+cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
+cloudera::cdh5::hadoop::hadoop::hadoop_namenodes: &hadoop_namenodes
+    - <lumify_2_ip>
+    - <lumify_3_ip>
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes: &hadoop_journalnodes
+    - <lumify_5_ip>
+    - <lumify_6_ip>
+    - <lumify_7_ip>
+cloudera::cdh5::hadoop::hadoop::hadoop_masters:
+    - <lumify_2_ip>
+    - <lumify_3_ip>
+cloudera::cdh5::hadoop::hadoop::hadoop_slaves: &hadoop_slaves
+    - <lumify_5_ip>
+    - <lumify_6_ip>
+    - <lumify_7_ip>
+cloudera::cdh5::hadoop::hadoop::zookeeper_nodes: *zookeeper_nodes
+cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode <lumify_2_ip>
+cloudera::cdh5::hadoop::hadoop::namenode_hostname: <lumify_2_hostname>
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: <lumify_2_ip>:8020
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: *hadoop_namenode
+cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
+cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
+cloudera::cdh5::hadoop::hadoop::historyserver_hostname: <lumify_3_hostname>
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
+cloudera::cdh5::hadoop::hadoop::data_directories:
+    - /data0/hadoop
+cloudera::cdh5::hadoop::hadoop::hadoop_replication: 3
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: atic_eight_node_cluster
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_http_port: 50070
+cloudera::cdh5::hadoop::hadoop::hadoop_namenode_rpc_port: 8020
+cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: <lumify_2_hostname>
+
+cloudera::cdh5::hadoop::hadoop::yarn_nodemanager_resource_memory: 2048
+cloudera::cdh5::hadoop::hadoop::yarn_max_vcores: 4
+
+
+# Accumulo config
+accumulo::version: 1.6.1
+accumulo::user: accumulo
+accumulo::group: hadoop
+accumulo::install_dir: /opt
+accumulo::bin_dir: /opt/accumulo/bin
+accumulo::log_dir: /data0/accumulo/log
+accumulo::tmp_dir: /data0/accumulo/tmp
+accumulo::accumulo_instance_name: lumify
+accumulo::accumulo_root_password: &accumulo_password password
+accumulo::accumulo_instance_secret: &accumulo_secret lumifysecret
+accumulo::accumulo_masters: &accumulo_masters
+    - <lumify_4_ip>
+accumulo::accumulo_slaves: &accumulo_slaves
+    - <lumify_5_ip>
+    - <lumify_6_ip>
+    - <lumify_7_ip>
+
+accumulo::accumulo_example_config: 512MB/native-standalone
+accumulo::accumulo_tserver_memory_maps_max: 1G
+accumulo::accumulo_tserver_walog_max_size: 1G
+accumulo::accumulo_table_compaction_minor_logs_threshold: 3
+accumulo::accumulo_tserver_memory_maps_native_enabled: false
+accumulo::accumulo_tserver_cache_data_size: 128M
+accumulo::accumulo_tserver_cache_index_size: 128M
+accumulo::accumulo_tserver_newsize: 128m
+
+accumulo::accumulo_master_heapsize: 1024m
+accumulo::accumulo_monitor_heapsize: 512m
+accumulo::accumulo_gc_heapsize: 512m
+accumulo::accumulo_other_heapsize: 512m
+accumulo::accumulo_trace_user: root
+accumulo::zookeeper_home: /usr/lib/zookeeper
+accumulo::zookeeper_nodes: *zookeeper_nodes
+accumulo::hadoop_prefix: /usr/lib/hadoop
+accumulo::namenode_ipaddress:
+    - *hadoop_namenode
+accumulo::namenode_hostname: <lumify_4_hostname>
+accumulo::java_home: /usr/java/default
+
+
+# Elasticsearch config
+elasticsearch::elasticsearch_version: 1.4.1
+elasticsearch::elasticsearch_rpm_version: 1.4.1-1
+elasticsearch::user: elasticsearch
+elasticsearch::group: elasticsearch
+elasticsearch::install_dir: /usr/share
+elasticsearch::config_dir: /etc/elasticsearch
+elasticsearch::data_dirs:
+    - /data0/elasticsearch/data
+elasticsearch::log_dir: /data0/elasticsearch/log
+elasticsearch::plugin_dir: /usr/share/elasticsearch/plugins
+elasticsearch::work_dir: /data0/elasticsearch/work
+elasticsearch::tmp_dir: /data0/elasticsearch/tmp
+elasticsearch::number_of_shards: 1
+elasticsearch::number_of_replicates: 2
+elasticsearch::es_heap_size: 2g
+elasticsearch::params::indices_fielddata_cache_size: 75%
+elasticsearch::mlockall: true
+elasticsearch::cluster_name: &elasticsearch_cluster_name elasticsearch_atic_eight_node
+elasticsearch::elasticsearch_locations: &elasticsearch_locations
+    - <lumify_5_ip>:9300
+    - <lumify_6_ip>:9300
+    - <lumify_7_ip>:9300
+elasticsearch::max_open_file_descriptors: 32768
+
+
+
+# Lumify config
+lumify::lumify_logs_dir: /data0/lumify/log
+lumify::lumify_war_file: /opt/lumify-deployment/web/lumify.war
+lumify::lumify_deployed_libs: /opt/lumify-deployment/web/lib
+lumify::lumify_xml_file: /opt/lumify-deployment/lumify.xml
+lumify::lumify_config_src_dir: /opt/lumify-deployment/config
+lumify::lumify_gpw_jars: /opt/lumify-deployment/gpw
+lumify::lumify_yarn_jars: /opt/lumify-deployment/yarn
+lumify::lumify_tools_jars: /opt/lumify-deployment/tools
+lumify::lumify_ontologies_dir: /opt/lumify-deployment/ontologies/ontology-minimal
+
+lumify::target_gpw_jar_location: /opt/lumify/gpw
+lumify::target_yarn_jar_location: /opt/lumify/yarn
+lumify::target_tools_jar_location: /opt/lumify/tools
+lumify::target_config_location: /opt/lumify/config
+lumify::target_ontologies_dir: /opt/lumify/ontologies
+
+lumify::securegraph_user: root
+lumify::securegraph_password: password
+lumify::accumulo_user: root
+lumify::accumulo_password: *accumulo_password
+lumify::web_server_host: &lumify_webservers
+    - <lumify_1_ip>
+lumify::hadoop_namenode: *hadoop_namenode
+lumify::zookeeper_quorum: *zookeeper_nodes
+lumify::elastic_search_cluster_name: *elasticsearch_cluster_name
+lumify::elastic_search_locations: *elasticsearch_locations
+lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
+lumify::google_analytics_key: UA-74388-18
+lumify::google_analytics_domain: <lumify_1_hostname>
+lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
+lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
+lumify::terms_of_use_title: try.lumify.io Terms of Use
+lumify::terms_of_use_html: <p>This is a demonstration instance of Lumify. Features and data may change at any time.</p>
+lumify::oauth_twitter_key: llHKLPSHT1YZlFjQBVCtdDB2i
+lumify::oauth_twitter_secret: BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw
+lumify::oauth_google_key: 1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com
+lumify::oauth_google_secret: QUgK2a-T8zKKqeu-qe6lKPnY
+
