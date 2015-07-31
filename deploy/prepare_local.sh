@@ -3,7 +3,7 @@
 DEPLOY_ROOT=$PWD
 
 # NOTE: This needs to be changed to point to the base directory that holds the lumify-all and lumify projects
-LOCAL_DIR=<YOUR_LOCAL_DIR>
+LOCAL_DIR=~/Document/altamira/workspace
 
 GIT_REPO=/tmp/git-repo
 LUMIFY_ALL=$GIT_REPO/lumify-all
@@ -90,7 +90,7 @@ cp -R $LUMIFY_PUBLIC/config/* deployment/config
 
 echo "Copying Ontology"
 mkdir -p deployment/ontologies/ontology-minimal
-cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal deployment/ontologies/ontology-minimal
+cp -R $LUMIFY_PUBLIC/examples/ontology-minimal/* deployment/ontologies/ontology-minimal
 
 echo "Deployment to Vagrant folder"
 cp -R deployment $DEPLOY_ROOT
