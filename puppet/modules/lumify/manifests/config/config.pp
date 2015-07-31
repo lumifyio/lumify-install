@@ -61,14 +61,14 @@ class lumify::config::config inherits lumify {
     mode    => 'u=rwx,go=rx',
   }
 
-  file { "${lumify_config_dir}/lumify-oauth.properties" :
-    ensure  => file,
-    content => template('lumify/lumify-oauth.properties.erb'),
-    require => Macro::Ensure_dir["${lumify_config_dir}"],
-    owner   => 'lumify',
-    group   => 'lumify',
-    mode    => 'u=rwx,go=rx',
-  }
+  #file { "${lumify_config_dir}/lumify-oauth.properties" :
+  #  ensure  => file,
+  #  content => template('lumify/lumify-oauth.properties.erb'),
+  #  require => Macro::Ensure_dir["${lumify_config_dir}"],
+  #  owner   => 'lumify',
+  #  group   => 'lumify',
+  #  mode    => 'u=rwx,go=rx',
+  #}
 
   file { "${lumify_config_dir}/bingTranslate.properties" :
     ensure  => file,
