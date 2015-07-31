@@ -2,7 +2,6 @@ node 'lumify_1_hostname' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
-#  class { '::raid_zero_partition': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -11,6 +10,35 @@ node 'lumify_1_hostname' {
   class { '::epel': } ->
 
   class { '::lumify::config::config': } ->
+
+  class { '::erlang': } ->
+  class { '::rabbitmq': } ->
+
+  class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
+
+  class { '::cloudera::cdh5::hadoop::yarn::resourcemanager': } ->
+  class { '::cloudera::cdh5::hadoop::namenode': }
+}
+
+node 'lumify_2_hostname' {
+  class { 'selinux': } ->
+  class { '::ntp': } ->
+  class { '::mdadm': } ->
+  class { '::sysctl::max_file_descriptors': } ->
+  class { '::sysctl::max_map_count': } ->
+  class { '::sysctl::swappiness': } ->
+  class { '::iptables': } ->
+  class { '::ipv6': } ->
+  class { '::epel': } ->
+
+  class { '::lumify::config::config': } ->
+
+  class { '::erlang': } ->
+  class { '::rabbitmq': } ->
+
+  class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
+
+  class { '::cloudera::cdh5::hadoop::secondary_namenode': } ->
 
   class { '::lumify::tools::deploy': } ->
   class { '::lumify::ontology::deploy': } ->
@@ -21,33 +49,10 @@ node 'lumify_1_hostname' {
   class { '::lumify::web::deploy': }
 }
 
-node 'lumify_2_hostname' {
-  class { 'selinux': } ->
-  class { '::ntp': } ->
-  class { '::mdadm': } ->
-  class { '::raid_zero_partition': } ->
-  class { '::sysctl::max_file_descriptors': } ->
-  class { '::sysctl::max_map_count': } ->
-  class { '::sysctl::swappiness': } ->
-  class { '::iptables': } ->
-  class { '::ipv6': } ->
-  class { '::epel': } ->
-
-  class { '::lumify::config::config': } ->
-
-  class { '::erlang': } ->
-  class { '::rabbitmq': } ->
-
-  class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
-  class { '::cloudera::cdh5::hadoop::namenode': } ->
-  class { '::cloudera::cdh5::hadoop::yarn::resourcemanager': }
-}
-
 node 'lumify_3_hostname' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
-  class { '::raid_zero_partition': } ->
   class { '::sysctl::max_file_descriptors': } ->
   class { '::sysctl::max_map_count': } ->
   class { '::sysctl::swappiness': } ->
@@ -57,29 +62,9 @@ node 'lumify_3_hostname' {
 
   class { '::lumify::config::config': } ->
 
-  class { '::erlang': } ->
-  class { '::rabbitmq': } ->
-
   class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
+
   class { '::cloudera::cdh5::hadoop::yarn::historyserver': } ->
-  class { '::cloudera::cdh5::hadoop::secondary_namenode': }
-}
-
-node 'lumify_4_hostname' {
-  class { 'selinux': } ->
-  class { '::ntp': } ->
-  class { '::mdadm': } ->
-  class { '::raid_zero_partition': } ->
-  class { '::sysctl::max_file_descriptors': } ->
-  class { '::sysctl::max_map_count': } ->
-  class { '::sysctl::swappiness': } ->
-  class { '::iptables': } ->
-  class { '::ipv6': } ->
-  class { '::epel': } ->
-
-  class { '::lumify::config::config': } ->
-
-  class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
 
   class { '::accumulo::master': } ->
   class { '::accumulo::monitor': } ->
@@ -87,7 +72,7 @@ node 'lumify_4_hostname' {
   class { '::accumulo::gc': }
 }
 
-node 'lumify_5_hostname', 'lumify_6_hostname', 'lumify_7_hostname' {
+node 'lumify_4_hostname', 'lumify_5_hostname', 'lumify_6_hostname' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->

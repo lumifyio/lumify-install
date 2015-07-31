@@ -36,8 +36,8 @@ rabbitmq::rabbitmq_mgmt_user_pw: guest
 rabbitmq::rabbitmq_user: rabbitmq
 rabbitmq::rabbitmq_group: rabbitmq
 rabbitmq::cluster_nodes: &rabbitmq_cluster_nodes
+    - <lumify_1_ip>
     - <lumify_2_ip>
-    - <lumify_3_ip>
 rabbitmq::erlang_cookie:
 rabbitmq::rabbitmq_log_dir: /data0/rabbitmq/log
 rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia
@@ -51,9 +51,9 @@ cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
 cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
 cloudera::cdh5::zookeeper::params::zookeeper_heap_size: 512M
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
-    1: <lumify_2_ip>:2181
-    2: <lumify_3_ip>:2181
-    3: <lumify_4_ip>:2181
+    1: <lumify_1_ip>:2181
+    2: <lumify_2_ip>:2181
+    3: <lumify_3_ip>:2181
 
 
 # Hadoop config
@@ -61,24 +61,24 @@ cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
 cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
 cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
 cloudera::cdh5::hadoop::hadoop::hadoop_namenodes: &hadoop_namenodes
+    - <lumify_1_ip>
     - <lumify_2_ip>
-    - <lumify_3_ip>
 cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes: &hadoop_journalnodes
+    - <lumify_4_ip>
     - <lumify_5_ip>
     - <lumify_6_ip>
-    - <lumify_7_ip>
 cloudera::cdh5::hadoop::hadoop::hadoop_masters:
+    - <lumify_1_ip>
     - <lumify_2_ip>
-    - <lumify_3_ip>
 cloudera::cdh5::hadoop::hadoop::hadoop_slaves: &hadoop_slaves
+    - <lumify_4_ip>
     - <lumify_5_ip>
     - <lumify_6_ip>
-    - <lumify_7_ip>
 cloudera::cdh5::hadoop::hadoop::zookeeper_nodes: *zookeeper_nodes
 cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
-cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode <lumify_2_ip>
-cloudera::cdh5::hadoop::hadoop::namenode_hostname: <lumify_2_hostname>
-cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: <lumify_2_ip>:8020
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode <lumify_1_ip>
+cloudera::cdh5::hadoop::hadoop::namenode_hostname: <lumify_1_hostname>
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: <lumify_1_ip>:8020
 cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: *hadoop_namenode
 cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
 cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
@@ -87,10 +87,10 @@ cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
 cloudera::cdh5::hadoop::hadoop::data_directories:
     - /data0/hadoop
 cloudera::cdh5::hadoop::hadoop::hadoop_replication: 3
-cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: atic_eight_node_cluster
+cloudera::cdh5::hadoop::hadoop::hadoop_ha_cluster_name: atic_six_node_cluster
 cloudera::cdh5::hadoop::hadoop::hadoop_namenode_http_port: 50070
 cloudera::cdh5::hadoop::hadoop::hadoop_namenode_rpc_port: 8020
-cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: <lumify_2_hostname>
+cloudera::cdh5::hadoop::hadoop::yarn_resourcemanager_hostname: <lumify_1_hostname>
 
 cloudera::cdh5::hadoop::hadoop::yarn_nodemanager_resource_memory: 2048
 cloudera::cdh5::hadoop::hadoop::yarn_max_vcores: 4
@@ -108,11 +108,11 @@ accumulo::accumulo_instance_name: lumify
 accumulo::accumulo_root_password: &accumulo_password password
 accumulo::accumulo_instance_secret: &accumulo_secret lumifysecret
 accumulo::accumulo_masters: &accumulo_masters
-    - <lumify_4_ip>
+    - <lumify_3_ip>
 accumulo::accumulo_slaves: &accumulo_slaves
+    - <lumify_4_ip>
     - <lumify_5_ip>
     - <lumify_6_ip>
-    - <lumify_7_ip>
 
 accumulo::accumulo_example_config: 512MB/native-standalone
 accumulo::accumulo_tserver_memory_maps_max: 1G
@@ -133,7 +133,7 @@ accumulo::zookeeper_nodes: *zookeeper_nodes
 accumulo::hadoop_prefix: /usr/lib/hadoop
 accumulo::namenode_ipaddress:
     - *hadoop_namenode
-accumulo::namenode_hostname: <lumify_4_hostname>
+accumulo::namenode_hostname: <lumify_3_hostname>
 accumulo::java_home: /usr/java/default
 
 
@@ -155,11 +155,11 @@ elasticsearch::number_of_replicates: 2
 elasticsearch::es_heap_size: 2g
 elasticsearch::params::indices_fielddata_cache_size: 75%
 elasticsearch::mlockall: true
-elasticsearch::cluster_name: &elasticsearch_cluster_name elasticsearch_atic_eight_node
+elasticsearch::cluster_name: &elasticsearch_cluster_name elasticsearch_atic_six_node
 elasticsearch::elasticsearch_locations: &elasticsearch_locations
+    - <lumify_4_ip>:9300
     - <lumify_5_ip>:9300
     - <lumify_6_ip>:9300
-    - <lumify_7_ip>:9300
 elasticsearch::max_open_file_descriptors: 32768
 
 
@@ -186,14 +186,14 @@ lumify::securegraph_password: password
 lumify::accumulo_user: root
 lumify::accumulo_password: *accumulo_password
 lumify::web_server_host: &lumify_webservers
-    - <lumify_1_ip>
+    - <lumify_2_ip>
 lumify::hadoop_namenode: *hadoop_namenode
 lumify::zookeeper_quorum: *zookeeper_nodes
 lumify::elastic_search_cluster_name: *elasticsearch_cluster_name
 lumify::elastic_search_locations: *elasticsearch_locations
 lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
 lumify::google_analytics_key: UA-74388-18
-lumify::google_analytics_domain: <lumify_1_hostname>
+lumify::google_analytics_domain: <lumify_2_hostname>
 lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
 lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
 lumify::terms_of_use_title: try.lumify.io Terms of Use
@@ -202,4 +202,3 @@ lumify::oauth_twitter_key: llHKLPSHT1YZlFjQBVCtdDB2i
 lumify::oauth_twitter_secret: BPqVbjxKn9J0usjzGDZSSau4KccJro6FT8T1XO4ALG01HHmNsw
 lumify::oauth_google_key: 1045232169465-ds6ockb84tbqav9dettpm52ijaf7j64b.apps.googleusercontent.com
 lumify::oauth_google_secret: QUgK2a-T8zKKqeu-qe6lKPnY
-
