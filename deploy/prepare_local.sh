@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 #setup variables
 DEPLOY_ROOT=$PWD
+SCRIPT_DIR=$(dirname $0)
+if [ "$SCRIPT_DIR" = '.' ]; then
+	SCRIPT_DIR=$DEPLOY_ROOT
+fi
 
-# NOTE: This needs to be changed to point to the base directory that holds the lumify-all and lumify projects
-LOCAL_DIR=~/Document/altamira/workspace
+# NOTE: This needs to changed to point to the base directory that holds the lumify-all and lumify projects
+#back up two directories
+LOCAL_DIR="$SCRIPT_DIR/../.."
+echo "LOCAL_DIR is set to $LOCAL_DIR"
 
 GIT_REPO=/tmp/git-repo
 LUMIFY_ALL=$GIT_REPO/lumify-all
