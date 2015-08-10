@@ -10,9 +10,9 @@ class lumify::plugins::dev_tools::deploy inherits lumify {
     require => [ User['lumify'], Group['lumify'], ],
   }
 
-  file { "${lumify_target_lib_dir}/dev-tools-${lumify_version}.jar" :
+  file { "${lumify_target_lib_dir}/lumify-web-dev-tools-${lumify_version}.jar" :
     ensure  => file,
-    source  => "${lumify_deployed_libs}/dev-tools-${lumify_version}.jar",
+    source  => "${lumify_deployed_libs}/lumify-web-dev-tools-${lumify_version}.jar",
     require => Macro::Ensure_dir["dev_tools_lib_dir"],
     owner   => 'lumify',
     group   => 'lumify',
