@@ -39,6 +39,7 @@ class lumify(
   $lumify_hdfs_gpw_directory=$lumify::params::lumify_hdfs_gpw_directory,
   $lumify_ontologies_dir=$lumify::params::lumify_ontologies_dir,
   $target_ontologies_dir=$lumify::params::target_ontologies_dir,
+  $target_config_location=$lumify::params::target_config_location,
 
   $forgot_pass_server_hostname=$lumify::params::server_hostname,
   $forgot_pass_server_port=$lumify::params::server_port,

@@ -186,14 +186,14 @@ lumify::securegraph_password: password
 lumify::accumulo_user: root
 lumify::accumulo_password: *accumulo_password
 lumify::web_server_host: &lumify_webservers
-    - <lumify_2_ip>
+    - <lumify_3_ip>
 lumify::hadoop_namenode: *hadoop_namenode
 lumify::zookeeper_quorum: *zookeeper_nodes
 lumify::elastic_search_cluster_name: *elasticsearch_cluster_name
 lumify::elastic_search_locations: *elasticsearch_locations
 lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
 lumify::google_analytics_key: UA-74388-18
-lumify::google_analytics_domain: <lumify_2_hostname>
+lumify::google_analytics_domain: <lumify_3_hostname>
 lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
 lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
 lumify::terms_of_use_title: try.lumify.io Terms of Use

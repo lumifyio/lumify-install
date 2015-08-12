@@ -38,15 +38,7 @@ node 'lumify_2_hostname' {
 
   class { '::cloudera::cdh5::zookeeper::zookeeper': } ->
 
-  class { '::cloudera::cdh5::hadoop::secondary_namenode': } ->
-
-  class { '::lumify::tools::deploy': } ->
-  class { '::lumify::ontology::deploy': } ->
-  class { '::lumify::gpw::deploy': } ->
-  class { '::lumify::yarn::deploy': } ->
-  class { '::lumify::yarn::run': } ->
-  class { '::jetty': } ->
-  class { '::lumify::web::deploy': }
+  class { '::cloudera::cdh5::hadoop::secondary_namenode': }
 }
 
 node 'lumify_3_hostname' {
@@ -69,7 +61,15 @@ node 'lumify_3_hostname' {
   class { '::accumulo::master': } ->
   class { '::accumulo::monitor': } ->
   class { '::accumulo::tracer': } ->
-  class { '::accumulo::gc': }
+  class { '::accumulo::gc': } ->
+
+  class { '::lumify::tools::deploy': } ->
+  class { '::lumify::ontology::deploy': } ->
+  class { '::lumify::gpw::deploy': } ->
+  class { '::lumify::yarn::deploy': } ->
+  class { '::lumify::yarn::run': } ->
+  class { '::jetty': } ->
+  class { '::lumify::web::deploy': }
 }
 
 node 'lumify_4_hostname', 'lumify_5_hostname', 'lumify_6_hostname' {
