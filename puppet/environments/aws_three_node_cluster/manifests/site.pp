@@ -1,4 +1,4 @@
-node 'ip-10-0-5-34.ec2.internal' {
+node '<node_1_host_name>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
@@ -40,7 +40,7 @@ node 'ip-10-0-5-34.ec2.internal' {
   class { '::accumulo::tablet': }
 }
 
-node 'ip-10-0-5-35.ec2.internal' {
+node '<node_2_host_name>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
@@ -82,7 +82,7 @@ node 'ip-10-0-5-35.ec2.internal' {
   class { '::accumulo::tablet': }
 }
 
-node 'ip-10-0-5-36.ec2.internal' {
+node '<node_3_host_name>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->

@@ -1,5 +1,5 @@
 # management node 1
-node 'ip-10-0-5-71.ec2.internal' {
+node '<slave_node_hostname>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::sysctl::max_file_descriptors': } ->
@@ -41,6 +41,15 @@ node 'ip-10-0-5-71.ec2.internal' {
   class { '::lumify::ontology::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
+  #  class { '::lumify::plugins::auth_social::deploy': } ->
+  class { '::lumify::plugins::auth_username_password::deploy': } ->
+  class { '::lumify::plugins::change_email::deploy': } ->
+  class { '::lumify::plugins::change_password::deploy': } ->
+  #class { '::lumify::plugins::dev_tools::deploy': } ->
+  class { '::lumify::plugins::geocoder_bing::deploy': } ->
+  class { '::lumify::plugins::google_analytics::deploy': } ->
+  #class { '::lumify::plugins::import_export_workspaces::deploy': } ->
+  class { '::lumify::plugins::analysts_notebook_export::deploy':} ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }

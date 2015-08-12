@@ -24,6 +24,11 @@ jetty::jetty_max_open_file_descriptors: 32768
 jetty::jetty_base_dir: /data0/jetty
 jetty::jetty_logs_dir: /data0/jetty/log
 
+# Tomcat config
+tomcat::tomcat_keystore_path: /opt/lumify/config/tomcat.jks
+tomcat::tomcat_keystore_password: password
+tomcat::tomcat_truststore_path: /opt/lumify/config/tomcat.jks
+tomcat::tomcat_truststore_password: password
 
 # Rabbitmq config
 rabbitmq::rabbitmq_version: 3.4.2

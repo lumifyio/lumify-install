@@ -36,8 +36,8 @@ rabbitmq::rabbitmq_mgmt_user_pw: guest
 rabbitmq::rabbitmq_user: rabbitmq
 rabbitmq::rabbitmq_group: rabbitmq
 rabbitmq::cluster_nodes: &rabbitmq_cluster_nodes
-    - 10.0.5.34
-    - 10.0.5.35
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
 rabbitmq::erlang_cookie:
 rabbitmq::rabbitmq_log_dir: /data0/rabbitmq/log
 rabbitmq::rabbitmq_mnesia_dir: /data0/rabbitmq/mnesia
@@ -51,9 +51,9 @@ cloudera::cdh5::zookeeper::zookeeper::user: zookeeper
 cloudera::cdh5::zookeeper::zookeeper::group: zookeeper
 cloudera::cdh5::zookeeper::params::zookeeper_heap_size: 512M
 cloudera::cdh5::zookeeper::zookeeper::zookeeper_nodes: &zookeeper_nodes
-    1: 10.0.5.34:2181
-    2: 10.0.5.35:2181
-    3: 10.0.5.36:2181
+    1: <ip_address_of_node_1>:2181
+    2: <ip_address_of_node_2>:2181
+    3: <ip_address_of_node_3>:2181
 
 
 # Hadoop config
@@ -61,28 +61,28 @@ cloudera::cdh5::hadoop::hadoop::hadoop_hdfs_log_dir: /data0/hadoop/hdfs/log
 cloudera::cdh5::hadoop::hadoop::hadoop_yarn_log_dir: /data0/hadoop/yarn/log
 cloudera::cdh5::hadoop::hadoop::hadoop_mapreduce_log_dir: /data0/hadoop/mapreduce/log
 cloudera::cdh5::hadoop::hadoop::hadoop_namenodes: &hadoop_namenodes
-    - 10.0.5.34
-    - 10.0.5.35
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
 cloudera::cdh5::hadoop::hadoop::hadoop_ha_journalnodes: &hadoop_journalnodes
-    - 10.0.5.34
-    - 10.0.5.35
-    - 10.0.5.36
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
+    - <ip_address_of_node_3>
 cloudera::cdh5::hadoop::hadoop::hadoop_masters:
-    - 10.0.5.34
-    - 10.0.5.35
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
 cloudera::cdh5::hadoop::hadoop::hadoop_slaves: &hadoop_slaves
-    - 10.0.5.34
-    - 10.0.5.35
-    - 10.0.5.36
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
+    - <ip_address_of_node_3>
 cloudera::cdh5::hadoop::hadoop::zookeeper_nodes: *zookeeper_nodes
 cloudera::cdh5::hadoop::hadoop::pkg: hadoop.x86_64
-cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode 10.0.5.34
+cloudera::cdh5::hadoop::hadoop::namenode_ipaddress: &hadoop_namenode <ip_address_of_node_1>
 cloudera::cdh5::hadoop::hadoop::namenode_hostname: ip-10-0-5-81.ec2.internal
-cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: 10.0.5.34:8020
+cloudera::cdh5::hadoop::hadoop::namenode_rpc_address: <ip_address_of_node_1>:8020
 cloudera::cdh5::hadoop::hadoop::namenode_rpc_bind_host: *hadoop_namenode
 cloudera::cdh5::hadoop::hadoop::datanode_address: 0.0.0.0:50010
 cloudera::cdh5::hadoop::hadoop::datanode_ipc_address: 0.0.0.0:50020
-cloudera::cdh5::hadoop::hadoop::historyserver_hostname: ip-10-0-5-82.ec2.internal
+cloudera::cdh5::hadoop::hadoop::historyserver_hostname: <node_2_host_name>
 cloudera::cdh5::hadoop::hadoop::hadoop_ha_enabled: false
 cloudera::cdh5::hadoop::hadoop::data_directories:
     - /data0/hadoop
@@ -108,11 +108,11 @@ accumulo::accumulo_instance_name: lumify
 accumulo::accumulo_root_password: &accumulo_password password
 accumulo::accumulo_instance_secret: &accumulo_secret lumifysecret
 accumulo::accumulo_masters: &accumulo_masters
-    - 10.0.5.36
+    - <ip_address_of_node_3>
 accumulo::accumulo_slaves: &accumulo_slaves
-    - 10.0.5.34
-    - 10.0.5.35
-    - 10.0.5.36
+    - <ip_address_of_node_1>
+    - <ip_address_of_node_2>
+    - <ip_address_of_node_3>
 
 accumulo::accumulo_example_config: 512MB/native-standalone
 accumulo::accumulo_tserver_memory_maps_max: 1G
@@ -133,7 +133,7 @@ accumulo::zookeeper_nodes: *zookeeper_nodes
 accumulo::hadoop_prefix: /usr/lib/hadoop
 accumulo::namenode_ipaddress:
     - *hadoop_namenode
-accumulo::namenode_hostname: ip-10-0-5-81.ec2.internal
+accumulo::namenode_hostname: <node_1_host_name>
 accumulo::java_home: /usr/java/default
 
 
@@ -157,9 +157,9 @@ elasticsearch::params::indices_fielddata_cache_size: 75%
 elasticsearch::mlockall: true
 elasticsearch::cluster_name: &elasticsearch_cluster_name elasticsearch_vagrant_three_node
 elasticsearch::elasticsearch_locations: &elasticsearch_locations
-    - 10.0.5.34:9300
-    - 10.0.5.35:9300
-    - 10.0.5.36:9300
+    - <ip_address_of_node_1>:9300
+    - <ip_address_of_node_2>:9300
+    - <ip_address_of_node_3>:9300
 elasticsearch::max_open_file_descriptors: 32768
 
 
@@ -186,14 +186,14 @@ lumify::securegraph_password: password
 lumify::accumulo_user: root
 lumify::accumulo_password: *accumulo_password
 lumify::web_server_host: &lumify_webservers
-    - 10.0.5.34
+    - <ip_address_of_node_1>
 lumify::hadoop_namenode: *hadoop_namenode
 lumify::zookeeper_quorum: *zookeeper_nodes
 lumify::elastic_search_cluster_name: *elasticsearch_cluster_name
 lumify::elastic_search_locations: *elasticsearch_locations
 lumify::rabbitmq_nodes: *rabbitmq_cluster_nodes
 lumify::google_analytics_key: UA-74388-18
-lumify::google_analytics_domain: ip-10-0-5-81.ec2.internal
+lumify::google_analytics_domain: <node_1_host_name>
 lumify::bing_clientId: b75468f1-5ee0-434f-a1ca-87ab04b1a897
 lumify::bing_secret: 4PLv4+za8ogRIRYJzLfVGbbrCLzuY+8w/G+wqRZmdRM
 lumify::terms_of_use_title: try.lumify.io Terms of Use
