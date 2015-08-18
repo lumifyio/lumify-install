@@ -46,12 +46,10 @@ class cloudera::cdh5::hadoop::params {
   $yarn_resourcemanager_max_memory  = '65536'
   $yarn_resourcemanager_incr_memory = '512'
   $mapreduce_map_memory             = '1024'
-  $mapreduce_map_java_max_heap      = '800'
   $mapreduce_map_vcores             = '1'
   $mapreduce_reduce_memory          = '1024'
-  $mapreduce_reduce_java_max_heap   = '800'
   $mapreduce_reduce_vcores          = '1'
   $yarn_mapreduce_am_memory         = '1024'
-  $yarn_mapreduce_am_commandopts    = '800'
+  $yarn_mapreduce_am_commandopts    = '-Xmx800M'
   $yarn_mapreduce_am_vcores         = '1'
 }
