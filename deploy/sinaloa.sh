@@ -2,7 +2,7 @@
 #setup variables
 DEPLOY_ROOT=$PWD
 GIT_REPO=/tmp/git-repo
-LUMIFY_ALL=$GIT_REPO/lumify-all
+LUMIFY_ALL=$GIT_REPO/lumify-data
 SEC_GRAPH=$GIT_REPO/securegraph
 LUMIFY_PUBLIC=$LUMIFY_ALL/lumify-public
 LUMIFY_VERSION=0.5.0-SNAPSHOT

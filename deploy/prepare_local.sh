@@ -6,13 +6,13 @@ if [ "$SCRIPT_DIR" = '.' ]; then
 	SCRIPT_DIR=$DEPLOY_ROOT
 fi
 
-# NOTE: This needs to changed to point to the base directory that holds the lumify-all and lumify projects
+# NOTE: This needs to changed to point to the base directory that holds the lumify-data and lumify projects
 #back up two directories
 LOCAL_DIR="$SCRIPT_DIR/../.."
 echo "LOCAL_DIR is set to $LOCAL_DIR"
 
 GIT_REPO=/tmp/git-repo
-LUMIFY_ALL=$GIT_REPO/lumify-all
+LUMIFY_ALL=$GIT_REPO/lumify-data
 SEC_GRAPH=$GIT_REPO/securegraph
 LUMIFY_PUBLIC=$LUMIFY_ALL/lumify-public
 LUMIFY_VERSION=0.5.0-SNAPSHOT
@@ -26,8 +26,8 @@ mkdir $GIT_REPO
 cd $GIT_REPO
 mkdir $LUMIFY_ALL
 
-echo "Copying lumify-all and lumify directories from local machine based at $LOCAL_DIR."
-cp -r $LOCAL_DIR/lumify-all lumify-all
+echo "Copying lumify-data and lumify directories from local machine based at $LOCAL_DIR."
+cp -r $LOCAL_DIR/lumify-data lumify-data
 cd $LUMIFY_ALL
 cp -r $LOCAL_DIR/lumify lumify-public
 

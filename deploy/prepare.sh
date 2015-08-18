@@ -2,7 +2,7 @@
 #setup variables
 DEPLOY_ROOT=$PWD
 GIT_REPO=/tmp/git-repo
-LUMIFY_ALL=$GIT_REPO/lumify-all
+LUMIFY_ALL=$GIT_REPO/lumify-data
 SEC_GRAPH=$GIT_REPO/securegraph
 LUMIFY_PUBLIC=$LUMIFY_ALL/lumify-public
 LUMIFY_VERSION=0.5.0-SNAPSHOT
@@ -16,7 +16,7 @@ mkdir $GIT_REPO
 cd $GIT_REPO
 mkdir $LUMIFY_ALL
 
-git clone https://github.com/altamiracorp/lumify-all
+git clone https://github.com/altamiracorp/lumify-data
 cd $LUMIFY_ALL
 git clone -b develop https://github.com/lumifyio/lumify lumify-public
 #cd $GIT_REPO
