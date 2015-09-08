@@ -1,4 +1,4 @@
-node '<node_1_host_name>' {
+node '<lumify_1_hostname>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
@@ -40,7 +40,7 @@ node '<node_1_host_name>' {
   class { '::accumulo::tablet': }
 }
 
-node '<node_2_host_name>' {
+node '<lumify_2_hostname>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->
@@ -82,7 +82,7 @@ node '<node_2_host_name>' {
   class { '::accumulo::tablet': }
 }
 
-node '<node_3_host_name>' {
+node '<lumify_3_hostname>' {
   class { 'selinux': } ->
   class { '::ntp': } ->
   class { '::mdadm': } ->

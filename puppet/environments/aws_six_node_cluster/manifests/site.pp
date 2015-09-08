@@ -68,6 +68,11 @@ node 'lumify_3_hostname' {
   class { '::lumify::gpw::deploy': } ->
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
+  class { '::lumify::plugins::auth_username_password::deploy': } ->
+  class { '::lumify::plugins::change_email::deploy': } ->
+  class { '::lumify::plugins::change_password::deploy': } ->
+  class { '::lumify::plugins::geocoder_bing::deploy': } ->
+  class { '::lumify::plugins::google_analytics::deploy': } ->
   class { '::jetty': } ->
   class { '::lumify::web::deploy': }
 }
