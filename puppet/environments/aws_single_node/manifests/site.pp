@@ -8,7 +8,7 @@ node '<slave_node_hostname>' {
   class { '::iptables': } ->
   class { '::ipv6': } ->
   class { '::mdadm': } ->
-  class { '::raid_zero_partition': } ->
+#  class { '::raid_zero_partition': } ->
   class { '::epel': } ->
   class { '::jai': } ->
   class { '::jai_imageio': } ->
@@ -42,7 +42,8 @@ node '<slave_node_hostname>' {
   class { '::lumify::yarn::deploy': } ->
   class { '::lumify::yarn::run': } ->
   #  class { '::lumify::plugins::auth_social::deploy': } ->
-  class { '::lumify::plugins::auth_username_password::deploy': } ->
+  #  class { '::lumify::plugins::auth_username_password::deploy': } ->
+  class { '::lumify::plugins::auth_username_only::deploy': } ->
   class { '::lumify::plugins::change_email::deploy': } ->
   class { '::lumify::plugins::change_password::deploy': } ->
   #class { '::lumify::plugins::dev_tools::deploy': } ->
