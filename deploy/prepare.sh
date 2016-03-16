@@ -16,7 +16,7 @@ mkdir $GIT_REPO
 cd $GIT_REPO
 mkdir $LUMIFY_ALL
 
-git clone https://github.com/altamiracorp/lumify-data
+git clone https://github.com/lumifyio/lumify-data
 cd $LUMIFY_ALL
 git clone -b develop https://github.com/lumifyio/lumify lumify-public
 #cd $GIT_REPO
